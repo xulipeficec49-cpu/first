@@ -1,0 +1,2545 @@
+{
+ "meta": {
+  "title": "由赵爽弦图拼出的平行四边形",
+  "tag": "四边形综合",
+  "subtitle": "斜边中线 · 全等 · 中位线 · 面积比",
+  "out": "四边形综合_赵爽弦图拼出的平行四边形.mp4",
+  "theme": "light",
+  "fps": 30
+ },
+ "problem": {
+  "tag": "四边形综合",
+  "size": 30,
+  "width": 1040,
+  "text": "（宁波期末）我国著名的{k1|“赵爽弦图”是由四个全等的直角三角形与一个小正方形拼成一个大正方形}．如图，数学兴趣小组的小伙伴们尝试用{k2|两对全等的直角三角形与一个矩形 $EFGH$ 拼出了一个平行四边形 $ABCD$}．其中{k3|$M$ 是 $AB$ 的中点}．",
+  "parts": [
+   "（1）如图①，若{q1|$ME=DG$，$AB=6$，求 $CG$ 的长}．",
+   "（2）如图②，{q2|连接 $HF$，$EG$ 交于点 $O$，连接 $OM$}．",
+   "　①求证：{q3|$OM\\parallel AD$}；",
+   "　②如图③，{q4|若 $AH=HE$，取 $AD$ 的中点 $N$，连接 $ON$，$NG$，$MH$}，{q5|若 $S_{\\triangle NOG}=3S_{\\triangle MOH}$，求 $\\dfrac{HG}{DG}$ 的值}．"
+  ]
+ },
+ "layouts": {
+  "board": {
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1130,
+    "h": 800
+   }
+  }
+ },
+ "world": {
+  "vars": {
+   "p": 3,
+   "q": 3,
+   "h": 2.196152422706632,
+   "w": 2.196152422706632,
+   "ah": 1,
+   "r": 0
+  },
+  "funcs": {
+   "rx": "(x, y, a) => x * Math.cos(a) - y * Math.sin(a)",
+   "ry": "(x, y, a) => x * Math.sin(a) + y * Math.cos(a)",
+   "an": "(q, w, p, ah) => ah * Math.atan2(q, w + p)",
+   "dist": "(x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1)"
+  },
+  "view": {
+   "x": [
+    -5.3,
+    5.3
+   ],
+   "y": [
+    -4.85,
+    4.85
+   ]
+  },
+  "points": {
+   "E": [
+    "rx(-w/2,-h/2,an(q,w,p,ah))",
+    "ry(-w/2,-h/2,an(q,w,p,ah))"
+   ],
+   "F": [
+    "rx(w/2,-h/2,an(q,w,p,ah))",
+    "ry(w/2,-h/2,an(q,w,p,ah))"
+   ],
+   "G": [
+    "rx(w/2,h/2,an(q,w,p,ah))",
+    "ry(w/2,h/2,an(q,w,p,ah))"
+   ],
+   "H": [
+    "rx(-w/2,h/2,an(q,w,p,ah))",
+    "ry(-w/2,h/2,an(q,w,p,ah))"
+   ],
+   "A": [
+    "rx(-w/2,h/2+q,an(q,w,p,ah))",
+    "ry(-w/2,h/2+q,an(q,w,p,ah))"
+   ],
+   "B": [
+    "rx(-w/2-p,-h/2,an(q,w,p,ah))",
+    "ry(-w/2-p,-h/2,an(q,w,p,ah))"
+   ],
+   "C": [
+    "rx(w/2,-h/2-q,an(q,w,p,ah))",
+    "ry(w/2,-h/2-q,an(q,w,p,ah))"
+   ],
+   "D": [
+    "rx(w/2+p,h/2,an(q,w,p,ah))",
+    "ry(w/2+p,h/2,an(q,w,p,ah))"
+   ],
+   "O": [
+    0,
+    0
+   ],
+   "M": [
+    "(px('A')+px('B'))/2",
+    "(py('A')+py('B'))/2"
+   ],
+   "N": [
+    "(px('A')+px('D'))/2",
+    "(py('A')+py('D'))/2"
+   ],
+   "K": [
+    "px('N')/2",
+    "py('N')/2"
+   ],
+   "Br": [
+    "rx(px('B'),py('B'),r)",
+    "ry(px('B'),py('B'),r)"
+   ],
+   "Er": [
+    "rx(px('E'),py('E'),r)",
+    "ry(px('E'),py('E'),r)"
+   ]
+  },
+  "objects": [
+   {
+    "id": "fABE",
+    "type": "region",
+    "pts": [
+     "A",
+     "B",
+     "E"
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.2
+   },
+   {
+    "id": "fCDG",
+    "type": "region",
+    "pts": [
+     "C",
+     "D",
+     "G"
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.2
+   },
+   {
+    "id": "fADH",
+    "type": "region",
+    "pts": [
+     "A",
+     "D",
+     "H"
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.2
+   },
+   {
+    "id": "fCBF",
+    "type": "region",
+    "pts": [
+     "C",
+     "B",
+     "F"
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.2
+   },
+   {
+    "id": "fRect",
+    "type": "region",
+    "pts": [
+     "E",
+     "F",
+     "G",
+     "H"
+    ],
+    "fill": "yellow",
+    "fillOpacity": 0.4
+   },
+   {
+    "id": "fABD",
+    "type": "region",
+    "pts": [
+     "A",
+     "B",
+     "D"
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.14
+   },
+   {
+    "id": "fBEO",
+    "type": "region",
+    "pts": [
+     "B",
+     "E",
+     "O"
+    ],
+    "fill": "orange",
+    "fillOpacity": 0.38
+   },
+   {
+    "id": "fDGO",
+    "type": "region",
+    "pts": [
+     "D",
+     "G",
+     "O"
+    ],
+    "fill": "orange",
+    "fillOpacity": 0.38
+   },
+   {
+    "id": "fDNK",
+    "type": "region",
+    "pts": [
+     "D",
+     "N",
+     "K"
+    ],
+    "fill": "cyan",
+    "fillOpacity": 0.32
+   },
+   {
+    "id": "fMOK",
+    "type": "region",
+    "pts": [
+     "M",
+     "O",
+     "K"
+    ],
+    "fill": "cyan",
+    "fillOpacity": 0.32
+   },
+   {
+    "id": "fMOH",
+    "type": "region",
+    "pts": [
+     "M",
+     "O",
+     "H"
+    ],
+    "fill": "orange",
+    "fillOpacity": 0.45
+   },
+   {
+    "id": "fNOG",
+    "type": "region",
+    "pts": [
+     "N",
+     "O",
+     "G"
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.3
+   },
+   {
+    "id": "fNKG",
+    "type": "region",
+    "pts": [
+     "N",
+     "K",
+     "G"
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.22
+   },
+   {
+    "id": "fOKG",
+    "type": "region",
+    "pts": [
+     "O",
+     "K",
+     "G"
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.5
+   },
+   {
+    "id": "par",
+    "type": "polygon",
+    "pts": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "stroke": "ink",
+    "width": 3.4
+   },
+   {
+    "id": "lAE",
+    "type": "segment",
+    "pts": [
+     "A",
+     "E"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "lBF",
+    "type": "segment",
+    "pts": [
+     "B",
+     "F"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "lCG",
+    "type": "segment",
+    "pts": [
+     "C",
+     "G"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "lDH",
+    "type": "segment",
+    "pts": [
+     "D",
+     "H"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "rE",
+    "type": "right",
+    "pts": [
+     "A",
+     "E",
+     "B"
+    ],
+    "stroke": "ink",
+    "size": 14
+   },
+   {
+    "id": "rG",
+    "type": "right",
+    "pts": [
+     "C",
+     "G",
+     "D"
+    ],
+    "stroke": "ink",
+    "size": 14
+   },
+   {
+    "id": "rH",
+    "type": "right",
+    "pts": [
+     "A",
+     "H",
+     "D"
+    ],
+    "stroke": "ink",
+    "size": 14
+   },
+   {
+    "id": "rF",
+    "type": "right",
+    "pts": [
+     "C",
+     "F",
+     "B"
+    ],
+    "stroke": "ink",
+    "size": 14
+   },
+   {
+    "id": "sME",
+    "type": "segment",
+    "pts": [
+     "M",
+     "E"
+    ],
+    "stroke": "hl",
+    "width": 4.5
+   },
+   {
+    "id": "circ",
+    "type": "pcurve",
+    "fx": "px('M')+dist(px('A'),py('A'),px('B'),py('B'))/2*cos(t)",
+    "fy": "py('M')+dist(px('A'),py('A'),px('B'),py('B'))/2*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 240,
+    "close": true,
+    "stroke": "gray",
+    "width": 2.2,
+    "dash": [
+     9,
+     8
+    ]
+   },
+   {
+    "id": "hBE",
+    "type": "segment",
+    "pts": [
+     "B",
+     "E"
+    ],
+    "stroke": "hl",
+    "width": 5.5
+   },
+   {
+    "id": "hDG",
+    "type": "segment",
+    "pts": [
+     "D",
+     "G"
+    ],
+    "stroke": "hl",
+    "width": 5.5
+   },
+   {
+    "id": "hAE",
+    "type": "segment",
+    "pts": [
+     "A",
+     "E"
+    ],
+    "stroke": "gold",
+    "width": 5.5
+   },
+   {
+    "id": "hCG",
+    "type": "segment",
+    "pts": [
+     "C",
+     "G"
+    ],
+    "stroke": "gold",
+    "width": 5.5
+   },
+   {
+    "id": "dAB",
+    "type": "dim",
+    "pts": [
+     "B",
+     "A"
+    ],
+    "text": "6",
+    "off": 46,
+    "stroke": "gray"
+   },
+   {
+    "id": "dHF",
+    "type": "segment",
+    "pts": [
+     "H",
+     "F"
+    ],
+    "stroke": "ink",
+    "width": 2.2
+   },
+   {
+    "id": "dEG",
+    "type": "segment",
+    "pts": [
+     "E",
+     "G"
+    ],
+    "stroke": "ink",
+    "width": 2.2
+   },
+   {
+    "id": "sOM",
+    "type": "segment",
+    "pts": [
+     "O",
+     "M"
+    ],
+    "stroke": "hl",
+    "width": 4.5
+   },
+   {
+    "id": "sOB",
+    "type": "segment",
+    "pts": [
+     "O",
+     "B"
+    ],
+    "stroke": "gray",
+    "width": 2.4,
+    "dash": [
+     9,
+     7
+    ]
+   },
+   {
+    "id": "sOD",
+    "type": "segment",
+    "pts": [
+     "O",
+     "D"
+    ],
+    "stroke": "gray",
+    "width": 2.4,
+    "dash": [
+     9,
+     7
+    ]
+   },
+   {
+    "id": "sOE",
+    "type": "segment",
+    "pts": [
+     "O",
+     "E"
+    ],
+    "stroke": "teal",
+    "width": 5.5
+   },
+   {
+    "id": "sOG",
+    "type": "segment",
+    "pts": [
+     "O",
+     "G"
+    ],
+    "stroke": "teal",
+    "width": 5.5
+   },
+   {
+    "id": "aOEF",
+    "type": "angle",
+    "pts": [
+     "O",
+     "E",
+     "F"
+    ],
+    "r": 34,
+    "stroke": "green",
+    "width": 3
+   },
+   {
+    "id": "aOGH",
+    "type": "angle",
+    "pts": [
+     "O",
+     "G",
+     "H"
+    ],
+    "r": 34,
+    "stroke": "green",
+    "width": 3
+   },
+   {
+    "id": "aBEO",
+    "type": "angle",
+    "pts": [
+     "B",
+     "E",
+     "O"
+    ],
+    "r": 50,
+    "stroke": "orange",
+    "width": 3
+   },
+   {
+    "id": "aDGO",
+    "type": "angle",
+    "pts": [
+     "D",
+     "G",
+     "O"
+    ],
+    "r": 50,
+    "stroke": "orange",
+    "width": 3
+   },
+   {
+    "id": "fBEOr",
+    "type": "polygon",
+    "pts": [
+     "Br",
+     "Er",
+     "O"
+    ],
+    "stroke": "orange",
+    "width": 3,
+    "dash": [
+     10,
+     7
+    ],
+    "fill": "orange",
+    "fillOpacity": 0.3
+   },
+   {
+    "id": "sAH",
+    "type": "segment",
+    "pts": [
+     "A",
+     "H"
+    ],
+    "stroke": "gold",
+    "width": 5.5
+   },
+   {
+    "id": "sHE",
+    "type": "segment",
+    "pts": [
+     "H",
+     "E"
+    ],
+    "stroke": "gold",
+    "width": 5.5
+   },
+   {
+    "id": "sHGx",
+    "type": "segment",
+    "pts": [
+     "D",
+     "H"
+    ],
+    "stroke": "gray",
+    "width": 2.2,
+    "dash": [
+     8,
+     7
+    ],
+    "ext": [
+     0,
+     2.2
+    ]
+   },
+   {
+    "id": "sMD",
+    "type": "segment",
+    "pts": [
+     "M",
+     "D"
+    ],
+    "stroke": "teal",
+    "width": 4.5
+   },
+   {
+    "id": "sMH",
+    "type": "segment",
+    "pts": [
+     "M",
+     "H"
+    ],
+    "stroke": "hl",
+    "width": 5
+   },
+   {
+    "id": "sON",
+    "type": "segment",
+    "pts": [
+     "O",
+     "N"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "sNG",
+    "type": "segment",
+    "pts": [
+     "N",
+     "G"
+    ],
+    "stroke": "ink",
+    "width": 2.6
+   },
+   {
+    "id": "sKM",
+    "type": "segment",
+    "pts": [
+     "K",
+     "M"
+    ],
+    "stroke": "cyan",
+    "width": 6
+   },
+   {
+    "id": "sKD",
+    "type": "segment",
+    "pts": [
+     "K",
+     "D"
+    ],
+    "stroke": "orange",
+    "width": 6
+   },
+   {
+    "id": "sGK",
+    "type": "segment",
+    "pts": [
+     "G",
+     "K"
+    ],
+    "stroke": "hl",
+    "width": 5
+   },
+   {
+    "id": "hO",
+    "type": "segment",
+    "pts": [
+     "O",
+     "foot(O,M,D)"
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "dash": [
+     7,
+     6
+    ]
+   },
+   {
+    "id": "hN",
+    "type": "segment",
+    "pts": [
+     "N",
+     "foot(N,M,D)"
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "dash": [
+     7,
+     6
+    ]
+   },
+   {
+    "id": "rtO",
+    "type": "right",
+    "pts": [
+     "O",
+     "foot(O,M,D)",
+     "M"
+    ],
+    "stroke": "blue",
+    "size": 12
+   },
+   {
+    "id": "rtN",
+    "type": "right",
+    "pts": [
+     "N",
+     "foot(N,M,D)",
+     "D"
+    ],
+    "stroke": "blue",
+    "size": 12
+   },
+   {
+    "id": "pM",
+    "type": "point",
+    "at": "M",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pH",
+    "type": "point",
+    "at": "H",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pO",
+    "type": "point",
+    "at": "O",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pN",
+    "type": "point",
+    "at": "N",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pK",
+    "type": "point",
+    "at": "K",
+    "r": 6,
+    "fill": "hl"
+   },
+   {
+    "id": "lA",
+    "type": "label",
+    "at": "A",
+    "text": "A",
+    "dir": "N"
+   },
+   {
+    "id": "lB",
+    "type": "label",
+    "at": "B",
+    "text": "B",
+    "dir": "W"
+   },
+   {
+    "id": "lC",
+    "type": "label",
+    "at": "C",
+    "text": "C",
+    "dir": "S"
+   },
+   {
+    "id": "lD",
+    "type": "label",
+    "at": "D",
+    "text": "D",
+    "dir": "E"
+   },
+   {
+    "id": "lE",
+    "type": "label",
+    "at": "E",
+    "text": "E",
+    "dir": "S"
+   },
+   {
+    "id": "lF",
+    "type": "label",
+    "at": "F",
+    "text": "F",
+    "dir": "E"
+   },
+   {
+    "id": "lG",
+    "type": "label",
+    "at": "G",
+    "text": "G",
+    "dir": "N"
+   },
+   {
+    "id": "lH",
+    "type": "label",
+    "at": "H",
+    "text": "H",
+    "dir": "NE"
+   },
+   {
+    "id": "lM",
+    "type": "label",
+    "at": "M",
+    "text": "M",
+    "dir": "W"
+   },
+   {
+    "id": "lO",
+    "type": "label",
+    "at": "O",
+    "text": "O",
+    "dir": "S"
+   },
+   {
+    "id": "lN",
+    "type": "label",
+    "at": "N",
+    "text": "N",
+    "dir": "N"
+   },
+   {
+    "id": "lK",
+    "type": "label",
+    "at": "K",
+    "text": "K",
+    "dir": "NW"
+   },
+   {
+    "id": "t3a",
+    "type": "text",
+    "at": "mid(A,M)",
+    "text": "$3$",
+    "dir": "SE",
+    "dist": 30,
+    "color": "ink",
+    "cls": "fmb"
+   },
+   {
+    "id": "t3b",
+    "type": "text",
+    "at": "mid(M,B)",
+    "text": "$3$",
+    "dir": "SE",
+    "dist": 30,
+    "color": "ink",
+    "cls": "fmb"
+   },
+   {
+    "id": "t3e",
+    "type": "text",
+    "at": "mid(M,E)",
+    "text": "$3$",
+    "dir": "NE",
+    "dist": 30,
+    "color": "ink",
+    "cls": "fmb"
+   },
+   {
+    "id": "t3dg",
+    "type": "text",
+    "at": "mid(D,G)",
+    "text": "$3$",
+    "dir": "N",
+    "dist": 26,
+    "color": "red",
+    "cls": "fmb"
+   },
+   {
+    "id": "t3be",
+    "type": "text",
+    "at": "mid(B,E)",
+    "text": "$3$",
+    "dir": "S",
+    "dist": 26,
+    "color": "red",
+    "cls": "fmb"
+   },
+   {
+    "id": "tAE",
+    "type": "text",
+    "at": "mid(A,H)",
+    "text": "$3\\sqrt3$",
+    "dir": "E",
+    "dist": 46,
+    "color": "gold",
+    "cls": "fmb"
+   },
+   {
+    "id": "tCG",
+    "type": "text",
+    "at": "mid(C,F)",
+    "text": "$3\\sqrt3$",
+    "dir": "W",
+    "dist": 46,
+    "color": "gold",
+    "cls": "fmb"
+   },
+   {
+    "id": "lh1",
+    "type": "text",
+    "at": "mid(O,foot(O,M,D))",
+    "text": "$h_1$",
+    "dir": "W",
+    "dist": 30,
+    "color": "blue",
+    "cls": "fmb"
+   },
+   {
+    "id": "lh2",
+    "type": "text",
+    "at": "mid(N,foot(N,M,D))",
+    "text": "$h_2$",
+    "dir": "E",
+    "dist": 30,
+    "color": "blue",
+    "cls": "fmb"
+   },
+   {
+    "id": "x2",
+    "type": "text",
+    "at": "mid(M,H)",
+    "text": "$2x$",
+    "dir": "N",
+    "dist": 36,
+    "color": "red",
+    "cls": "fm"
+   },
+   {
+    "id": "x5",
+    "type": "text",
+    "at": "mid(H,K)",
+    "text": "$5x$",
+    "dir": "N",
+    "dist": 30,
+    "color": "ink",
+    "cls": "fm"
+   },
+   {
+    "id": "x3",
+    "type": "text",
+    "at": "mid(K,G)",
+    "text": "$3x$",
+    "dir": "N",
+    "dist": 30,
+    "color": "red",
+    "cls": "fm"
+   },
+   {
+    "id": "x4",
+    "type": "text",
+    "at": "mid(G,D)",
+    "text": "$4x$",
+    "dir": "S",
+    "dist": 30,
+    "color": "orange",
+    "cls": "fm"
+   },
+   {
+    "id": "cap",
+    "type": "text",
+    "at": [
+     0,
+     -3.75
+    ],
+    "text": "赵爽弦图",
+    "dir": "C",
+    "dist": 0,
+    "color": "ink",
+    "cls": "wt"
+   },
+   {
+    "id": "rdHG",
+    "type": "text",
+    "at": [
+     -5.5,
+     -3.45
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "rdl",
+    "color": "ink",
+    "text": "$\\dfrac{HG}{DG}=$ {#}",
+    "num": "dist(px('H'),py('H'),px('G'),py('G'))/dist(px('G'),py('G'),px('D'),py('D'))",
+    "digits": 2
+   },
+   {
+    "id": "rdS",
+    "type": "text",
+    "at": [
+     0.3,
+     -3.45
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "rdl",
+    "color": "purple",
+    "text": "$\\dfrac{S_{\\triangle NOG}}{S_{\\triangle MOH}}=$ {#}",
+    "num": "area('fNOG')/area('fMOH')",
+    "digits": 2
+   }
+  ],
+  "init": [
+   "fABE",
+   "fCDG",
+   "fADH",
+   "fCBF",
+   "fRect",
+   "par",
+   "lAE",
+   "lBF",
+   "lCG",
+   "lDH",
+   "rE",
+   "rG",
+   "rH",
+   "rF",
+   "cap"
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s0",
+   "layout": "title",
+   "beats": [
+    {
+     "say": "把赵爽弦图换一种拼法，会拼出什么？｜"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "layout": "problem",
+   "num": "题",
+   "title": "读题",
+   "box": {
+    "x": 1250,
+    "y": 150,
+    "w": 630,
+    "h": 790
+   },
+   "view": {
+    "x": [
+     -5.3,
+     5.3
+    ],
+    "y": [
+     -4.85,
+     4.85
+    ]
+   },
+   "beats": [
+    {
+     "say": "赵爽弦图，是四个全等的直角三角形，围着一个小正方形。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k1",
+       "dur": 1.4
+      },
+      {
+       "at": "四个",
+       "focus": [
+        "fABE",
+        "fCDG",
+        "fADH",
+        "fCBF"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      },
+      {
+       "at": "小正方形",
+       "focus": "fRect",
+       "color": "gold",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "本题换成两对全等的直角三角形，中间是矩形 EFGH。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k2",
+       "dur": 1.4
+      },
+      {
+       "at": "^",
+       "hide": "cap",
+       "dur": 0.4
+      },
+      {
+       "at": "两对",
+       "tween": {
+        "w": 3.2,
+        "ah": 0
+       },
+       "dur": 2.6
+      },
+      {
+       "at": "两对",
+       "paint": [
+        "fADH",
+        "fCBF"
+       ],
+       "color": "green",
+       "dur": 1.2
+      },
+      {
+       "at": "矩形",
+       "show": [
+        "lE",
+        "lF",
+        "lG",
+        "lH"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "拼出来的是平行四边形 ABCD。",
+     "do": [
+      {
+       "at": "平行四边形",
+       "show": [
+        "lA",
+        "lB",
+        "lC",
+        "lD"
+       ]
+      },
+      {
+       "at": "平行四边形",
+       "focus": "par",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "△ABE 和 △CDG 全等，△ADH 和 △CBF 全等。",
+     "do": [
+      {
+       "at": "△ABE",
+       "focus": [
+        "fABE",
+        "fCDG"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      },
+      {
+       "at": "△ADH",
+       "focus": [
+        "fADH",
+        "fCBF"
+       ],
+       "color": "green",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "M 是 AB 的中点。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k3"
+      },
+      {
+       "at": "^",
+       "show": [
+        "pM",
+        "lM"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "第1问：ME=DG，AB=6，求 CG 的长。",
+     "do": [
+      {
+       "at": "第1问",
+       "mark": "q1"
+      }
+     ]
+    },
+    {
+     "say": "第2问，连接 HF、EG 交于点 O，先证明 OM∥AD。",
+     "do": [
+      {
+       "at": "连接",
+       "mark": "q2"
+      },
+      {
+       "at": "先证明",
+       "mark": "q3"
+      }
+     ]
+    },
+    {
+     "say": "再加上 AH=HE，取 AD 的中点 N。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q4",
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "say": "由面积关系，求 HG 与 DG 的比值。｜",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q5",
+       "dur": 1.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "layout": "board",
+   "num": "01",
+   "title": "求 $CG$ 的长",
+   "tag": "第（1）问",
+   "view": {
+    "x": [
+     -6.4,
+     5.3
+    ],
+    "y": [
+     -4.75,
+     4.85
+    ]
+   },
+   "beats": [
+    {
+     "say": "先看第1问：M 是直角三角形 ABE 斜边 AB 的中点。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "rG",
+        "rH",
+        "rF"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "dim": [
+        "fCDG",
+        "fADH",
+        "fCBF",
+        "fRect"
+       ],
+       "to": 0.35
+      },
+      {
+       "at": "直角三角形",
+       "focus": [
+        "fABE",
+        "rE"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      },
+      {
+       "at": "斜边",
+       "show": "dAB"
+      }
+     ]
+    },
+    {
+     "say": "连接 ME。直角三角形斜边上的中线，等于斜边的一半。",
+     "do": [
+      {
+       "at": "连接",
+       "show": "sME",
+       "dur": 0.6
+      },
+      {
+       "at": "中线",
+       "show": "circ",
+       "dur": 1.6
+      },
+      {
+       "at": "中线",
+       "note": "Rt$\\triangle ABE$ 中，$ME$ 是斜边上的中线"
+      }
+     ]
+    },
+    {
+     "say": "M 到 A、B、E 三点一样远，所以 ME=3。",
+     "do": [
+      {
+       "at": "一样远",
+       "show": [
+        "t3a",
+        "t3b",
+        "t3e"
+       ]
+      },
+      {
+       "at": "所以",
+       "note": "$ME=\\dfrac12AB=3$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "又因为 ME=DG，所以 DG=3。",
+     "do": [
+      {
+       "at": "^",
+       "hide": "circ",
+       "dur": 0.5
+      },
+      {
+       "at": "DG=3",
+       "show": [
+        "hDG",
+        "t3dg"
+       ]
+      },
+      {
+       "at": "DG=3",
+       "dim": "fCDG",
+       "to": 1
+      },
+      {
+       "at": "DG=3",
+       "note": "$DG=ME=3$"
+      }
+     ]
+    },
+    {
+     "say": "△ABE 和 △CDG 全等，所以 BE=DG=3，CG=AE。",
+     "do": [
+      {
+       "at": "△ABE",
+       "focus": [
+        "fABE",
+        "fCDG"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      },
+      {
+       "at": "BE",
+       "show": [
+        "hBE",
+        "t3be"
+       ]
+      },
+      {
+       "at": "BE",
+       "note": "$\\triangle ABE\\cong\\triangle CDG$：$BE=DG=3$，$CG=AE$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "在直角三角形 ABE 中，用勾股定理求 AE。",
+     "do": [
+      {
+       "at": "勾股定理",
+       "show": "hAE",
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "say": "AE 等于根号下36减9，也就是 3√3。",
+     "do": [
+      {
+       "at": "3√3",
+       "show": "tAE"
+      },
+      {
+       "at": "^",
+       "note": "$AE=\\sqrt{AB^2-BE^2}=\\sqrt{6^2-3^2}=3\\sqrt3$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "所以 CG=AE=3√3。",
+     "do": [
+      {
+       "at": "CG",
+       "show": [
+        "hCG",
+        "tCG"
+       ]
+      },
+      {
+       "at": "^",
+       "note": "$CG=AE=3\\sqrt3$",
+       "np": "（1）",
+       "cls": "ans"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "layout": "board",
+   "num": "02",
+   "title": "证明 $OM\\parallel AD$",
+   "tag": "第（2）问①",
+   "view": {
+    "x": [
+     -6.4,
+     5.3
+    ],
+    "y": [
+     -4.75,
+     4.85
+    ]
+   },
+   "beats": [
+    {
+     "say": "第2问，图形变成这样。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "sME",
+        "circ",
+        "t3a",
+        "t3b",
+        "t3e",
+        "hDG",
+        "t3dg",
+        "hBE",
+        "t3be",
+        "hAE",
+        "tAE",
+        "hCG",
+        "tCG",
+        "dAB",
+        "rE"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "dim": [
+        "fABE",
+        "fCDG",
+        "fADH",
+        "fCBF",
+        "fRect"
+       ],
+       "to": 0.45
+      },
+      {
+       "at": "^",
+       "tween": {
+        "p": 2.4,
+        "q": 3.0,
+        "h": 2.16,
+        "w": 4.8,
+        "ah": 1
+       },
+       "dur": 2.6,
+       "delay": 0.4
+      },
+      {
+       "at": "^",
+       "camera": {
+        "x": [
+         -5.47,
+         5.47
+        ],
+        "y": [
+         -4.04,
+         4.04
+        ]
+       },
+       "dur": 2.6,
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "say": "连接 HF、EG，交于点 O，再连接 OM。",
+     "do": [
+      {
+       "at": "连接",
+       "show": [
+        "dHF",
+        "dEG"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "交于",
+       "show": [
+        "pO",
+        "lO"
+       ]
+      },
+      {
+       "at": "OM",
+       "show": "sOM",
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "M 是 AB 的中点，要证平行，就想到中位线。",
+     "do": [
+      {
+       "at": "中点",
+       "focus": "pM",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "连接 OB、OD，只要证明 O 是 BD 的中点。",
+     "do": [
+      {
+       "at": "连接",
+       "show": [
+        "sOB",
+        "sOD"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "只要",
+       "note": "连接 $OB$，$OD$，证 $O$ 是 $BD$ 的中点",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "矩形的对角线互相平分，所以 OE=OG。",
+     "do": [
+      {
+       "at": "OE",
+       "show": [
+        "sOE",
+        "sOG"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "OE",
+       "note": "矩形 $EFGH$：$OE=OG$"
+      }
+     ]
+    },
+    {
+     "say": "HG∥EF，所以 ∠OEF=∠OGH。",
+     "do": [
+      {
+       "at": "∠OEF",
+       "show": [
+        "aOEF",
+        "aOGH"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "∠OEF",
+       "note": "$HG\\parallel EF$：$\\angle OEF=\\angle OGH$"
+      }
+     ]
+    },
+    {
+     "say": "它们的补角也相等：∠BEO=∠DGO。",
+     "do": [
+      {
+       "at": "∠BEO",
+       "show": [
+        "aBEO",
+        "aDGO"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "∠BEO",
+       "note": "$\\therefore\\angle BEO=\\angle DGO$（等角的补角相等）",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "又有 BE=DG，所以 △BEO≌△DGO。",
+     "do": [
+      {
+       "at": "BE=DG",
+       "show": [
+        "hBE",
+        "hDG"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "所以",
+       "show": [
+        "fBEO",
+        "fDGO"
+       ]
+      },
+      {
+       "at": "所以",
+       "note": "$\\triangle BEO\\cong\\triangle DGO$（SAS）",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "所以 OB=OD，∠BOE=∠DOG。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$OB=OD$，$\\angle BOE=\\angle DOG$"
+      }
+     ]
+    },
+    {
+     "say": "E、O、G 在一条直线上，这两个角又相等。所以 B、O、D 也在一条直线上。",
+     "do": [
+      {
+       "at": "E",
+       "focus": "dEG",
+       "dur": 1.4
+      },
+      {
+       "at": "B、O、D",
+       "focus": [
+        "sOB",
+        "sOD"
+       ],
+       "dur": 1.4
+      },
+      {
+       "at": "B、O、D",
+       "note": "$\\therefore B$，$O$，$D$ 三点共线，$O$ 是 $BD$ 中点",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：把 △BEO 绕点 O 转半圈。",
+     "do": [
+      {
+       "at": "看一看",
+       "show": "fBEOr",
+       "dur": 0.4
+      },
+      {
+       "at": "转半圈",
+       "tween": {
+        "r": 3.141592653589793
+       },
+       "dur": 3.2
+      }
+     ]
+    },
+    {
+     "say": "正好和 △DGO 重合，B 转到了 D。",
+     "do": [
+      {
+       "at": "重合",
+       "focus": "fDGO",
+       "dur": 1.4
+      },
+      {
+       "at": "B",
+       "focus": "lD",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "O 是 BD 的中点，M 是 AB 的中点，OM 是 △ABD 的中位线。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "fBEOr",
+        "fBEO",
+        "fDGO",
+        "aOEF",
+        "aOGH",
+        "aBEO",
+        "aDGO",
+        "sOE",
+        "sOG",
+        "hBE",
+        "hDG"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "中位线",
+       "show": "fABD"
+      },
+      {
+       "at": "中位线",
+       "focus": "sOM",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "所以 OM∥AD。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$OM$ 是 $\\triangle ABD$ 的中位线，$OM\\parallel AD$",
+       "np": "（2）①",
+       "cls": "ans sm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "layout": "board",
+   "num": "03",
+   "title": "②：先找共线与中点",
+   "tag": "第（2）问②",
+   "view": {
+    "x": [
+     -5.47,
+     5.47
+    ],
+    "y": [
+     -4.04,
+     4.04
+    ]
+   },
+   "beats": [
+    {
+     "say": "再看最后一小问：加上条件 AH=HE。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "fABD",
+        "sOB",
+        "sOD",
+        "sOE",
+        "sOG",
+        "hBE",
+        "hDG",
+        "aOEF",
+        "aOGH",
+        "aBEO",
+        "aDGO",
+        "fBEO",
+        "fDGO",
+        "fBEOr"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "q": 2.16
+       },
+       "dur": 1.8,
+       "delay": 0.3
+      },
+      {
+       "at": "^",
+       "camera": {
+        "x": [
+         -5.85,
+         5.85
+        ],
+        "y": [
+         -4.2,
+         3.9
+        ]
+       },
+       "dur": 1.8,
+       "delay": 0.3
+      },
+      {
+       "at": "AH=HE",
+       "show": [
+        "sAH",
+        "sHE"
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "H 是 AE 的中点，M 是 AB 的中点。",
+     "do": [
+      {
+       "at": "H",
+       "show": "pH"
+      },
+      {
+       "at": "M",
+       "focus": "pM",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "所以 MH 是 △ABE 的中位线，MH∥BE，BE=2MH。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "sAH",
+        "sHE"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "MH",
+       "show": "sMH",
+       "dur": 0.6
+      },
+      {
+       "at": "中位线",
+       "note": "$MH$ 是 $\\triangle ABE$ 的中位线"
+      },
+      {
+       "at": "MH∥BE",
+       "note": "$MH\\parallel BE$，$BE=2MH$"
+      }
+     ]
+    },
+    {
+     "say": "HG 也平行于 BE，所以 M、H、G 在一条直线上。",
+     "do": [
+      {
+       "at": "HG",
+       "focus": "lDH",
+       "dur": 1.4
+      },
+      {
+       "at": "所以",
+       "note": "$HG\\parallel BE\\Rightarrow M$，$H$，$G$ 共线"
+      }
+     ]
+    },
+    {
+     "say": "D 在 HG 的延长线上，所以 M、H、G、D 四点共线。",
+     "do": [
+      {
+       "at": "四点",
+       "show": "sMD",
+       "dur": 0.8
+      },
+      {
+       "at": "四点",
+       "note": "$\\Rightarrow M$，$H$，$G$，$D$ 四点共线",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "取 AD 的中点 N，连接 ON、NG，ON 交 MD 于点 K。",
+     "do": [
+      {
+       "at": "中点",
+       "show": [
+        "pN",
+        "lN"
+       ]
+      },
+      {
+       "at": "连接",
+       "show": [
+        "sON",
+        "sNG"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "点K",
+       "show": [
+        "pK",
+        "lK"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "由第①问，OM∥AD，OM 等于 AD 的一半。",
+     "do": [
+      {
+       "at": "OM∥AD",
+       "focus": "sOM",
+       "dur": 1.4
+      },
+      {
+       "at": "一半",
+       "note": "由①：$OM\\parallel AD$，$OM=\\dfrac12AD$"
+      }
+     ]
+    },
+    {
+     "say": "N 是 AD 的中点，DN 也等于 AD 的一半，所以 OM=DN。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "$DN=\\dfrac12AD$，$\\therefore OM=DN$"
+      }
+     ]
+    },
+    {
+     "say": "OM∥DN，内错角相等，所以 △DNK≌△MOK。",
+     "do": [
+      {
+       "at": "△DNK",
+       "show": [
+        "fDNK",
+        "fMOK"
+       ]
+      },
+      {
+       "at": "△DNK",
+       "note": "$\\triangle DNK\\cong\\triangle MOK$（ASA）",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "所以 KD=KM，KN=KO，K 是 MD 和 ON 的中点。",
+     "do": [
+      {
+       "at": "KD=KM",
+       "show": [
+        "sKM",
+        "sKD"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "^",
+       "note": "$KD=KM$，$KN=KO$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "layout": "board",
+   "num": "04",
+   "title": "②：用面积比求比值",
+   "tag": "第（2）问②",
+   "beats": [
+    {
+     "say": "作 △MOH 的高 h₁，△NKG 的高 h₂。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "fDNK",
+        "fMOK",
+        "sKM",
+        "sKD"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "h₁",
+       "show": [
+        "hO",
+        "rtO",
+        "lh1"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "h₂",
+       "show": [
+        "hN",
+        "rtN",
+        "lh2"
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "△DNK 和 △MOK 全等，对应的高相等，h₁=h₂。",
+     "do": [
+      {
+       "at": "h₁=h₂",
+       "focus": [
+        "hO",
+        "hN"
+       ],
+       "dur": 1.4
+      },
+      {
+       "at": "h₁=h₂",
+       "note": "$\\triangle DNK\\cong\\triangle MOK\\Rightarrow h_1=h_2$"
+      }
+     ]
+    },
+    {
+     "say": "△MOH 的面积，等于 MH 乘 h₁ 的一半。",
+     "do": [
+      {
+       "at": "面积",
+       "show": "fMOH"
+      },
+      {
+       "at": "面积",
+       "note": "$S_{\\triangle MOH}=\\dfrac12MH\\cdot h_1$"
+      }
+     ]
+    },
+    {
+     "say": "△NOG 被 MD 分成上下两块，底边都是 KG。",
+     "do": [
+      {
+       "at": "分成",
+       "show": [
+        "fNKG",
+        "fOKG"
+       ]
+      },
+      {
+       "at": "KG",
+       "show": "sGK",
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "say": "它的面积，等于 KG 乘两条高之和的一半。",
+     "do": [
+      {
+       "at": "面积",
+       "note": "$S_{\\triangle NOG}=\\dfrac12KG\\cdot(h_1+h_2)=KG\\cdot h_1$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "△NOG 的面积是 △MOH 的3倍，所以 MH 与 KG 的比是2比3。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "$KG\\cdot h_1=3\\times\\dfrac12MH\\cdot h_1$，$\\dfrac{MH}{KG}=\\dfrac23$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "设 MH=2x，KG=3x，那么 DG=BE=2MH=4x。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "hO",
+        "rtO",
+        "lh1",
+        "hN",
+        "rtN",
+        "lh2",
+        "fNKG",
+        "fOKG",
+        "fMOH",
+        "sGK"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "MH",
+       "show": "x2"
+      },
+      {
+       "at": "KG",
+       "show": "x3"
+      },
+      {
+       "at": "DG",
+       "show": "x4"
+      },
+      {
+       "at": "^",
+       "note": "设 $MH=2x$，$KG=3x$，则 $DG=BE=4x$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "KD=KG+GD=7x，KM=KD，也是7x。",
+     "do": [
+      {
+       "at": "KD",
+       "show": "sKD",
+       "dur": 0.5
+      },
+      {
+       "at": "KM",
+       "show": "sKM",
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "note": "$KM=KD=3x+4x=7x$"
+      }
+     ]
+    },
+    {
+     "say": "所以 HK=7x−2x=5x，HG=5x+3x=8x。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "sKD",
+        "sKM"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "HK",
+       "show": "x5"
+      },
+      {
+       "at": "^",
+       "note": "$HK=7x-2x=5x$，$HG=HK+KG=8x$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "HG 与 DG 的比值，是8x比4x，等于2。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$\\dfrac{HG}{DG}=\\dfrac{8x}{4x}=2$",
+       "np": "（2）②",
+       "cls": "ans"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：DG 不变，让 HG 先变短，再变长。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": [
+        "fMOH",
+        "fNOG",
+        "rdHG",
+        "rdS"
+       ]
+      },
+      {
+       "at": "变短",
+       "tween": {
+        "w": 3.6
+       },
+       "dur": 2.4
+      },
+      {
+       "at": "变短",
+       "tween": {
+        "w": 6.0
+       },
+       "dur": 3.4,
+       "delay": 2.6
+      },
+      {
+       "at": "变短",
+       "tween": {
+        "w": 4.8
+       },
+       "dur": 2.4,
+       "delay": 6.2
+      }
+     ]
+    },
+    {
+     "say": "HG 越长，面积比越大；HG 正好是 DG 的2倍，面积比才是3。",
+     "do": [
+      {
+       "at": "2倍",
+       "focus": [
+        "rdHG",
+        "rdS"
+       ],
+       "dur": 1.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "layout": "board",
+   "num": "05",
+   "title": "②的方法二：中线分面积",
+   "tag": "第（2）问② · 方法二",
+   "beats": [
+    {
+     "say": "面积关系，还可以换个角度看。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "rdHG",
+        "rdS",
+        "fNOG"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": [
+        "fNKG",
+        "fOKG"
+       ],
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "say": "K 是 ON 的中点，GK 就是 △NOG 的中线。",
+     "do": [
+      {
+       "at": "中线",
+       "show": "sGK",
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "中线把三角形分成面积相等的两块。",
+     "do": [
+      {
+       "at": "两块",
+       "focus": [
+        "fNKG",
+        "fOKG"
+       ],
+       "color": "purple",
+       "dur": 1.6
+      },
+      {
+       "at": "两块",
+       "note": "$GK$ 是中线：$S_{\\triangle NOG}=2S_{\\triangle OKG}$"
+      }
+     ]
+    },
+    {
+     "say": "△OKG 和 △MOH 顶点都是 O，底边在同一条直线上。",
+     "do": [
+      {
+       "at": "△OKG",
+       "focus": [
+        "fOKG",
+        "fMOH"
+       ],
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "高相同，面积比就等于底的比。",
+     "do": [
+      {
+       "at": "^",
+       "note": "同高：$\\dfrac{S_{\\triangle OKG}}{S_{\\triangle MOH}}=\\dfrac{KG}{MH}$"
+      }
+     ]
+    },
+    {
+     "say": "所以 KG 与 MH 的比是3比2，和方法一一样。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$2\\times\\dfrac{KG}{MH}=3$，$\\dfrac{KG}{MH}=\\dfrac32$",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "layout": "board",
+   "num": "06",
+   "title": "想一想",
+   "tag": "反思",
+   "beats": [
+    {
+     "say": "想一想：如果没有 AH=HE 这个条件呢？",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "fNKG",
+        "fOKG",
+        "fMOH",
+        "sGK",
+        "sMD",
+        "pK",
+        "lK",
+        "sON",
+        "sNG",
+        "pN",
+        "lN"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": "sHGx",
+       "dur": 0.6,
+       "delay": 0.3
+      },
+      {
+       "at": "没有",
+       "tween": {
+        "q": 1.2
+       },
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "say": "H 不再是 AE 的中点，M 就离开了 GH 这条直线。",
+     "do": [
+      {
+       "at": "离开",
+       "focus": "sMH",
+       "color": "red",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "四点不共线，前面拆面积的办法就用不上了。",
+     "do": [
+      {
+       "at": "^",
+       "note": "没有 $AH=HE$：$M$，$H$，$G$，$D$ 不共线"
+      }
+     ]
+    },
+    {
+     "say": "AH=HE，正是为了让 M、H、G、D 连成一条直线。｜",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "q": 2.16
+       },
+       "dur": 2.0
+      },
+      {
+       "at": "连成",
+       "note": "$AH=HE\\Rightarrow MH$ 是中位线 $\\Rightarrow$ 四点共线",
+       "cls": "key sm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "layout": "summary",
+   "num": "07",
+   "title": "总结",
+   "chain": [
+    {
+     "id": "c1",
+     "title": "斜边中线",
+     "sub": "$ME=\\dfrac12AB$"
+    },
+    {
+     "id": "c2",
+     "title": "全等搬边",
+     "sub": "$BE=DG$\n$CG=AE$"
+    },
+    {
+     "id": "c3",
+     "title": "证中点",
+     "sub": "$\\triangle BEO\\cong\\triangle DGO$\n$O$ 是 $BD$ 中点"
+    },
+    {
+     "id": "c4",
+     "title": "中位线",
+     "sub": "$OM\\parallel AD$\n$MH\\parallel BE$"
+    },
+    {
+     "id": "c5",
+     "title": "等高比底",
+     "sub": "面积比\n＝底之比"
+    }
+   ],
+   "answers": [
+    {
+     "id": "ans1",
+     "text": "（1）$CG=$[[$3\\sqrt3$]]；（2）①$O$ 是 $BD$ 中点，$OM$ 是中位线，[[$OM\\parallel AD$]]"
+    },
+    {
+     "id": "ans2",
+     "text": "（2）②[[$\\dfrac{HG}{DG}=2$]]"
+    }
+   ],
+   "tagline": "见中点，想中位线；比面积，找等高",
+   "beats": [
+    {
+     "say": "回顾一下：直角三角形斜边上的中线，等于斜边的一半。",
+     "do": [
+      {
+       "at": "斜边",
+       "show": "c1"
+      }
+     ]
+    },
+    {
+     "say": "全等三角形把边搬过来，再用勾股定理。",
+     "do": [
+      {
+       "at": "全等",
+       "show": "c2"
+      }
+     ]
+    },
+    {
+     "say": "证 O 是 BD 的中点，靠 △BEO 和 △DGO 全等。",
+     "do": [
+      {
+       "at": "证",
+       "show": "c3"
+      }
+     ]
+    },
+    {
+     "say": "有两个中点，就想到中位线：OM∥AD，MH∥BE。",
+     "do": [
+      {
+       "at": "中位线",
+       "show": "c4"
+      }
+     ]
+    },
+    {
+     "say": "比面积，找等高的三角形，转化成底的比。",
+     "do": [
+      {
+       "at": "比面积",
+       "show": "c5"
+      },
+      {
+       "at": "底的比",
+       "show": [
+        "ans1",
+        "ans2"
+       ],
+       "delay": 0.3
+      }
+     ]
+    },
+    {
+     "say": "见中点，想中位线；比面积，找等高。｜",
+     "do": [
+      {
+       "at": "^",
+       "show": "tagline"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "layout": "outro",
+   "main": "这道题就讲到这里",
+   "sub": "我们下次再见",
+   "beats": [
+    {
+     "say": "好，这道题就讲到这里。同学们，我们下次再见！"
+    }
+   ]
+  }
+ ]
+}

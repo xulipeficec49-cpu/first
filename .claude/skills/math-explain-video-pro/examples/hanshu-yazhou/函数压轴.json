@@ -1,0 +1,3043 @@
+{
+ "meta": {
+  "title": "正方形滑过抛物线",
+  "tag": "二次函数 · 压轴",
+  "subtitle": "求点坐标 · 动点分段 · 逐段解方程",
+  "out": "函数压轴_正方形滑过抛物线.mp4",
+  "theme": "light",
+  "fps": 30
+ },
+ "problem": {
+  "tag": "二次函数 · 压轴",
+  "size": 29,
+  "width": 1080,
+  "text": "{k1|抛物线 $y=x^2-2x+c$ 与 $x$ 轴交于点 $A(-1,0)$ 和点 $B$，与 $y$ 轴交于点 $C$}．{k2|点 $P$ 在直线 $BC$ 上，设点 $P$ 的横坐标为 $t$}．",
+  "parts": [
+   "（1）{q1|求 $c$ 的值}；",
+   "（2）如图 1，{q2|点 $H$ 是抛物线上位于第四象限的点，$PH$ 平行于 $x$ 轴．当 $t=1$ 时，求点 $H$ 的坐标}；",
+   "（3）{q3|点 $Q$ 在直线 $BC$ 上且位于点 $P$ 的右上方，$PQ=2\\sqrt2$}．{q4|过点 $P$，$Q$ 分别作 $x$ 轴和 $y$ 轴的垂线，四条垂线围成四边形 $PEQF$}．{q5|若四边形 $PEQF$ 的边与抛物线有两个交点 $M$，$N$，记 $M$，$N$ 的纵坐标之和为 $f$}．",
+   "　①{q6|当点 $P$ 在线段 $BC$ 上时，求 $f$ 关于 $t$ 的函数解析式}；",
+   "　②{q7|当 $f=-\\dfrac{11}{2}$ 时，直接写出 $t$ 的值}．"
+  ]
+ },
+ "layouts": {
+  "board": {
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1130,
+    "h": 800
+   }
+  }
+ },
+ "world": {
+  "vars": {
+   "t": 1,
+   "sw": -1.9995
+  },
+  "funcs": {
+   "IS": "(t) => { const par = x => x * x - 2 * x - 3, e = 1e-9, pts = []; const add = (x, y) => { for (const p of pts) if (Math.abs(p[0] - x) < 1e-7 && Math.abs(p[1] - y) < 1e-7) return; pts.push([x, y]); }; let y = par(t); if (y >= t - 3 - e && y <= t - 1 + e) add(t, y); y = par(t + 2); if (y >= t - 3 - e && y <= t - 1 + e) add(t + 2, y); for (const [yy, d] of [[t - 3, 1 + t], [t - 1, 3 + t]]) if (d >= -e) { const s = Math.sqrt(Math.max(0, d)); for (const x of [1 - s, 1 + s]) if (x >= t - e && x <= t + 2 + e) add(x, yy); } pts.sort((a, b) => a[0] - b[0]); return pts; }",
+   "MX": "(t) => { const p = IS(t); return p.length ? p[0][0] : t + 2; }",
+   "MY": "(t) => { const p = IS(t); return p.length ? p[0][1] : t - 1; }",
+   "NX": "(t) => { const p = IS(t); return p.length ? p[p.length - 1][0] : t + 2; }",
+   "NY": "(t) => { const p = IS(t); return p.length ? p[p.length - 1][1] : t - 1; }",
+   "FV": "(t) => { const p = IS(t); return p.length ? p[0][1] + p[p.length - 1][1] : NaN; }"
+  },
+  "view": {
+   "x": [
+    -2.3,
+    4.4
+   ],
+   "y": [
+    -4.8,
+    3.0
+   ]
+  },
+  "clip": 6,
+  "points": {
+   "A": [
+    -1,
+    0
+   ],
+   "B": [
+    3,
+    0
+   ],
+   "C": [
+    0,
+    -3
+   ],
+   "O": [
+    0,
+    0
+   ],
+   "H": [
+    "1+sqrt(2)",
+    -2
+   ],
+   "P": [
+    "t",
+    "t-3"
+   ],
+   "Q": [
+    "t+2",
+    "t-1"
+   ],
+   "E": [
+    "t",
+    "t-1"
+   ],
+   "F": [
+    "t+2",
+    "t-3"
+   ],
+   "J": [
+    "(3-sqrt(17))/2",
+    "(1-sqrt(17))/2"
+   ],
+   "K": [
+    "(3+sqrt(17))/2",
+    "(1+sqrt(17))/2"
+   ],
+   "L": [
+    1,
+    -4
+   ],
+   "T": [
+    2,
+    -3
+   ],
+   "M": [
+    "MX(t)",
+    "MY(t)"
+   ],
+   "N": [
+    "NX(t)",
+    "NY(t)"
+   ],
+   "G": [
+    "8.9+sw",
+    "-1+0.55*FV(sw)"
+   ]
+  },
+  "objects": [
+   {
+    "id": "sq",
+    "type": "region",
+    "pts": [
+     "P",
+     "F",
+     "Q",
+     "E"
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.07
+   },
+   {
+    "id": "ax",
+    "type": "axes",
+    "x": [
+     "vx(0)+0.15",
+     "min(vx(1)-0.2,6.1)"
+    ],
+    "y": [
+     "max(vy(0)+0.15,-6.1)",
+     "min(vy(1)-0.15,3.25)"
+    ],
+    "origin": [
+     0,
+     0
+    ],
+    "olabel": ""
+   },
+   {
+    "id": "trE",
+    "type": "curve",
+    "fx": "x-1",
+    "x": [
+     -3.1,
+     4.2
+    ],
+    "stroke": "gold",
+    "width": 2.2,
+    "dash": [
+     9,
+     8
+    ]
+   },
+   {
+    "id": "trF",
+    "type": "curve",
+    "fx": "x-5",
+    "x": [
+     -1.1,
+     6.05
+    ],
+    "stroke": "green",
+    "width": 2.2,
+    "dash": [
+     9,
+     8
+    ]
+   },
+   {
+    "id": "lBC",
+    "type": "curve",
+    "fx": "x-3",
+    "x": [
+     -3.1,
+     5.9
+    ],
+    "stroke": "gray",
+    "width": 2.6
+   },
+   {
+    "id": "par",
+    "type": "curve",
+    "fx": "x*x-2*x-3",
+    "x": [
+     -2.3,
+     4.3
+    ],
+    "n": 400,
+    "stroke": "blue",
+    "width": 3.6
+   },
+   {
+    "id": "sPH",
+    "type": "segment",
+    "pts": [
+     "P",
+     "H"
+    ],
+    "stroke": "hl",
+    "width": 3.4
+   },
+   {
+    "id": "eB",
+    "type": "segment",
+    "pts": [
+     "P",
+     "F"
+    ],
+    "stroke": "ink",
+    "width": 3
+   },
+   {
+    "id": "eT",
+    "type": "segment",
+    "pts": [
+     "E",
+     "Q"
+    ],
+    "stroke": "ink",
+    "width": 3
+   },
+   {
+    "id": "eL",
+    "type": "segment",
+    "pts": [
+     "P",
+     "E"
+    ],
+    "stroke": "ink",
+    "width": 3
+   },
+   {
+    "id": "eR",
+    "type": "segment",
+    "pts": [
+     "Q",
+     "F"
+    ],
+    "stroke": "ink",
+    "width": 3
+   },
+   {
+    "id": "mB",
+    "type": "segment",
+    "pts": [
+     "P",
+     "F"
+    ],
+    "stroke": "hl",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "mT",
+    "type": "segment",
+    "pts": [
+     "E",
+     "Q"
+    ],
+    "stroke": "hl",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "mL",
+    "type": "segment",
+    "pts": [
+     "P",
+     "E"
+    ],
+    "stroke": "hl",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "mR",
+    "type": "segment",
+    "pts": [
+     "Q",
+     "F"
+    ],
+    "stroke": "hl",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "nB",
+    "type": "segment",
+    "pts": [
+     "P",
+     "F"
+    ],
+    "stroke": "purple",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "nT",
+    "type": "segment",
+    "pts": [
+     "E",
+     "Q"
+    ],
+    "stroke": "purple",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "nL",
+    "type": "segment",
+    "pts": [
+     "P",
+     "E"
+    ],
+    "stroke": "purple",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "nR",
+    "type": "segment",
+    "pts": [
+     "Q",
+     "F"
+    ],
+    "stroke": "purple",
+    "width": 6,
+    "glow": true
+   },
+   {
+    "id": "sPQ",
+    "type": "segment",
+    "pts": [
+     "P",
+     "Q"
+    ],
+    "stroke": "hl",
+    "width": 3.2,
+    "dash": [
+     8,
+     7
+    ]
+   },
+   {
+    "id": "l2b",
+    "type": "text",
+    "at": "mid(P,F)",
+    "text": "$2$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "S",
+    "dist": 26
+   },
+   {
+    "id": "l2r",
+    "type": "text",
+    "at": "mid(Q,F)",
+    "text": "$2$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "E",
+    "dist": 24
+   },
+   {
+    "id": "lPQ",
+    "type": "text",
+    "at": "mid(P,Q)",
+    "text": "$2\\sqrt2$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "NW",
+    "dist": 40
+   },
+   {
+    "id": "vB",
+    "type": "text",
+    "at": "mid(P,F)",
+    "text": "$y=t-3$",
+    "color": "hl",
+    "cls": "fm",
+    "dir": "S",
+    "dist": 30
+   },
+   {
+    "id": "vT",
+    "type": "text",
+    "at": "mid(E,Q)",
+    "text": "$y=t-1$",
+    "color": "hl",
+    "cls": "fm",
+    "dir": "N",
+    "dist": 30
+   },
+   {
+    "id": "vL",
+    "type": "text",
+    "at": "mid(P,E)",
+    "text": "$x=t$",
+    "color": "purple",
+    "cls": "fm",
+    "dir": "W",
+    "dist": 56
+   },
+   {
+    "id": "vR",
+    "type": "text",
+    "at": "mid(Q,F)",
+    "text": "$x=t+2$",
+    "color": "purple",
+    "cls": "fm",
+    "dir": "E",
+    "dist": 74
+   },
+   {
+    "id": "pA",
+    "type": "point",
+    "at": "A",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pB",
+    "type": "point",
+    "at": "B",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pC",
+    "type": "point",
+    "at": "C",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "pH",
+    "type": "point",
+    "at": "H",
+    "r": 7,
+    "fill": "hl"
+   },
+   {
+    "id": "pP",
+    "type": "point",
+    "at": "P",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pQ",
+    "type": "point",
+    "at": "Q",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pE",
+    "type": "point",
+    "at": "E",
+    "r": 7,
+    "fill": "gold"
+   },
+   {
+    "id": "pF",
+    "type": "point",
+    "at": "F",
+    "r": 7,
+    "fill": "green"
+   },
+   {
+    "id": "pJ",
+    "type": "point",
+    "at": "J",
+    "r": 7,
+    "fill": "gold"
+   },
+   {
+    "id": "pK",
+    "type": "point",
+    "at": "K",
+    "r": 7,
+    "fill": "gold"
+   },
+   {
+    "id": "pL",
+    "type": "point",
+    "at": "L",
+    "r": 7,
+    "fill": "green"
+   },
+   {
+    "id": "pT",
+    "type": "point",
+    "at": "T",
+    "r": 7,
+    "fill": "green"
+   },
+   {
+    "id": "pM",
+    "type": "point",
+    "at": "M",
+    "r": 9,
+    "fill": "hl"
+   },
+   {
+    "id": "pN",
+    "type": "point",
+    "at": "N",
+    "r": 9,
+    "fill": "purple"
+   },
+   {
+    "id": "lA",
+    "type": "label",
+    "at": "A",
+    "text": "A",
+    "dir": "NW",
+    "repel": false
+   },
+   {
+    "id": "lB",
+    "type": "label",
+    "at": "B",
+    "text": "B",
+    "dir": "SE",
+    "repel": false
+   },
+   {
+    "id": "lC",
+    "type": "label",
+    "at": "C",
+    "text": "C",
+    "dir": "W",
+    "repel": false
+   },
+   {
+    "id": "lO",
+    "type": "label",
+    "at": "O",
+    "text": "O",
+    "dir": "SW",
+    "repel": false
+   },
+   {
+    "id": "lH",
+    "type": "label",
+    "at": "H",
+    "text": "H",
+    "dir": "SE",
+    "repel": false
+   },
+   {
+    "id": "lP",
+    "type": "label",
+    "at": "P",
+    "text": "P",
+    "dir": "SW",
+    "repel": false
+   },
+   {
+    "id": "lQ",
+    "type": "label",
+    "at": "Q",
+    "text": "Q",
+    "dir": "E",
+    "repel": false
+   },
+   {
+    "id": "lE",
+    "type": "label",
+    "at": "E",
+    "text": "E",
+    "dir": "NW",
+    "repel": false
+   },
+   {
+    "id": "lF",
+    "type": "label",
+    "at": "F",
+    "text": "F",
+    "dir": "SE",
+    "repel": false
+   },
+   {
+    "id": "lJ",
+    "type": "label",
+    "at": "J",
+    "text": "J",
+    "dir": "W",
+    "repel": false
+   },
+   {
+    "id": "lK",
+    "type": "label",
+    "at": "K",
+    "text": "K",
+    "dir": "SE",
+    "repel": false
+   },
+   {
+    "id": "lL",
+    "type": "label",
+    "at": "L",
+    "text": "L",
+    "dir": "S",
+    "repel": false
+   },
+   {
+    "id": "lT",
+    "type": "label",
+    "at": "T",
+    "text": "T",
+    "dir": "E",
+    "repel": false
+   },
+   {
+    "id": "lM",
+    "type": "label",
+    "at": "M",
+    "text": "M",
+    "dir": "NW",
+    "repel": false,
+    "color": "red"
+   },
+   {
+    "id": "lN",
+    "type": "label",
+    "at": "N",
+    "text": "N",
+    "dir": "NE",
+    "repel": false,
+    "color": "purple"
+   },
+   {
+    "id": "lM2",
+    "type": "label",
+    "at": "M",
+    "text": "M",
+    "dir": "NE",
+    "repel": false,
+    "color": "red"
+   },
+   {
+    "id": "tE",
+    "type": "text",
+    "at": [
+     1.85,
+     2.35
+    ],
+    "text": "$y=x-1$",
+    "color": "gold",
+    "cls": "fm",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "tF",
+    "type": "text",
+    "at": [
+     3.85,
+     -2.85
+    ],
+    "text": "$y=x-5$",
+    "color": "green",
+    "cls": "fm",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "tBC",
+    "type": "text",
+    "at": [
+     5.25,
+     1.75
+    ],
+    "text": "$y=x-3$",
+    "color": "ink",
+    "cls": "fm",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "rdT",
+    "type": "text",
+    "at": [
+     6.55,
+     3.0
+    ],
+    "text": "$t=$ {#}",
+    "color": "ink",
+    "cls": "rdl",
+    "dir": "C",
+    "dist": 0,
+    "align": "left",
+    "num": "t",
+    "digits": 2
+   },
+   {
+    "id": "rdF",
+    "type": "text",
+    "at": [
+     6.55,
+     2.25
+    ],
+    "text": "$f=$ {#}",
+    "color": "purple",
+    "cls": "rdl",
+    "dir": "C",
+    "dist": 0,
+    "align": "left",
+    "num": "FV(t)",
+    "digits": 2
+   },
+   {
+    "id": "axP",
+    "type": "axes",
+    "x": [
+     6.4,
+     13.05
+    ],
+    "y": [
+     -5.015,
+     2.575
+    ],
+    "origin": [
+     8.9,
+     -1.0
+    ],
+    "xlabel": "$t$",
+    "ylabel": "$f$",
+    "olabel": "$O$"
+   },
+   {
+    "id": "tkPt",
+    "type": "ticks",
+    "axis": "x",
+    "on": -1.0,
+    "at": [
+     6.9,
+     7.9,
+     9.9,
+     10.9,
+     11.9
+    ],
+    "labels": [
+     "$-2$",
+     "$-1$",
+     "$1$",
+     "$2$",
+     "$3$"
+    ]
+   },
+   {
+    "id": "tkPf",
+    "type": "ticks",
+    "axis": "y",
+    "on": 8.9,
+    "at": [
+     -4.3,
+     -3.2,
+     -2.1,
+     0.1,
+     1.2
+    ],
+    "labels": [
+     "$-6$",
+     "$-4$",
+     "$-2$",
+     "$2$",
+     "$4$"
+    ]
+   },
+   {
+    "id": "fG",
+    "type": "curve",
+    "fx": "-1+0.55*FV(x-8.9)",
+    "x": [
+     6.9005,
+     "8.9+sw"
+    ],
+    "n": 900,
+    "stroke": "purple",
+    "width": 3.6
+   },
+   {
+    "id": "pG",
+    "type": "point",
+    "at": "G",
+    "r": 8,
+    "fill": "purple"
+   },
+   {
+    "id": "lf",
+    "type": "segment",
+    "pts": [
+     [
+      6.5,
+      -4.025
+     ],
+     [
+      12.9,
+      -4.025
+     ]
+    ],
+    "stroke": "hl",
+    "width": 2.6,
+    "dash": [
+     9,
+     7
+    ]
+   },
+   {
+    "id": "lfL",
+    "type": "text",
+    "at": [
+     12.95,
+     -4.025
+    ],
+    "text": "$f=-\\dfrac{11}{2}$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "E",
+    "dist": 70
+   },
+   {
+    "id": "s0",
+    "type": "point",
+    "at": [
+     8.15,
+     -4.025
+    ],
+    "r": 8,
+    "fill": "hl"
+   },
+   {
+    "id": "sl0",
+    "type": "text",
+    "at": [
+     8.15,
+     -4.025
+    ],
+    "text": "$-\\dfrac34$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "NW",
+    "dist": 60
+   },
+   {
+    "id": "s1",
+    "type": "point",
+    "at": [
+     8.534,
+     -4.025
+    ],
+    "r": 8,
+    "fill": "hl"
+   },
+   {
+    "id": "sl1",
+    "type": "text",
+    "at": [
+     8.534,
+     -4.025
+    ],
+    "text": "$\\dfrac{1-\\sqrt3}{2}$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "SW",
+    "dist": 75
+   },
+   {
+    "id": "s2",
+    "type": "point",
+    "at": [
+     9.0583,
+     -4.025
+    ],
+    "r": 8,
+    "fill": "hl"
+   },
+   {
+    "id": "sl2",
+    "type": "text",
+    "at": [
+     9.0583,
+     -4.025
+    ],
+    "text": "$\\dfrac{-3+\\sqrt{11}}{2}$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "SE",
+    "dist": 95
+   },
+   {
+    "id": "lfZ",
+    "type": "text",
+    "at": [
+     9.9,
+     -4.025
+    ],
+    "text": "$f=-\\dfrac{11}{2}$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "N",
+    "dist": 45
+   },
+   {
+    "id": "th0",
+    "type": "text",
+    "at": [
+     19.9,
+     4.05
+    ],
+    "text": "分段",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "th1",
+    "type": "text",
+    "at": [
+     22.9,
+     4.05
+    ],
+    "text": "列方程",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "th2",
+    "type": "text",
+    "at": [
+     26.4,
+     4.05
+    ],
+    "text": "解",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "th3",
+    "type": "text",
+    "at": [
+     30.3,
+     4.05
+    ],
+    "text": "检验",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0,
+    "align": null
+   },
+   {
+    "id": "r0a",
+    "type": "text",
+    "at": [
+     19.9,
+     3.1
+    ],
+    "text": "$-2<t\\le-1$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r0b",
+    "type": "text",
+    "at": [
+     22.9,
+     3.1
+    ],
+    "text": "$t^2+3t-4=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r0c",
+    "type": "text",
+    "at": [
+     26.4,
+     3.1
+    ],
+    "text": "$t=\\dfrac{-3\\pm\\sqrt3}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r0d",
+    "type": "text",
+    "at": [
+     30.3,
+     3.1
+    ],
+    "text": "舍去",
+    "color": "red",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "r1a",
+    "type": "text",
+    "at": [
+     19.9,
+     2.05
+    ],
+    "text": "$-1<t\\le\\dfrac{3-\\sqrt{17}}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r1b",
+    "type": "text",
+    "at": [
+     22.9,
+     2.05
+    ],
+    "text": "$2t-4=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r1c",
+    "type": "text",
+    "at": [
+     26.4,
+     2.05
+    ],
+    "text": "$t=-\\dfrac34$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r1d",
+    "type": "text",
+    "at": [
+     30.3,
+     2.05
+    ],
+    "text": "✓",
+    "color": "green",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "r2a",
+    "type": "text",
+    "at": [
+     19.9,
+     1.0
+    ],
+    "text": "$\\dfrac{3-\\sqrt{17}}{2}<t<0$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r2b",
+    "type": "text",
+    "at": [
+     22.9,
+     1.0
+    ],
+    "text": "$t^2-t-6=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r2c",
+    "type": "text",
+    "at": [
+     26.4,
+     1.0
+    ],
+    "text": "$t=\\dfrac{1\\pm\\sqrt3}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r2d",
+    "type": "text",
+    "at": [
+     30.3,
+     1.0
+    ],
+    "text": "取 $\\dfrac{1-\\sqrt3}{2}$",
+    "color": "green",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "r3a",
+    "type": "text",
+    "at": [
+     19.9,
+     -0.050000000000000266
+    ],
+    "text": "$0\\le t\\le1$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r3b",
+    "type": "text",
+    "at": [
+     22.9,
+     -0.050000000000000266
+    ],
+    "text": "$t^2+3t-6=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r3c",
+    "type": "text",
+    "at": [
+     26.4,
+     -0.050000000000000266
+    ],
+    "text": "$t=\\dfrac{-3\\pm\\sqrt{11}}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r3d",
+    "type": "text",
+    "at": [
+     30.3,
+     -0.050000000000000266
+    ],
+    "text": "取 $\\dfrac{-3+\\sqrt{11}}{2}$",
+    "color": "green",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "r4a",
+    "type": "text",
+    "at": [
+     19.9,
+     -1.1
+    ],
+    "text": "$1<t\\le3$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r4b",
+    "type": "text",
+    "at": [
+     22.9,
+     -1.1
+    ],
+    "text": "$2t-4=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r4c",
+    "type": "text",
+    "at": [
+     26.4,
+     -1.1
+    ],
+    "text": "$t=-\\dfrac34$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r4d",
+    "type": "text",
+    "at": [
+     30.3,
+     -1.1
+    ],
+    "text": "舍去",
+    "color": "red",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "r5a",
+    "type": "text",
+    "at": [
+     19.9,
+     -2.15
+    ],
+    "text": "$3<t<\\dfrac{3+\\sqrt{17}}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r5b",
+    "type": "text",
+    "at": [
+     22.9,
+     -2.15
+    ],
+    "text": "$t^2-t-4=-\\dfrac{11}{2}$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r5c",
+    "type": "text",
+    "at": [
+     26.4,
+     -2.15
+    ],
+    "text": "$\\Delta<0$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "r5d",
+    "type": "text",
+    "at": [
+     30.3,
+     -2.15
+    ],
+    "text": "无解",
+    "color": "red",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "ansT",
+    "type": "text",
+    "at": [
+     25.65,
+     -3.35
+    ],
+    "text": "② $t=-\\dfrac34$ 或 $\\dfrac{1-\\sqrt3}{2}$ 或 $\\dfrac{-3+\\sqrt{11}}{2}$",
+    "color": "teal",
+    "cls": "fmbox",
+    "dir": "C",
+    "dist": 0
+   }
+  ],
+  "init": [
+   "ax",
+   "par",
+   "lBC",
+   "pA",
+   "pB",
+   "pC",
+   "lA",
+   "lB",
+   "lC",
+   "lO",
+   "pP",
+   "lP",
+   "pH",
+   "lH",
+   "sPH"
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s0",
+   "layout": "title",
+   "beats": [
+    {
+     "say": "一个正方形沿着直线滑过抛物线，交点怎么变？｜"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "layout": "problem",
+   "num": "题",
+   "title": "读题",
+   "box": {
+    "x": 1290,
+    "y": 150,
+    "w": 590,
+    "h": 700
+   },
+   "view": {
+    "x": [
+     -2.3,
+     4.4
+    ],
+    "y": [
+     -4.8,
+     3.0
+    ]
+   },
+   "beats": [
+    {
+     "say": "抛物线 {y=x²−2x+c|y 等于 x平方 减 2x 加 c} 经过点 {A(−1,0)|A 负1 逗号 0}。它与坐标轴交于 B、C。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k1",
+       "dur": 1.2
+      },
+      {
+       "at": "经过",
+       "focus": [
+        "pA",
+        "lA"
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "点 P 在直线 BC 上，横坐标是 t。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k2"
+      },
+      {
+       "at": "P",
+       "focus": [
+        "pP",
+        "lP"
+       ],
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "第1问求 c；第2问，t=1 时，求 H 的坐标。",
+     "do": [
+      {
+       "at": "第1问",
+       "mark": "q1"
+      },
+      {
+       "at": "第2问",
+       "mark": "q2",
+       "dur": 1.0
+      },
+      {
+       "at": "H",
+       "focus": [
+        "sPH",
+        "pH"
+       ],
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "第3问，Q 也在 BC 上，在 P 的右上方，PQ=2√2。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q3"
+      }
+     ]
+    },
+    {
+     "say": "过 P、Q 作两条轴的垂线，围成四边形 PEQF。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q4",
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "say": "它的边和抛物线交于 M、N 两点，纵坐标之和记为 f。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q5",
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "say": "先求 P 在线段 BC 上时，f 的解析式。再求 f 等于 {−11/2|负2分之11} 时 t 的值。｜",
+     "do": [
+      {
+       "at": "先求",
+       "mark": "q6"
+      },
+      {
+       "at": "再求",
+       "mark": "q7"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "layout": "board",
+   "num": "01",
+   "title": "求 $c$ 与点 $H$",
+   "tag": "第（1）（2）问",
+   "view": {
+    "x": [
+     -2.5,
+     4.6
+    ],
+    "y": [
+     -4.9,
+     3.0
+    ]
+   },
+   "beats": [
+    {
+     "say": "先看第1问：把点 {A(−1,0)|A 负1 逗号 0} 代入。1+2+c=0，所以 c=−3。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "pH",
+        "lH",
+        "sPH"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "代入",
+       "focus": [
+        "pA",
+        "lA"
+       ],
+       "dur": 1.4
+      },
+      {
+       "at": "代入",
+       "note": "代入 $A(-1,0)$：$0=1+2+c$",
+       "cls": "sm"
+      },
+      {
+       "at": "所以",
+       "note": "$c=-3$",
+       "np": "（1）",
+       "cls": "ans"
+      }
+     ]
+    },
+    {
+     "say": "抛物线是 {y=x²−2x−3|y 等于 x平方 减 2x 减 3}。令 y=0，得 {B(3,0)|B 3 逗号 0}；令 x=0，得 {C(0,−3)|C 0 逗号 负3}。",
+     "do": [
+      {
+       "at": "令y=0",
+       "focus": [
+        "pB",
+        "lB"
+       ],
+       "dur": 1.3
+      },
+      {
+       "at": "令x=0",
+       "focus": [
+        "pC",
+        "lC"
+       ],
+       "dur": 1.3
+      },
+      {
+       "at": "令y=0",
+       "note": "$y=x^2-2x-3$，$B(3,0)$，$C(0,-3)$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "由 B、C 两点，求出直线 BC：y=x−3。",
+     "do": [
+      {
+       "at": "直线",
+       "focus": "lBC",
+       "color": "red",
+       "dur": 1.6
+      },
+      {
+       "at": "直线",
+       "show": "tBC"
+      },
+      {
+       "at": "直线",
+       "note": "直线 $BC$：$y=x-3$"
+      }
+     ]
+    },
+    {
+     "say": "第2问，t=1 时，P 的纵坐标是 1−3=−2。P 就是 {(1,−2)|1 逗号 负2}。",
+     "do": [
+      {
+       "at": "第2问",
+       "focus": [
+        "pP",
+        "lP"
+       ],
+       "dur": 1.6
+      },
+      {
+       "at": "纵坐标",
+       "note": "$t=1$：$P(1,-2)$"
+      }
+     ]
+    },
+    {
+     "say": "PH 平行于 x 轴，H 的纵坐标也是 −2。",
+     "do": [
+      {
+       "at": "PH",
+       "show": [
+        "sPH",
+        "pH",
+        "lH"
+       ],
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "say": "令 {x²−2x−3=−2|x平方 减 2x 减 3 等于 负2}，解得 {x=1±√2|x 等于 1加减根号2}。",
+     "do": [
+      {
+       "at": "解得",
+       "note": "$x^2-2x-3=-2$，$x=1\\pm\\sqrt2$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "H 在第四象限，横坐标取正的，H 是 {(1+√2,−2)|1加根号2 逗号 负2}。",
+     "do": [
+      {
+       "at": "第四象限",
+       "focus": [
+        "pH",
+        "lH"
+       ],
+       "dur": 1.6
+      },
+      {
+       "at": "横坐标",
+       "note": "$H(1+\\sqrt2,-2)$",
+       "np": "（2）",
+       "cls": "ans"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "layout": "board",
+   "num": "02",
+   "title": "正方形 $PEQF$ 怎么动",
+   "tag": "第（3）问",
+   "view": {
+    "x": [
+     -3.3,
+     6.4
+    ],
+    "y": [
+     -6.3,
+     3.4
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 830,
+    "h": 800
+   },
+   "notes": {
+    "x": 930,
+    "w": 922
+   },
+   "beats": [
+    {
+     "say": "第3问：P 在直线 BC 上，坐标是 {(t, t−3)|t 逗号 t减3}。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "sPH",
+        "pH",
+        "lH",
+        "tBC"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 0.5
+       },
+       "dur": 1.2
+      },
+      {
+       "at": "坐标",
+       "note": "$P(t,t-3)$"
+      }
+     ]
+    },
+    {
+     "say": "设 {Q(a, a−3)|Q a 逗号 a减3}。由 PQ=2√2，得 {(a−t)²+(a−t)²=8|a减t的平方 加 a减t的平方 等于8}。",
+     "do": [
+      {
+       "at": "^",
+       "note": "设 $Q(a,a-3)$：$(a-t)^2+(a-t)^2=(2\\sqrt2)^2$"
+      }
+     ]
+    },
+    {
+     "say": "Q 在 P 的右上方，a−t=2。所以 Q 是 {(t+2, t−1)|t加2 逗号 t减1}。",
+     "do": [
+      {
+       "at": "所以",
+       "show": [
+        "pQ",
+        "lQ",
+        "sPQ",
+        "lPQ"
+       ],
+       "dur": 0.7
+      },
+      {
+       "at": "所以",
+       "note": "$a-t=2$，$Q(t+2,t-1)$"
+      }
+     ]
+    },
+    {
+     "say": "从 P 到 Q，横着走 2，竖着也走 2。PQ 是正方形 PEQF 的对角线，边长是 2。",
+     "do": [
+      {
+       "at": "横着",
+       "show": [
+        "eB",
+        "l2b"
+       ],
+       "dur": 0.7
+      },
+      {
+       "at": "竖着",
+       "show": [
+        "eR",
+        "l2r"
+       ],
+       "dur": 0.7
+      },
+      {
+       "at": "对角线",
+       "show": [
+        "eL",
+        "eT",
+        "sq",
+        "pE",
+        "pF",
+        "lE",
+        "lF"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "边长",
+       "note": "$PEQF$ 是边长为 $2$ 的正方形",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "E 在 P 的正上方、Q 的正左方，E 是 {(t, t−1)|t 逗号 t减1}；同理 F 是 {(t+2, t−3)|t加2 逗号 t减3}。",
+     "do": [
+      {
+       "at": "E在",
+       "focus": [
+        "pE",
+        "lE"
+       ],
+       "color": "gold",
+       "dur": 1.6
+      },
+      {
+       "at": "同理",
+       "focus": [
+        "pF",
+        "lF"
+       ],
+       "color": "green",
+       "dur": 1.6
+      },
+      {
+       "at": "^",
+       "hide": [
+        "sPQ",
+        "lPQ",
+        "l2b",
+        "l2r"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "同理",
+       "note": "$E(t,t-1)$，$F(t+2,t-3)$"
+      }
+     ]
+    },
+    {
+     "say": "E 的纵坐标总比横坐标小 1，E 在直线 y=x−1 上走；F 在直线 y=x−5 上走。",
+     "do": [
+      {
+       "at": "E在直线",
+       "show": [
+        "trE",
+        "tE"
+       ],
+       "dur": 1.0
+      },
+      {
+       "at": "F在直线",
+       "show": [
+        "trF",
+        "tF"
+       ],
+       "dur": 1.0
+      },
+      {
+       "at": "F在直线",
+       "note": "$E$ 在 $y=x-1$ 上，$F$ 在 $y=x-5$ 上"
+      }
+     ]
+    },
+    {
+     "say": "t 一变，正方形就沿着 BC 滑，E、F 在两条虚线上走。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 2.4
+       },
+       "dur": 2.2
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": -1.6
+       },
+       "dur": 3.2,
+       "delay": 2.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 0.5
+       },
+       "dur": 1.6,
+       "delay": 5.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "layout": "board",
+   "num": "03",
+   "title": "什么时候有两个交点？",
+   "tag": "第（3）问",
+   "view": {
+    "x": [
+     -3.3,
+     6.4
+    ],
+    "y": [
+     -6.3,
+     3.4
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 830,
+    "h": 800
+   },
+   "notes": {
+    "x": 930,
+    "w": 922
+   },
+   "beats": [
+    {
+     "say": "什么时候有两个交点呢？让 t 从小到大，把正方形往右上推。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": -2.6
+       },
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "say": "开始时，正方形在抛物线外面，没有交点。"
+    },
+    {
+     "say": "Q 到达 C，刚好碰到抛物线，这时 t=−2。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": -2
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "C",
+       "focus": [
+        "pQ",
+        "pC"
+       ],
+       "dur": 1.6
+      },
+      {
+       "at": "这时",
+       "note": "$Q$ 到 $C$：$t=-2$，开始有交点",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "再往右上，就有了两个交点 M、N。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": -1.2
+       },
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "最后离开抛物线的，是左上角 E。E 在直线 y=x−1 上，和抛物线交于 J、K。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 2.6
+       },
+       "dur": 3.0
+      },
+      {
+       "at": "J、K",
+       "show": [
+        "pJ",
+        "pK",
+        "lJ",
+        "lK"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "令 {x²−2x−3=x−1|x平方 减 2x 减 3 等于 x减1}。解得 J、K 的横坐标是 {(3±√17)/2|2分之 3加减根号17}。",
+     "do": [
+      {
+       "at": "解得",
+       "note": "$x^2-2x-3=x-1$，$x=\\dfrac{3\\pm\\sqrt{17}}{2}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "E 到 K 时，t={(3+√17)/2|2分之 3加根号17}，再往后就没有交点了。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 3.5615528128088303
+       },
+       "dur": 1.2
+      },
+      {
+       "at": "E到K",
+       "focus": [
+        "pE",
+        "pK"
+       ],
+       "color": "gold",
+       "dur": 1.6
+      },
+      {
+       "at": "再往后",
+       "tween": {
+        "t": 3.95
+       },
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "say": "所以有两个交点时，−2<t<{(3+√17)/2|2分之 3加根号17}。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 1.6
+       },
+       "dur": 1.6
+      },
+      {
+       "at": "两个交点",
+       "show": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "所以",
+       "note": "两个交点：$-2<t<\\dfrac{3+\\sqrt{17}}{2}$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "同样，F 所在的直线 y=x−5，也和抛物线相交。交点是 {L(1,−4)|L 1 逗号 负4} 和 {T(2,−3)|T 2 逗号 负3}。",
+     "do": [
+      {
+       "at": "F所在",
+       "show": [
+        "pL",
+        "pT",
+        "lL",
+        "lT"
+       ]
+      },
+      {
+       "at": "交点是",
+       "note": "$y=x-5$ 与抛物线交于 $L(1,-4)$，$T(2,-3)$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "在这个范围里，只要有一个顶点落到抛物线上，交点就换一条边。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 0.62
+       },
+       "dur": 2.0
+      },
+      {
+       "at": "顶点",
+       "show": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "顶点",
+       "tween": {
+        "t": 1.4
+       },
+       "dur": 4.2,
+       "ease": "linear"
+      },
+      {
+       "at": "换一条边",
+       "focus": [
+        "pQ",
+        "lQ"
+       ],
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "say": "把这些时刻都找出来。Q 到 C 是 t=−2，F 到 L 是 t=−1。E 到 J 是 t={(3−√17)/2|2分之 3减根号17}。",
+     "do": [
+      {
+       "at": "把这些",
+       "note": "分段点（顶点落在抛物线上）：",
+       "cls": "gap"
+      },
+      {
+       "at": "Q到C",
+       "note": "$Q$ 到 $C$：$-2$；$F$ 到 $L$：$-1$；$E$ 到 $J$：$\\dfrac{3-\\sqrt{17}}{2}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "P 到 C、F 到 T 都是 t=0；Q 到 B 是 1；P 到 B 是 3；E 到 K 是 {(3+√17)/2|2分之 3加根号17}。",
+     "do": [
+      {
+       "at": "P到C",
+       "note": "$P$ 到 $C$、$F$ 到 $T$：$0$；$Q$ 到 $B$：$1$",
+       "cls": "sm"
+      },
+      {
+       "at": "P到B",
+       "note": "$P$ 到 $B$：$3$；$E$ 到 $K$：$\\dfrac{3+\\sqrt{17}}{2}$",
+       "cls": "sm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "layout": "board",
+   "num": "04",
+   "title": "①求 $f$ 的解析式",
+   "tag": "第（3）问①",
+   "view": {
+    "x": [
+     -3.3,
+     6.4
+    ],
+    "y": [
+     -6.3,
+     3.4
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 830,
+    "h": 800
+   },
+   "notes": {
+    "x": 930,
+    "w": 922
+   },
+   "beats": [
+    {
+     "say": "先做第一小问：P 在线段 BC 上，0≤t≤3。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "pJ",
+        "pK",
+        "lJ",
+        "lK",
+        "pL",
+        "pT",
+        "lL",
+        "lT",
+        "tE",
+        "tF"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 0.5
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "0≤t≤3",
+       "note": "$P$ 在线段 $BC$ 上：$0\\le t\\le3$"
+      }
+     ]
+    },
+    {
+     "say": "交点的纵坐标怎么求？看它在哪条边上。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "say": "在横着的边上，纵坐标就是这条边的。下边是 t−3，上边是 t−1。",
+     "do": [
+      {
+       "at": "下边",
+       "show": "vB"
+      },
+      {
+       "at": "上边",
+       "show": "vT"
+      },
+      {
+       "at": "下边",
+       "note": "横边：下边 $y=t-3$，上边 $y=t-1$"
+      }
+     ]
+    },
+    {
+     "say": "在竖着的边上，就把横坐标代进抛物线。左边 x=t，右边 x=t+2。",
+     "do": [
+      {
+       "at": "左边",
+       "show": "vL"
+      },
+      {
+       "at": "右边",
+       "show": "vR"
+      },
+      {
+       "at": "代进",
+       "note": "竖边：左边 $y=t^2-2t-3$"
+      },
+      {
+       "at": "右边",
+       "note": "右边 $y=(t+2)^2-2(t+2)-3=t^2+2t-3$"
+      }
+     ]
+    },
+    {
+     "say": "0≤t≤1 时，Q 还没到 B。M 在下边，N 在右边。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "vB",
+        "vT",
+        "vL",
+        "vR"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": [
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.4,
+       "delay": 0.3
+      },
+      {
+       "at": "M在下边",
+       "show": "mB",
+       "dur": 0.5
+      },
+      {
+       "at": "N在右边",
+       "show": "nR",
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "say": "f 等于 t−3 加上 {t²+2t−3|t平方 加 2t 减 3}，就是 {t²+3t−6|t平方 加 3t 减 6}。",
+     "do": [
+      {
+       "at": "f",
+       "note": "$0\\le t\\le1$：$f=(t-3)+(t^2+2t-3)=t^2+3t-6$"
+      }
+     ]
+    },
+    {
+     "say": "t 过了 1，Q 越过 B，N 从右边换到了上边。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mB",
+        "nR"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 2.0
+       },
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "say": "1<t≤3 时，M 在下边，N 在上边。f 等于 t−3 加 t−1，等于 2t−4。",
+     "do": [
+      {
+       "at": "M在下边",
+       "show": "mB",
+       "dur": 0.5
+      },
+      {
+       "at": "N在上边",
+       "show": "nT",
+       "dur": 0.5
+      },
+      {
+       "at": "f=",
+       "note": "$1<t\\le3$：$f=(t-3)+(t-1)=2t-4$"
+      }
+     ]
+    },
+    {
+     "say": "这就是第一小问的答案。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$f=\\begin{cases}t^2+3t-6&(0\\le t\\le1)\\\\2t-4&(1<t\\le3)\\end{cases}$",
+       "np": "①",
+       "cls": "ans sm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "layout": "board",
+   "num": "05",
+   "title": "②其余四段",
+   "tag": "第（3）问②",
+   "view": {
+    "x": [
+     -3.3,
+     6.4
+    ],
+    "y": [
+     -6.3,
+     3.4
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 830,
+    "h": 800
+   },
+   "notes": {
+    "x": 930,
+    "w": 922
+   },
+   "beats": [
+    {
+     "say": "第二小问，要在 t 的整个范围里找，还剩四段。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mB",
+        "nT"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": -1.5
+       },
+       "dur": 2.2
+      },
+      {
+       "at": "还剩",
+       "note": "横边取纵坐标，竖边代抛物线",
+       "cls": "sub"
+      }
+     ]
+    },
+    {
+     "say": "−2<t≤−1 时，M 在上边，N 在右边。f={t²+3t−4|t平方 加 3t 减 4}。",
+     "do": [
+      {
+       "at": "M在上边",
+       "show": "mT",
+       "dur": 0.5
+      },
+      {
+       "at": "N在右边",
+       "show": "nR",
+       "dur": 0.5
+      },
+      {
+       "at": "f=",
+       "note": "$-2<t\\le-1$：$f=(t-1)+(t^2+2t-3)=t^2+3t-4$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "t 过了 −1，F 越过 L，N 换到下边：f=2t−4。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mT",
+        "nR",
+        "lM"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "show": "lM2",
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": -0.8
+       },
+       "dur": 2.0
+      },
+      {
+       "at": "N换到",
+       "show": [
+        "mT",
+        "nB"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "f=",
+       "note": "$-1<t\\le\\dfrac{3-\\sqrt{17}}{2}$：$f=(t-1)+(t-3)=2t-4$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "E 越过 J 以后，M 换到左边：f={t²−t−6|t平方 减 t 减 6}。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mT",
+        "nB",
+        "lM2"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "show": "lM",
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": -0.3
+       },
+       "dur": 2.0
+      },
+      {
+       "at": "M换到",
+       "show": [
+        "mL",
+        "nB"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "f=",
+       "note": "$\\dfrac{3-\\sqrt{17}}{2}<t<0$：$f=(t^2-2t-3)+(t-3)=t^2-t-6$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "t 过了 3，P 越过 B，M 换到左边：f={t²−t−4|t平方 减 t 减 4}。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mL",
+        "nB"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "tween": {
+        "t": 3.45
+       },
+       "dur": 3.0
+      },
+      {
+       "at": "M换到",
+       "show": [
+        "mL",
+        "nT"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "f=",
+       "note": "$3<t<\\dfrac{3+\\sqrt{17}}{2}$：$f=(t^2-2t-3)+(t-1)=t^2-t-4$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "加上第一小问的两段，一共六段。",
+     "do": [
+      {
+       "at": "^",
+       "note": "加上①的两段，$f$ 共分六段",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "layout": "board",
+   "num": "06",
+   "title": "②解方程 $f=-\\tfrac{11}{2}$",
+   "tag": "第（3）问②",
+   "view": {
+    "x": [
+     19.6,
+     31.7
+    ],
+    "y": [
+     -4.6,
+     4.5
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1780,
+    "h": 800
+   },
+   "notes": false,
+   "beats": [
+    {
+     "say": "令 f 等于 {−11/2|负2分之11}，六段分别解方程。解出来，还要看在不在这一段里。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mL",
+        "nT",
+        "ax",
+        "pM",
+        "pN",
+        "lM",
+        "lN"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "六段",
+       "show": [
+        "th0",
+        "th1",
+        "th2",
+        "th3"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "第一段，两个根都不在 −2 到 −1 之间，舍去。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r0a",
+        "r0b",
+        "r0c"
+       ]
+      },
+      {
+       "at": "舍去",
+       "show": "r0d"
+      }
+     ]
+    },
+    {
+     "say": "第二段，t 等于 {−3/4|负4分之3}，在这一段里。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r1a",
+        "r1b",
+        "r1c"
+       ]
+      },
+      {
+       "at": "在这一段",
+       "show": "r1d"
+      }
+     ]
+    },
+    {
+     "say": "第三段，两个根里，只有 {(1−√3)/2|2分之 1减根号3} 在这一段。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r2a",
+        "r2b",
+        "r2c"
+       ]
+      },
+      {
+       "at": "只有",
+       "show": "r2d"
+      }
+     ]
+    },
+    {
+     "say": "第四段，只有 {(−3+√11)/2|2分之 负3加根号11} 在 0 到 1 之间。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r3a",
+        "r3b",
+        "r3c"
+       ]
+      },
+      {
+       "at": "只有",
+       "show": "r3d"
+      }
+     ]
+    },
+    {
+     "say": "第五段，{−3/4|负4分之3} 不在 1 到 3 之间，舍去。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r4a",
+        "r4b",
+        "r4c"
+       ]
+      },
+      {
+       "at": "舍去",
+       "show": "r4d"
+      }
+     ]
+    },
+    {
+     "say": "第六段，判别式小于 0，没有解。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "r5a",
+        "r5b",
+        "r5c"
+       ]
+      },
+      {
+       "at": "没有解",
+       "show": "r5d"
+      }
+     ]
+    },
+    {
+     "say": "所以 t 等于 {−3/4|负4分之3}、{(1−√3)/2|2分之 1减根号3} 或 {(−3+√11)/2|2分之 负3加根号11}。",
+     "do": [
+      {
+       "at": "^",
+       "show": "ansT",
+       "fx": "pop",
+       "dur": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "layout": "board",
+   "num": "07",
+   "title": "动起来看一看",
+   "tag": "验证",
+   "view": {
+    "x": [
+     -3.2,
+     13.4
+    ],
+    "y": [
+     -6.3,
+     3.4
+    ]
+   },
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1780,
+    "h": 800
+   },
+   "notes": false,
+   "beats": [
+    {
+     "say": "用动画看一看：t 从 −2 往右走。右边同时描出 f 随 t 的变化。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "th0",
+        "th1",
+        "th2",
+        "th3",
+        "ansT",
+        "r0a",
+        "r0b",
+        "r0c",
+        "r0d",
+        "r1a",
+        "r1b",
+        "r1c",
+        "r1d",
+        "r2a",
+        "r2b",
+        "r2c",
+        "r2d",
+        "r3a",
+        "r3b",
+        "r3c",
+        "r3d",
+        "r4a",
+        "r4b",
+        "r4c",
+        "r4d",
+        "r5a",
+        "r5b",
+        "r5c",
+        "r5d"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "^",
+       "set": {
+        "t": -1.9995,
+        "sw": -1.9995
+       }
+      },
+      {
+       "at": "^",
+       "show": [
+        "pM",
+        "pN",
+        "lM",
+        "lN",
+        "ax",
+        "rdT",
+        "rdF",
+        "axP",
+        "tkPt",
+        "tkPf",
+        "fG",
+        "pG"
+       ],
+       "dur": 0.6,
+       "delay": 0.4
+      },
+      {
+       "at": "右边",
+       "tween": {
+        "t": -0.45,
+        "sw": -0.45
+       },
+       "dur": 4.2,
+       "ease": "linear"
+      }
+     ]
+    },
+    {
+     "say": "M、N 每经过正方形的一个顶点，就换一条边。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 1.2,
+        "sw": 1.2
+       },
+       "dur": 4.0,
+       "ease": "linear"
+      }
+     ]
+    },
+    {
+     "say": "右边的曲线，就是分成六段的 f，段与段首尾相连。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 3.45,
+        "sw": 3.45
+       },
+       "dur": 3.6,
+       "ease": "linear"
+      }
+     ]
+    },
+    {
+     "say": "画上 f 等于 {−11/2|负2分之11} 这条横线，和曲线正好交于三点。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "t": 3.56105281280883,
+        "sw": 3.56105281280883
+       },
+       "dur": 0.8,
+       "ease": "linear"
+      },
+      {
+       "at": "横线",
+       "show": [
+        "lf",
+        "lfL"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "三点",
+       "show": [
+        "s0",
+        "s1",
+        "s2"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "三点",
+       "hide": [
+        "ax",
+        "rdT",
+        "rdF",
+        "par",
+        "lBC",
+        "trE",
+        "trF",
+        "pA",
+        "pB",
+        "pC",
+        "lA",
+        "lB",
+        "lC",
+        "lO",
+        "pP",
+        "pQ",
+        "pE",
+        "pF",
+        "lP",
+        "lQ",
+        "lE",
+        "lF",
+        "sq",
+        "eB",
+        "eT",
+        "eL",
+        "eR",
+        "pM",
+        "pN",
+        "lM",
+        "lN",
+        "tkPf",
+        "lfL"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "三点",
+       "camera": {
+        "x": [
+         7.4,
+         10.2
+        ],
+        "y": [
+         -4.795,
+         -3.31
+        ]
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "三点",
+       "show": "lfZ",
+       "dur": 0.4,
+       "delay": 1.2
+      }
+     ]
+    },
+    {
+     "say": "横坐标就是刚才解出的三个 t。｜",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "sl0",
+        "sl1",
+        "sl2"
+       ],
+       "dur": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "layout": "summary",
+   "num": "08",
+   "title": "总结",
+   "chain": [
+    {
+     "id": "c1",
+     "title": "代点求式",
+     "sub": "$c=-3$\n$BC$：$y=x-3$"
+    },
+    {
+     "id": "c2",
+     "title": "设出坐标",
+     "sub": "$P(t,t-3)$\n$Q(t+2,t-1)$"
+    },
+    {
+     "id": "c3",
+     "title": "找分段点",
+     "sub": "顶点落在\n抛物线上"
+    },
+    {
+     "id": "c4",
+     "title": "分段列式",
+     "sub": "横边取纵坐标\n竖边代抛物线"
+    },
+    {
+     "id": "c5",
+     "title": "解后验段",
+     "sub": "解出的 $t$\n要在这一段"
+    }
+   ],
+   "answers": [
+    {
+     "id": "ans1",
+     "text": "（1）$c=$[[$-3$]]；（2）$H$[[$(1+\\sqrt2,-2)$]]"
+    },
+    {
+     "id": "ans2",
+     "text": "（3）①[[$f=t^2+3t-6\\ (0\\le t\\le1)$，$f=2t-4\\ (1<t\\le3)$]]"
+    },
+    {
+     "id": "ans3",
+     "text": "　　 ②[[$t=-\\dfrac34$ 或 $\\dfrac{1-\\sqrt3}{2}$ 或 $\\dfrac{-3+\\sqrt{11}}{2}$]]"
+    }
+   ],
+   "tagline": "顶点过抛物线，交点换一条边",
+   "beats": [
+    {
+     "say": "回顾一下：先代点求出抛物线和直线 BC。",
+     "do": [
+      {
+       "at": "代点",
+       "show": "c1"
+      }
+     ]
+    },
+    {
+     "say": "用 t 表示 P、Q，看出 PEQF 是边长为 2 的正方形。",
+     "do": [
+      {
+       "at": "用t",
+       "show": "c2"
+      }
+     ]
+    },
+    {
+     "say": "找分段点，就看正方形的顶点什么时候落在抛物线上。",
+     "do": [
+      {
+       "at": "分段点",
+       "show": "c3"
+      }
+     ]
+    },
+    {
+     "say": "每一段里，横边上的交点取边的纵坐标。竖边上的交点，代进抛物线。",
+     "do": [
+      {
+       "at": "每一段",
+       "show": "c4"
+      }
+     ]
+    },
+    {
+     "say": "解出 t 以后，还要看它在不在这一段里。",
+     "do": [
+      {
+       "at": "解出",
+       "show": "c5"
+      },
+      {
+       "at": "这一段",
+       "show": [
+        "ans1",
+        "ans2",
+        "ans3"
+       ],
+       "delay": 0.3
+      }
+     ]
+    },
+    {
+     "say": "顶点过抛物线，交点换一条边。｜",
+     "do": [
+      {
+       "at": "^",
+       "show": "tagline"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "layout": "outro",
+   "main": "这道题就讲到这里",
+   "sub": "我们下次再见",
+   "beats": [
+    {
+     "say": "好，这道题就讲到这里。同学们，我们下次再见！"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,3188 @@
+{
+ "meta": {
+  "title": "一张不知道阻值的电阻网",
+  "tag": "电阻网络 · 竞赛",
+  "subtitle": "对称找等势 · 拆成并联 · 整体设未知",
+  "out": "电阻网络_对称与等势.mp4",
+  "theme": "light",
+  "fps": 30
+ },
+ "problem": {
+  "tag": "电阻网络",
+  "size": 31,
+  "width": 1100,
+  "text": "（上海第 28 届初中物理竞赛“大同杯”复赛）如图所示的电阻网络中，{k1|$AC$、$CB$、$BD$、$DA$ 四边形的电阻为 $r$}，{k2|其余各边的电阻都相等，但阻值未知}，{k3|测得 $AB$ 两点之间的总电阻为 $R$}。{q1|当在 $C$、$D$ 两点之间连接一段阻值为 $R$ 的电阻时，$AB$ 两点之间的总电阻 $R'=$______}；{q2|若将 $AC$、$CB$、$BD$、$DA$ 四根电阻丝皆换成阻值为 $2r$ 的电阻，则 $AB$ 两点之间的总电阻 $R''=$______}。",
+  "parts": []
+ },
+ "layouts": {
+  "board": {
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1130,
+    "h": 800
+   }
+  }
+ },
+ "world": {
+  "vars": {
+   "fy": 1,
+   "fo": 0,
+   "sp": 0,
+   "ft": 0
+  },
+  "funcs": {
+   "PX": "(X, fo) => (X < 0 ? X * (1 - 2 * fo) : X)"
+  },
+  "view": {
+   "x": [
+    -3.7,
+    3.7
+   ],
+   "y": [
+    -4.1,
+    3.7
+   ]
+  },
+  "clip": 6,
+  "points": {
+   "n00": [
+    "PX(-3,fo)",
+    "0*fy"
+   ],
+   "n01": [
+    "PX(-2,fo)",
+    "1*fy"
+   ],
+   "n02": [
+    "PX(-1,fo)",
+    "2*fy"
+   ],
+   "n03": [
+    "PX(0,fo)",
+    "3*fy"
+   ],
+   "n10": [
+    "PX(-2,fo)",
+    "-1*fy"
+   ],
+   "A": [
+    "PX(-1,fo)",
+    "0*fy"
+   ],
+   "C": [
+    "PX(0,fo)",
+    "1*fy"
+   ],
+   "n13": [
+    "PX(1,fo)",
+    "2*fy"
+   ],
+   "n20": [
+    "PX(-1,fo)",
+    "-2*fy"
+   ],
+   "D": [
+    "PX(0,fo)",
+    "-1*fy"
+   ],
+   "B": [
+    "PX(1,fo)",
+    "0*fy"
+   ],
+   "n23": [
+    "PX(2,fo)",
+    "1*fy"
+   ],
+   "n30": [
+    "PX(0,fo)",
+    "-3*fy"
+   ],
+   "n31": [
+    "PX(1,fo)",
+    "-2*fy"
+   ],
+   "n32": [
+    "PX(2,fo)",
+    "-1*fy"
+   ],
+   "n33": [
+    "PX(3,fo)",
+    "0*fy"
+   ],
+   "Cs": [
+    "0",
+    "fy*(1-0.55*sp)"
+   ],
+   "Ds": [
+    "0",
+    "-fy*(1-0.55*sp)"
+   ]
+  },
+  "objects": [
+   {
+    "id": "shL",
+    "type": "region",
+    "pts": [
+     [
+      "PX(-3,fo)",
+      0
+     ],
+     [
+      0,
+      3
+     ],
+     [
+      0,
+      -3
+     ]
+    ],
+    "fill": "red",
+    "fillOpacity": 0.1
+   },
+   {
+    "id": "shR",
+    "type": "region",
+    "pts": [
+     [
+      3,
+      0
+     ],
+     [
+      0,
+      3
+     ],
+     [
+      0,
+      -3
+     ]
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.1
+   },
+   {
+    "id": "o_n00_n01",
+    "type": "segment",
+    "pts": [
+     "n00",
+     "n01"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n00_n10",
+    "type": "segment",
+    "pts": [
+     "n00",
+     "n10"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n01_n02",
+    "type": "segment",
+    "pts": [
+     "n01",
+     "n02"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n01_A",
+    "type": "segment",
+    "pts": [
+     "n01",
+     "A"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n02_n03",
+    "type": "segment",
+    "pts": [
+     "n02",
+     "n03"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n02_C",
+    "type": "segment",
+    "pts": [
+     "n02",
+     "C"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n03_n13",
+    "type": "segment",
+    "pts": [
+     "n03",
+     "n13"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n10_A",
+    "type": "segment",
+    "pts": [
+     "n10",
+     "A"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n10_n20",
+    "type": "segment",
+    "pts": [
+     "n10",
+     "n20"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_C_n13",
+    "type": "segment",
+    "pts": [
+     "C",
+     "n13"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n13_n23",
+    "type": "segment",
+    "pts": [
+     "n13",
+     "n23"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n20_D",
+    "type": "segment",
+    "pts": [
+     "n20",
+     "D"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n20_n30",
+    "type": "segment",
+    "pts": [
+     "n20",
+     "n30"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_D_n31",
+    "type": "segment",
+    "pts": [
+     "D",
+     "n31"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_B_n23",
+    "type": "segment",
+    "pts": [
+     "B",
+     "n23"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_B_n32",
+    "type": "segment",
+    "pts": [
+     "B",
+     "n32"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n23_n33",
+    "type": "segment",
+    "pts": [
+     "n23",
+     "n33"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n30_n31",
+    "type": "segment",
+    "pts": [
+     "n30",
+     "n31"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n31_n32",
+    "type": "segment",
+    "pts": [
+     "n31",
+     "n32"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "o_n32_n33",
+    "type": "segment",
+    "pts": [
+     "n32",
+     "n33"
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "s_A_C",
+    "type": "segment",
+    "pts": [
+     "A",
+     "Cs"
+    ],
+    "stroke": "blue",
+    "width": 4.4
+   },
+   {
+    "id": "s_A_D",
+    "type": "segment",
+    "pts": [
+     "A",
+     "Ds"
+    ],
+    "stroke": "blue",
+    "width": 4.4
+   },
+   {
+    "id": "s_C_B",
+    "type": "segment",
+    "pts": [
+     "Cs",
+     "B"
+    ],
+    "stroke": "blue",
+    "width": 4.4
+   },
+   {
+    "id": "s_D_B",
+    "type": "segment",
+    "pts": [
+     "Ds",
+     "B"
+    ],
+    "stroke": "blue",
+    "width": 4.4
+   },
+   {
+    "id": "f_n00_n01",
+    "type": "segment",
+    "pts": [
+     "n00",
+     "n01"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-0.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n00_n10",
+    "type": "segment",
+    "pts": [
+     "n00",
+     "n10"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-0.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n01_n02",
+    "type": "segment",
+    "pts": [
+     "n01",
+     "n02"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n01_A",
+    "type": "segment",
+    "pts": [
+     "n01",
+     "A"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n02_n03",
+    "type": "segment",
+    "pts": [
+     "n02",
+     "n03"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n02_C",
+    "type": "segment",
+    "pts": [
+     "n02",
+     "C"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n03_n13",
+    "type": "segment",
+    "pts": [
+     "n03",
+     "n13"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n10_A",
+    "type": "segment",
+    "pts": [
+     "n10",
+     "A"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n10_n20",
+    "type": "segment",
+    "pts": [
+     "n10",
+     "n20"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_A_C",
+    "type": "segment",
+    "pts": [
+     "A",
+     "Cs"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*95.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_A_D",
+    "type": "segment",
+    "pts": [
+     "A",
+     "Ds"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*95.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_C_n13",
+    "type": "segment",
+    "pts": [
+     "C",
+     "n13"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_C_B",
+    "type": "segment",
+    "pts": [
+     "Cs",
+     "B"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*95.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n13_n23",
+    "type": "segment",
+    "pts": [
+     "n13",
+     "n23"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n20_D",
+    "type": "segment",
+    "pts": [
+     "n20",
+     "D"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n20_n30",
+    "type": "segment",
+    "pts": [
+     "n20",
+     "n30"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_D_B",
+    "type": "segment",
+    "pts": [
+     "Ds",
+     "B"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*95.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_D_n31",
+    "type": "segment",
+    "pts": [
+     "D",
+     "n31"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_B_n23",
+    "type": "segment",
+    "pts": [
+     "B",
+     "n23"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_B_n32",
+    "type": "segment",
+    "pts": [
+     "B",
+     "n32"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n23_n33",
+    "type": "segment",
+    "pts": [
+     "n23",
+     "n33"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-0.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n30_n31",
+    "type": "segment",
+    "pts": [
+     "n30",
+     "n31"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*19.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n31_n32",
+    "type": "segment",
+    "pts": [
+     "n31",
+     "n32"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*38.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "f_n32_n33",
+    "type": "segment",
+    "pts": [
+     "n32",
+     "n33"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "ft*-0.000",
+    "opacity": 0.9
+   },
+   {
+    "id": "cdW1",
+    "type": "segment",
+    "pts": [
+     "Cs",
+     [
+      0,
+      0.34
+     ]
+    ],
+    "stroke": "purple",
+    "width": 2.6
+   },
+   {
+    "id": "cdW2",
+    "type": "segment",
+    "pts": [
+     [
+      0,
+      -0.34
+     ],
+     "Ds"
+    ],
+    "stroke": "purple",
+    "width": 2.6
+   },
+   {
+    "id": "cdBox",
+    "type": "polygon",
+    "pts": [
+     [
+      -0.15,
+      -0.34
+     ],
+     [
+      0.15,
+      -0.34
+     ],
+     [
+      0.15,
+      0.34
+     ],
+     [
+      -0.15,
+      0.34
+     ]
+    ],
+    "stroke": "purple",
+    "width": 3,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "cdL",
+    "type": "text",
+    "at": [
+     -0.43,
+     0
+    ],
+    "text": "$R$",
+    "color": "purple",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "f_cd",
+    "type": "segment",
+    "pts": [
+     "Cs",
+     "Ds"
+    ],
+    "stroke": "orange",
+    "width": 7,
+    "dash": [
+     0.1,
+     17
+    ],
+    "flow": "0",
+    "opacity": 0.5
+   },
+   {
+    "id": "cdI",
+    "type": "text",
+    "at": [
+     0.52,
+     0
+    ],
+    "text": "$I=0$",
+    "color": "red",
+    "cls": "fms",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "midL",
+    "type": "segment",
+    "pts": [
+     [
+      0,
+      3.45
+     ],
+     [
+      0,
+      -3.45
+     ]
+    ],
+    "stroke": "gray",
+    "width": 2.2,
+    "dash": [
+     9,
+     8
+    ]
+   },
+   {
+    "id": "dropL",
+    "type": "text",
+    "at": [
+     -1.75,
+     -3.62
+    ],
+    "text": "$A$ 到竖线：降 $\\dfrac U2$",
+    "color": "red",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "dropR",
+    "type": "text",
+    "at": [
+     1.75,
+     -3.62
+    ],
+    "text": "竖线到 $B$：降 $\\dfrac U2$",
+    "color": "blue",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "uC",
+    "type": "text",
+    "at": [
+     0,
+     2.05
+    ],
+    "text": "$\\dfrac U2$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "uD",
+    "type": "text",
+    "at": [
+     0,
+     -2.05
+    ],
+    "text": "$\\dfrac U2$",
+    "color": "red",
+    "cls": "fm",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "i1a",
+    "type": "text",
+    "at": [
+     "(px('A')+px('Cs'))/2*0.52",
+     "(py('A')+py('Cs'))/2*0.52"
+    ],
+    "text": "$I_1$",
+    "color": "orange",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "i1b",
+    "type": "text",
+    "at": [
+     "(px('B')+px('Cs'))/2*0.52",
+     "(py('B')+py('Cs'))/2*0.52"
+    ],
+    "text": "$I_1$",
+    "color": "orange",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "arIn",
+    "type": "arrow",
+    "from": [
+     -2.78,
+     0
+    ],
+    "to": [
+     -1.55,
+     0
+    ],
+    "stroke": "orange",
+    "width": 3.4
+   },
+   {
+    "id": "arOut",
+    "type": "arrow",
+    "from": [
+     1.55,
+     0
+    ],
+    "to": [
+     2.78,
+     0
+    ],
+    "stroke": "orange",
+    "width": 3.4
+   },
+   {
+    "id": "lIn",
+    "type": "text",
+    "at": [
+     -2.17,
+     0.3
+    ],
+    "text": "电流进",
+    "color": "orange",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "lOut",
+    "type": "text",
+    "at": [
+     2.17,
+     0.3
+    ],
+    "text": "电流出",
+    "color": "orange",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "demo",
+    "type": "text",
+    "at": [
+     -4.25,
+     -3.95
+    ],
+    "text": "演示：其余每根也取 $r$",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "legend",
+    "type": "text",
+    "at": [
+     0,
+     -3.62
+    ],
+    "text": "其余各边：阻值相等，未知",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "rAC",
+    "type": "text",
+    "at": [
+     "(px('A')+px('Cs'))/2*1.36",
+     "(py('A')+py('Cs'))/2*1.36"
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "rCB",
+    "type": "text",
+    "at": [
+     "(px('Cs')+px('B'))/2*1.36",
+     "(py('Cs')+py('B'))/2*1.36"
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "rBD",
+    "type": "text",
+    "at": [
+     "(px('B')+px('Ds'))/2*1.36",
+     "(py('B')+py('Ds'))/2*1.36"
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "rDA",
+    "type": "text",
+    "at": [
+     "(px('Ds')+px('A'))/2*1.36",
+     "(py('Ds')+py('A'))/2*1.36"
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "pA",
+    "type": "point",
+    "at": "A",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pB",
+    "type": "point",
+    "at": "B",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pC",
+    "type": "point",
+    "at": "Cs",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pD",
+    "type": "point",
+    "at": "Ds",
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "pC2",
+    "type": "point",
+    "at": "C",
+    "r": 6,
+    "fill": "ink",
+    "hollow": true
+   },
+   {
+    "id": "pD2",
+    "type": "point",
+    "at": "D",
+    "r": 6,
+    "fill": "ink",
+    "hollow": true
+   },
+   {
+    "id": "lA",
+    "type": "label",
+    "at": "A",
+    "text": "A",
+    "dir": "W"
+   },
+   {
+    "id": "lB",
+    "type": "label",
+    "at": "B",
+    "text": "B",
+    "dir": "E"
+   },
+   {
+    "id": "lC",
+    "type": "label",
+    "at": "Cs",
+    "text": "C",
+    "dir": "N"
+   },
+   {
+    "id": "lD",
+    "type": "label",
+    "at": "Ds",
+    "text": "D",
+    "dir": "S"
+   },
+   {
+    "id": "etw1",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      2.2
+     ],
+     [
+      11.3,
+      2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "etb1",
+    "type": "polygon",
+    "pts": [
+     [
+      11.3,
+      1.9500000000000002
+     ],
+     [
+      12.7,
+      1.9500000000000002
+     ],
+     [
+      12.7,
+      2.45
+     ],
+     [
+      11.3,
+      2.45
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "etw2",
+    "type": "segment",
+    "pts": [
+     [
+      12.7,
+      2.2
+     ],
+     [
+      15.3,
+      2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "etb2",
+    "type": "polygon",
+    "pts": [
+     [
+      15.3,
+      1.9500000000000002
+     ],
+     [
+      16.7,
+      1.9500000000000002
+     ],
+     [
+      16.7,
+      2.45
+     ],
+     [
+      15.3,
+      2.45
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "etw3",
+    "type": "segment",
+    "pts": [
+     [
+      16.7,
+      2.2
+     ],
+     [
+      18,
+      2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "etP",
+    "type": "point",
+    "at": [
+     14,
+     2.2
+    ],
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "etL",
+    "type": "label",
+    "at": [
+     14,
+     2.2
+    ],
+    "text": "C",
+    "dir": "N"
+   },
+   {
+    "id": "etr1",
+    "type": "text",
+    "at": [
+     12,
+     2.2
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "etr2",
+    "type": "text",
+    "at": [
+     16,
+     2.2
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "etR1",
+    "type": "text",
+    "at": [
+     12,
+     2.2
+    ],
+    "text": "$2r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "etR2",
+    "type": "text",
+    "at": [
+     16,
+     2.2
+    ],
+    "text": "$2r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "emw1",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      0.0
+     ],
+     [
+      11.3,
+      0.0
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "emb1",
+    "type": "polygon",
+    "pts": [
+     [
+      11.3,
+      -0.25
+     ],
+     [
+      12.7,
+      -0.25
+     ],
+     [
+      12.7,
+      0.25
+     ],
+     [
+      11.3,
+      0.25
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "emw2",
+    "type": "segment",
+    "pts": [
+     [
+      12.7,
+      0.0
+     ],
+     [
+      15.3,
+      0.0
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "emb2",
+    "type": "polygon",
+    "pts": [
+     [
+      15.3,
+      -0.25
+     ],
+     [
+      16.7,
+      -0.25
+     ],
+     [
+      16.7,
+      0.25
+     ],
+     [
+      15.3,
+      0.25
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "emw3",
+    "type": "segment",
+    "pts": [
+     [
+      16.7,
+      0.0
+     ],
+     [
+      18,
+      0.0
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "emP",
+    "type": "point",
+    "at": [
+     14,
+     0.0
+    ],
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "emL",
+    "type": "label",
+    "at": [
+     14,
+     0.0
+    ],
+    "text": "D",
+    "dir": "S"
+   },
+   {
+    "id": "emr1",
+    "type": "text",
+    "at": [
+     12,
+     0.0
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "emr2",
+    "type": "text",
+    "at": [
+     16,
+     0.0
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "emR1",
+    "type": "text",
+    "at": [
+     12,
+     0.0
+    ],
+    "text": "$2r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "emR2",
+    "type": "text",
+    "at": [
+     16,
+     0.0
+    ],
+    "text": "$2r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "ebL",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      2.2
+     ],
+     [
+      10,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "ebR",
+    "type": "segment",
+    "pts": [
+     [
+      18,
+      2.2
+     ],
+     [
+      18,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "ebw1",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      -2.2
+     ],
+     [
+      12.3,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "ebB",
+    "type": "polygon",
+    "pts": [
+     [
+      12.3,
+      -2.62
+     ],
+     [
+      15.7,
+      -2.62
+     ],
+     [
+      15.7,
+      -1.7800000000000002
+     ],
+     [
+      12.3,
+      -1.7800000000000002
+     ]
+    ],
+    "stroke": "gray",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "ebw2",
+    "type": "segment",
+    "pts": [
+     [
+      15.7,
+      -2.2
+     ],
+     [
+      18,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "ebL0",
+    "type": "text",
+    "at": [
+     14,
+     -2.2
+    ],
+    "text": "$R_0$",
+    "color": "ink",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "ebCap",
+    "type": "text",
+    "at": [
+     14,
+     -3.02
+    ],
+    "text": "外面的整个网络",
+    "color": "gray",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "eA",
+    "type": "point",
+    "at": [
+     10,
+     0
+    ],
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "eB",
+    "type": "point",
+    "at": [
+     18,
+     0
+    ],
+    "r": 7,
+    "fill": "ink"
+   },
+   {
+    "id": "eAL",
+    "type": "label",
+    "at": [
+     10,
+     0
+    ],
+    "text": "A",
+    "dir": "W"
+   },
+   {
+    "id": "eBL",
+    "type": "label",
+    "at": [
+     18,
+     0
+    ],
+    "text": "B",
+    "dir": "E"
+   },
+   {
+    "id": "eTot",
+    "type": "text",
+    "at": [
+     14,
+     3.0
+    ],
+    "text": "三条支路并联",
+    "color": "red",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "mbL",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      1.1
+     ],
+     [
+      10,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "mbR",
+    "type": "segment",
+    "pts": [
+     [
+      18,
+      1.1
+     ],
+     [
+      18,
+      -2.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "mw1",
+    "type": "segment",
+    "pts": [
+     [
+      10,
+      1.1
+     ],
+     [
+      12.8,
+      1.1
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "mB",
+    "type": "polygon",
+    "pts": [
+     [
+      12.8,
+      0.8500000000000001
+     ],
+     [
+      15.2,
+      0.8500000000000001
+     ],
+     [
+      15.2,
+      1.35
+     ],
+     [
+      12.8,
+      1.35
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "mw2",
+    "type": "segment",
+    "pts": [
+     [
+      15.2,
+      1.1
+     ],
+     [
+      18,
+      1.1
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4
+   },
+   {
+    "id": "mR1",
+    "type": "text",
+    "at": [
+     14,
+     1.1
+    ],
+    "text": "$r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "mR2",
+    "type": "text",
+    "at": [
+     14,
+     1.1
+    ],
+    "text": "$2r$",
+    "color": "blue",
+    "cls": "fmb",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "mCap1",
+    "type": "text",
+    "at": [
+     14,
+     1.85
+    ],
+    "text": "$2r$ 与 $2r$ 并联",
+    "color": "blue",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "mCap2",
+    "type": "text",
+    "at": [
+     14,
+     1.85
+    ],
+    "text": "$4r$ 与 $4r$ 并联",
+    "color": "blue",
+    "cls": "wt",
+    "dir": "C",
+    "dist": 0
+   },
+   {
+    "id": "vR",
+    "type": "text",
+    "at": [
+     4.0,
+     1.75
+    ],
+    "text": "电脑算：$R\\approx0.714\\,r$",
+    "color": "ink",
+    "cls": "rdl",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "vR2",
+    "type": "text",
+    "at": [
+     4.0,
+     0.35
+    ],
+    "text": "中间换成 $2r$：$R''\\approx1.111\\,r$",
+    "color": "ink",
+    "cls": "rdl",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   },
+   {
+    "id": "vF",
+    "type": "text",
+    "at": [
+     4.0,
+     -1.2
+    ],
+    "text": "公式 $\\dfrac{2rR}{2r-R}\\approx1.111\\,r$ ✓",
+    "color": "green",
+    "cls": "rdl",
+    "dir": "C",
+    "dist": 0,
+    "align": "left"
+   }
+  ],
+  "init": [
+   "o_n00_n01",
+   "o_n00_n10",
+   "o_n01_n02",
+   "o_n01_A",
+   "o_n02_n03",
+   "o_n02_C",
+   "o_n03_n13",
+   "o_n10_A",
+   "o_n10_n20",
+   "o_C_n13",
+   "o_n13_n23",
+   "o_n20_D",
+   "o_n20_n30",
+   "o_D_n31",
+   "o_B_n23",
+   "o_B_n32",
+   "o_n23_n33",
+   "o_n30_n31",
+   "o_n31_n32",
+   "o_n32_n33",
+   "s_A_C",
+   "s_A_D",
+   "s_C_B",
+   "s_D_B",
+   "rAC",
+   "rCB",
+   "rBD",
+   "rDA",
+   "pA",
+   "pB",
+   "pC",
+   "pD",
+   "lA",
+   "lB",
+   "lC",
+   "lD",
+   "legend"
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s0",
+   "layout": "title",
+   "beats": [
+    {
+     "say": "一张网里，大部分电阻都不知道多大，还能求总电阻吗？｜"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "layout": "problem",
+   "num": "题",
+   "title": "读题",
+   "box": {
+    "x": 1290,
+    "y": 150,
+    "w": 590,
+    "h": 700
+   },
+   "view": {
+    "x": [
+     -3.7,
+     3.7
+    ],
+    "y": [
+     -4.1,
+     3.7
+    ]
+   },
+   "beats": [
+    {
+     "say": "中间小方格的四条边，AC、CB、BD、DA，电阻都是{r|小r}。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k1",
+       "dur": 1.0
+      },
+      {
+       "at": "AC",
+       "focus": [
+        "s_A_C",
+        "s_A_D",
+        "s_C_B",
+        "s_D_B",
+        "rAC",
+        "rCB",
+        "rBD",
+        "rDA"
+       ],
+       "color": "blue",
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "say": "其余各边的电阻都相等，但不知道是多少。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k2"
+      },
+      {
+       "at": "其余",
+       "focus": [
+        "o_n00_n01",
+        "o_n00_n10",
+        "o_n01_n02",
+        "o_n01_A",
+        "o_n02_n03",
+        "o_n02_C",
+        "o_n03_n13",
+        "o_n10_A",
+        "o_n10_n20",
+        "o_C_n13",
+        "o_n13_n23",
+        "o_n20_D",
+        "o_n20_n30",
+        "o_D_n31",
+        "o_B_n23",
+        "o_B_n32",
+        "o_n23_n33",
+        "o_n30_n31",
+        "o_n31_n32",
+        "o_n32_n33"
+       ],
+       "color": "gold",
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "say": "测得 A、B 两点之间的总电阻是{R|大R}。",
+     "do": [
+      {
+       "at": "^",
+       "mark": "k3"
+      },
+      {
+       "at": "A、B",
+       "focus": [
+        "pA",
+        "pB",
+        "lA",
+        "lB"
+       ],
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "第1问：在 C、D 之间再接一个阻值为{R|大R}的电阻。AB 间的总电阻变成多少？",
+     "do": [
+      {
+       "at": "第1问",
+       "mark": "q1",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "第2问：中间四根都换成{2r|2小r}，AB 间的总电阻又是多少？｜",
+     "do": [
+      {
+       "at": "第2问",
+       "mark": "q2",
+       "dur": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "layout": "board",
+   "num": "01",
+   "title": "接上的电阻里有电流吗？",
+   "tag": "第（1）问",
+   "view": {
+    "x": [
+     -4.4,
+     4.4
+    ],
+    "y": [
+     -4.25,
+     3.95
+    ]
+   },
+   "beats": [
+    {
+     "say": "先看第1问：C、D 之间接上电阻，里面会有电流吗？",
+     "do": [
+      {
+       "at": "^",
+       "hide": "legend",
+       "dur": 0.3
+      },
+      {
+       "at": "接上电阻",
+       "show": [
+        "cdW1",
+        "cdW2",
+        "cdBox",
+        "cdL"
+       ],
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "say": "这要看 C、D 两点之间有没有电压。",
+     "do": [
+      {
+       "at": "C、D",
+       "focus": [
+        "pC",
+        "pD",
+        "lC",
+        "lD"
+       ],
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "say": "电流从 A 流进，从 B 流出。",
+     "do": [
+      {
+       "at": "流进",
+       "show": [
+        "arIn",
+        "lIn"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "流出",
+       "show": [
+        "arOut",
+        "lOut"
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "把整张网沿着 AB 这条线，上下翻过来。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "arIn",
+        "arOut",
+        "lIn",
+        "lOut"
+       ],
+       "dur": 0.3
+      },
+      {
+       "at": "翻过来",
+       "tween": {
+        "fy": -1
+       },
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "say": "网还是原来的网，A、B 没动，只是 C 和 D 对调了。",
+     "do": [
+      {
+       "at": "A、B",
+       "focus": [
+        "lA",
+        "lB"
+       ],
+       "dur": 1.2
+      },
+      {
+       "at": "对调",
+       "focus": [
+        "lC",
+        "lD"
+       ],
+       "color": "red",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "翻过来前后一模一样，所以 C、D 电压一样高，是等势点。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "fy": 1
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "等势点",
+       "note": "上下对称：$C$、$D$ 两点等势",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "等势的两点之间没有电压，接上电阻，也没有电流。",
+     "do": [
+      {
+       "at": "没有电压",
+       "note": "$U_{CD}=0$，接入的电阻中没有电流"
+      }
+     ]
+    },
+    {
+     "say": "这根电阻接不接都一样，所以 {R′=R|R撇等于大R}。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "$R'=R$",
+       "np": "（1）",
+       "cls": "ans"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：电流从 A 流到 B，点子走得越快，电流越大。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "demo",
+        "f_n00_n01",
+        "f_n00_n10",
+        "f_n01_n02",
+        "f_n01_A",
+        "f_n02_n03",
+        "f_n02_C",
+        "f_n03_n13",
+        "f_n10_A",
+        "f_n10_n20",
+        "f_A_C",
+        "f_A_D",
+        "f_C_n13",
+        "f_C_B",
+        "f_n13_n23",
+        "f_n20_D",
+        "f_n20_n30",
+        "f_D_B",
+        "f_D_n31",
+        "f_B_n23",
+        "f_B_n32",
+        "f_n23_n33",
+        "f_n30_n31",
+        "f_n31_n32",
+        "f_n32_n33",
+        "f_cd"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "tween": {
+        "ft": 22
+       },
+       "dur": 22,
+       "ease": "linear",
+       "wait": false
+      }
+     ]
+    },
+    {
+     "say": "C、D 之间的这根电阻，点子一动不动，没有电流。",
+     "do": [
+      {
+       "at": "这根",
+       "focus": [
+        "cdBox",
+        "f_cd"
+       ],
+       "color": "red",
+       "dur": 2.0
+      },
+      {
+       "at": "没有电流",
+       "show": "cdI"
+      }
+     ]
+    },
+    {
+     "say": "再看最左、最右两个角，这四根也没有电流。",
+     "do": [
+      {
+       "at": "两个角",
+       "focus": [
+        "o_n00_n01",
+        "o_n00_n10",
+        "o_n23_n33",
+        "o_n32_n33"
+       ],
+       "color": "red",
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "say": "因为角上这两根连着的两个点，也是上下对称的，电压一样高。",
+     "do": [
+      {
+       "at": "上下对称",
+       "focus": [
+        "o_n00_n01",
+        "o_n00_n10",
+        "o_n23_n33",
+        "o_n32_n33"
+       ],
+       "color": "red",
+       "dur": 2.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "layout": "board",
+   "num": "02",
+   "title": "为什么能看成并联？",
+   "tag": "第（2）问",
+   "view": {
+    "x": [
+     -4.4,
+     4.4
+    ],
+    "y": [
+     -4.25,
+     3.95
+    ]
+   },
+   "beats": [
+    {
+     "say": "再看第2问：中间四根换成{2r|2小r}，外面的电阻还是不知道。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "cdW1",
+        "cdW2",
+        "cdBox",
+        "cdL",
+        "f_cd",
+        "cdI",
+        "arIn",
+        "arOut",
+        "lIn",
+        "lOut",
+        "demo",
+        "f_n00_n01",
+        "f_n00_n10",
+        "f_n01_n02",
+        "f_n01_A",
+        "f_n02_n03",
+        "f_n02_C",
+        "f_n03_n13",
+        "f_n10_A",
+        "f_n10_n20",
+        "f_A_C",
+        "f_A_D",
+        "f_C_n13",
+        "f_C_B",
+        "f_n13_n23",
+        "f_n20_D",
+        "f_n20_n30",
+        "f_D_B",
+        "f_D_n31",
+        "f_B_n23",
+        "f_B_n32",
+        "f_n23_n33",
+        "f_n30_n31",
+        "f_n31_n32",
+        "f_n32_n33"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "set": {
+        "ft": 0
+       }
+      },
+      {
+       "at": "中间四根",
+       "focus": [
+        "s_A_C",
+        "s_A_D",
+        "s_C_B",
+        "s_D_B"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "办法是，把中间的小方格和外面的网络，分开来算。"
+    },
+    {
+     "say": "能分开吗？这次沿着 C、D 这条竖线，左右对折。",
+     "do": [
+      {
+       "at": "竖线",
+       "show": [
+        "midL",
+        "shL",
+        "shR"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "对折",
+       "tween": {
+        "fo": 1
+       },
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "say": "左右两半一模一样；电流从左边的 A 进，从右边的 B 出。",
+     "do": [
+      {
+       "at": "一模一样",
+       "focus": [
+        "o_n00_n01",
+        "o_n00_n10",
+        "o_n01_n02",
+        "o_n01_A",
+        "o_n02_n03",
+        "o_n02_C",
+        "o_n03_n13",
+        "o_n10_A",
+        "o_n10_n20",
+        "o_C_n13",
+        "o_n13_n23",
+        "o_n20_D",
+        "o_n20_n30",
+        "o_D_n31",
+        "o_B_n23",
+        "o_B_n32",
+        "o_n23_n33",
+        "o_n30_n31",
+        "o_n31_n32",
+        "o_n32_n33"
+       ],
+       "dur": 1.4
+      },
+      {
+       "at": "电流",
+       "tween": {
+        "fo": 0
+       },
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "所以从 A 到竖线降的电压，和从竖线到 B 降的，一样多。",
+     "do": [
+      {
+       "at": "从A",
+       "show": "dropL"
+      },
+      {
+       "at": "从竖线",
+       "show": "dropR"
+      }
+     ]
+    },
+    {
+     "say": "所以竖线上的 C、D，电压都正好是一半。",
+     "do": [
+      {
+       "at": "竖线",
+       "show": [
+        "uC",
+        "uD"
+       ]
+      },
+      {
+       "at": "一半",
+       "note": "左右对称：$U_{AC}=U_{CB}=\\dfrac U2$"
+      }
+     ]
+    },
+    {
+     "say": "这样一来，AC 和 CB 电压相同、电阻也相同，电流就一样大。",
+     "do": [
+      {
+       "at": "电流",
+       "show": [
+        "i1a",
+        "i1b"
+       ]
+      },
+      {
+       "at": "电流",
+       "note": "$I_{AC}=I_{CB}=I_1$"
+      }
+     ]
+    },
+    {
+     "say": "从 A 流进 C 的电流，全部从 CB 流走，不往外面分。",
+     "do": [
+      {
+       "at": "全部",
+       "note": "$C$ 点：小方格与外面不交换电流",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "D 点也一样。那就把小方格在 C、D 两处拆开，电路不变。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "dropL",
+        "dropR",
+        "uC",
+        "uD",
+        "i1a",
+        "i1b",
+        "midL",
+        "shL",
+        "shR"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "拆开",
+       "show": [
+        "pC2",
+        "pD2"
+       ]
+      },
+      {
+       "at": "拆开",
+       "tween": {
+        "sp": 1
+       },
+       "dur": 2.4
+      },
+      {
+       "at": "拆开",
+       "note": "$D$ 点同理 → 小方格可以拆开"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：拆开前后，每根电阻里的电流都一样。",
+     "do": [
+      {
+       "at": "^",
+       "tween": {
+        "sp": 0
+       },
+       "dur": 1.6
+      },
+      {
+       "at": "^",
+       "show": [
+        "demo",
+        "f_n00_n01",
+        "f_n00_n10",
+        "f_n01_n02",
+        "f_n01_A",
+        "f_n02_n03",
+        "f_n02_C",
+        "f_n03_n13",
+        "f_n10_A",
+        "f_n10_n20",
+        "f_A_C",
+        "f_A_D",
+        "f_C_n13",
+        "f_C_B",
+        "f_n13_n23",
+        "f_n20_D",
+        "f_n20_n30",
+        "f_D_B",
+        "f_D_n31",
+        "f_B_n23",
+        "f_B_n32",
+        "f_n23_n33",
+        "f_n30_n31",
+        "f_n31_n32",
+        "f_n32_n33"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "tween": {
+        "ft": 11
+       },
+       "dur": 11,
+       "ease": "linear",
+       "wait": false
+      },
+      {
+       "at": "拆开",
+       "tween": {
+        "sp": 1
+       },
+       "dur": 2.6,
+       "delay": 1.6
+      }
+     ]
+    },
+    {
+     "say": "于是 AB 之间，就是三条支路并联。",
+     "do": [
+      {
+       "at": "三条",
+       "note": "$AB$ 间：$2r$、$2r$、$R_0$ 三路并联",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "layout": "board",
+   "num": "03",
+   "title": "列式求 $R''$",
+   "tag": "第（2）问",
+   "view": {
+    "x": [
+     8.4,
+     19.6
+    ],
+    "y": [
+     -3.65,
+     3.55
+    ]
+   },
+   "beats": [
+    {
+     "say": "A、C、B 这条是两个{r|小r}串联，共{2r|2小r}；A、D、B 这条也是{2r|2小r}。",
+     "do": [
+      {
+       "at": "^",
+       "show": [
+        "etw1",
+        "etb1",
+        "etw2",
+        "etb2",
+        "etw3",
+        "etP",
+        "etL",
+        "emw1",
+        "emb1",
+        "emw2",
+        "emb2",
+        "emw3",
+        "emP",
+        "emL",
+        "etr1",
+        "etr2",
+        "emr1",
+        "emr2",
+        "ebL",
+        "ebR",
+        "ebw1",
+        "ebB",
+        "ebw2",
+        "ebL0",
+        "ebCap",
+        "eA",
+        "eB",
+        "eAL",
+        "eBL"
+       ],
+       "dur": 0.8
+      },
+      {
+       "at": "A、C、B",
+       "focus": [
+        "etw1",
+        "etb1",
+        "etw2",
+        "etb2",
+        "etw3",
+        "etP",
+        "etL",
+        "etr1",
+        "etr2",
+        "etR1",
+        "etR2"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      },
+      {
+       "at": "A、D、B",
+       "focus": [
+        "emw1",
+        "emb1",
+        "emw2",
+        "emb2",
+        "emw3",
+        "emP",
+        "emL",
+        "emr1",
+        "emr2",
+        "emR1",
+        "emR2"
+       ],
+       "color": "blue",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "外面的网络不知道有多复杂，就把它整体设为 R₀。",
+     "do": [
+      {
+       "at": "整体",
+       "focus": [
+        "ebB",
+        "ebL0"
+       ],
+       "dur": 1.6
+      },
+      {
+       "at": "整体",
+       "show": "eTot"
+      }
+     ]
+    },
+    {
+     "say": "三条支路并联，总电阻是{R|大R}，列出式子。",
+     "do": [
+      {
+       "at": "列出",
+       "note": "$\\dfrac1R=\\dfrac1{2r}+\\dfrac1{2r}+\\dfrac1{R_0}$"
+      }
+     ]
+    },
+    {
+     "say": "解出 {R₀=rR/(r−R)|R零等于 小r减大R 分之 小r大R}。",
+     "do": [
+      {
+       "at": "解出",
+       "note": "$R_0=\\dfrac{rR}{r-R}$"
+      }
+     ]
+    },
+    {
+     "say": "中间四根换成{2r|2小r}，这两条支路都变成{4r|4小r}。",
+     "do": [
+      {
+       "at": "换成",
+       "hide": [
+        "etr1",
+        "etr2",
+        "emr1",
+        "emr2"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "换成",
+       "show": [
+        "etR1",
+        "etR2",
+        "emR1",
+        "emR2"
+       ],
+       "delay": 0.3
+      }
+     ]
+    },
+    {
+     "say": "外面一根没动，R₀ 不变；左右对称也还在，照样三路并联。",
+     "do": [
+      {
+       "at": "不变",
+       "focus": [
+        "ebB",
+        "ebL0"
+       ],
+       "color": "green",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "列出式子，把 R₀ 代进去。",
+     "do": [
+      {
+       "at": "列出",
+       "note": "$\\dfrac1{R''}=\\dfrac1{4r}+\\dfrac1{4r}+\\dfrac1{R_0}$"
+      },
+      {
+       "at": "代进",
+       "note": "$R''=\\dfrac{2rR_0}{2r+R_0}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "化简得到：{R″=2rR/(2r−R)|R两撇等于 2小r减大R 分之 2小r大R}。",
+     "do": [
+      {
+       "at": "化简",
+       "note": "$R''=\\dfrac{2rR}{2r-R}$",
+       "np": "（2）",
+       "cls": "ans"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "layout": "board",
+   "num": "04",
+   "title": "方法二：两式相减",
+   "tag": "第（2）问 · 方法二",
+   "view": {
+    "x": [
+     8.4,
+     19.6
+    ],
+    "y": [
+     -3.65,
+     3.55
+    ]
+   },
+   "beats": [
+    {
+     "say": "方法二：其实 R₀ 不用求出来。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "etw1",
+        "etb1",
+        "etw2",
+        "etb2",
+        "etw3",
+        "etP",
+        "etL",
+        "etr1",
+        "etr2",
+        "etR1",
+        "etR2",
+        "emw1",
+        "emb1",
+        "emw2",
+        "emb2",
+        "emw3",
+        "emP",
+        "emL",
+        "emr1",
+        "emr2",
+        "emR1",
+        "emR2",
+        "etR1",
+        "etR2",
+        "emR1",
+        "emR2",
+        "ebL",
+        "ebR",
+        "eTot"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "show": [
+        "mbL",
+        "mbR",
+        "mw1",
+        "mB",
+        "mw2",
+        "mR1"
+       ],
+       "dur": 0.6,
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "say": "两条{2r|2小r}并联，合起来就是{r|小r}。",
+     "do": [
+      {
+       "at": "^",
+       "show": "mCap1",
+       "dur": 0.5
+      },
+      {
+       "at": "合起来",
+       "note": "$\\dfrac1R=\\dfrac1r+\\dfrac1{R_0}$"
+      }
+     ]
+    },
+    {
+     "say": "换成{2r|2小r}以后，两条{4r|4小r}并联，合起来是{2r|2小r}。",
+     "do": [
+      {
+       "at": "换成",
+       "hide": [
+        "mR1",
+        "mCap1"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "换成",
+       "show": [
+        "mR2",
+        "mCap2"
+       ],
+       "delay": 0.3
+      },
+      {
+       "at": "合起来",
+       "note": "$\\dfrac1{R''}=\\dfrac1{2r}+\\dfrac1{R_0}$"
+      }
+     ]
+    },
+    {
+     "say": "两个式子一减，R₀ 就消掉了。",
+     "do": [
+      {
+       "at": "一减",
+       "note": "相减：$\\dfrac1{R''}=\\dfrac1R-\\dfrac1{2r}$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "通分，得到同样的答案。",
+     "do": [
+      {
+       "at": "通分",
+       "note": "$R''=\\dfrac{2rR}{2r-R}$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "layout": "board",
+   "num": "05",
+   "title": "电脑验证 · 想一想",
+   "tag": "反思",
+   "beats": [
+    {
+     "say": "用电脑验证一下：假如外面每根也是{r|小r}，把整张网精确算一遍。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "mbL",
+        "mbR",
+        "mw1",
+        "mB",
+        "mw2",
+        "mR2",
+        "mCap2",
+        "ebw1",
+        "ebB",
+        "ebw2",
+        "ebL0",
+        "ebCap",
+        "eA",
+        "eB",
+        "eAL",
+        "eBL"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "set": {
+        "sp": 0,
+        "ft": 0
+       }
+      },
+      {
+       "at": "^",
+       "camera": {
+        "x": [
+         -4.4,
+         10.6
+        ],
+        "y": [
+         -4.3,
+         3.95
+        ]
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "精确",
+       "show": [
+        "demo",
+        "f_n00_n01",
+        "f_n00_n10",
+        "f_n01_n02",
+        "f_n01_A",
+        "f_n02_n03",
+        "f_n02_C",
+        "f_n03_n13",
+        "f_n10_A",
+        "f_n10_n20",
+        "f_A_C",
+        "f_A_D",
+        "f_C_n13",
+        "f_C_B",
+        "f_n13_n23",
+        "f_n20_D",
+        "f_n20_n30",
+        "f_D_B",
+        "f_D_n31",
+        "f_B_n23",
+        "f_B_n32",
+        "f_n23_n33",
+        "f_n30_n31",
+        "f_n31_n32",
+        "f_n32_n33"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "精确",
+       "tween": {
+        "ft": 26
+       },
+       "dur": 26,
+       "ease": "linear",
+       "wait": false
+      }
+     ]
+    },
+    {
+     "say": "算出总电阻 {R≈0.714r|大R约等于0.714小r}。",
+     "do": [
+      {
+       "at": "算出",
+       "show": "vR"
+      }
+     ]
+    },
+    {
+     "say": "中间换成{2r|2小r}，电脑算出 {R″≈1.111r|R两撇约等于1.111小r}。",
+     "do": [
+      {
+       "at": "电脑算出",
+       "show": "vR2"
+      }
+     ]
+    },
+    {
+     "say": "代进公式，也是 {1.111r|1.111小r}，对上了。",
+     "do": [
+      {
+       "at": "代进",
+       "show": "vF"
+      },
+      {
+       "at": "对上",
+       "focus": "vF",
+       "color": "green",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "想一想：C、D 之间接的不是{R|大R}，而是一根导线呢？",
+     "do": [
+      {
+       "at": "想一想",
+       "note": "想一想：$C$、$D$ 间接导线呢？",
+       "cls": "sub"
+      }
+     ]
+    },
+    {
+     "say": "C、D 等势，接什么都没有电流，总电阻还是{R|大R}。｜",
+     "do": [
+      {
+       "at": "等势",
+       "note": "等势点之间接什么都没有电流，$R'=R$",
+       "cls": "key sm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "layout": "summary",
+   "num": "06",
+   "title": "总结",
+   "chain": [
+    {
+     "id": "c1",
+     "title": "上下对称",
+     "sub": "$C$、$D$ 等势\n接电阻无电流"
+    },
+    {
+     "id": "c2",
+     "title": "左右对称",
+     "sub": "竖线上电压一半\n小方格可拆开"
+    },
+    {
+     "id": "c3",
+     "title": "整体设未知",
+     "sub": "外面网络\n设为 $R_0$"
+    },
+    {
+     "id": "c4",
+     "title": "并联列式",
+     "sub": "$R_0$ 不变\n相减消去 $R_0$"
+    }
+   ],
+   "answers": [
+    {
+     "id": "ans1",
+     "text": "$R'=$[[$R$]]；　$R''=$[[$\\dfrac{2rR}{2r-R}$]]"
+    }
+   ],
+   "tagline": "看对称，找等势；不知道的，整体设",
+   "beats": [
+    {
+     "say": "回顾一下：上下对称，C、D 等势，接电阻没有电流。",
+     "do": [
+      {
+       "at": "上下",
+       "show": "c1"
+      }
+     ]
+    },
+    {
+     "say": "左右对称，竖线上的电压都是一半，小方格可以拆开。",
+     "do": [
+      {
+       "at": "左右",
+       "show": "c2"
+      }
+     ]
+    },
+    {
+     "say": "再把外面的网络，不管多复杂，整体设成 R₀。",
+     "do": [
+      {
+       "at": "整体",
+       "show": "c3"
+      }
+     ]
+    },
+    {
+     "say": "三路并联列式，R₀ 不变，两式一减就出答案。",
+     "do": [
+      {
+       "at": "三路",
+       "show": "c4"
+      },
+      {
+       "at": "答案",
+       "show": "ans1",
+       "delay": 0.3
+      }
+     ]
+    },
+    {
+     "say": "看对称，找等势；不知道的，整体设。｜",
+     "do": [
+      {
+       "at": "^",
+       "show": "tagline"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "layout": "outro",
+   "main": "这道题就讲到这里",
+   "sub": "我们下次再见",
+   "beats": [
+    {
+     "say": "好，这道题就讲到这里。同学们，我们下次再见！"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1991 @@
+{
+ "meta": {
+  "title": "一串珠子浸入水中",
+  "tag": "浮力 · 液面变化",
+  "subtitle": "称重法求浮力 · 液面上升 · 位置关系",
+  "out": "浮力_一串珠子浸入水中.mp4",
+  "theme": "light",
+  "fps": 30
+ },
+ "problem": {
+  "tag": "浮力 · 液面变化",
+  "size": 30,
+  "width": 1040,
+  "text": "（2026·重庆）为探究浮力大小与排开液体体积的关系，小渝将{k1|8 颗质量均为 20 g 的相同珠子}用轻质细线串成{k2|间隔均为 0.5 cm} 的珠串{k3|挂在拉力传感器下端}，{k4|每个珠子高 1 cm}。{k5|下移传感器，使珠子逐渐浸入}{k6|底面积 20 cm²、高 12 cm，原有水深 5.5 cm} 的柱形薄玻璃杯内。{k7|当第 1 颗珠子刚好浸没时，传感器的示数为 1.5 N}，如图所示，整个装置不吸水。{q0|下列说法正确的是}（　　）",
+  "parts": [
+   "A．浸入水中的珠子越多，传感器的示数越大",
+   "B．第 1 颗珠子刚浸没时，水对杯底的压强为 650 Pa",
+   "C．第 2 颗珠子刚浸没时，传感器又向下移动了 1.5 cm",
+   "D．当第 1 颗珠子刚好触底时，有 6 颗珠子浸没在水中"
+  ]
+ },
+ "layouts": {
+  "board": {
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1130,
+    "h": 800
+   }
+  }
+ },
+ "world": {
+  "vars": {
+   "yb": 5
+  },
+  "funcs": {
+   "Hw": "(yb) => { let lo = 5.5, hi = 12; for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; let s = 0; for (let i = 0; i < 8; i++) s += Math.min(1, Math.max(0, m - (yb + 1.5 * i))); if (m - 5.5 - 0.5 * s > 0) hi = m; else lo = m; } return (lo + hi) / 2; }",
+   "Sub": "(yb) => { const h = Hw(yb); let s = 0; for (let i = 0; i < 8; i++) s += Math.min(1, Math.max(0, h - (yb + 1.5 * i))); return s; }",
+   "Nf": "(yb) => { const h = Hw(yb); let n = 0; for (let i = 0; i < 8; i++) if (h >= yb + 1.5 * i + 1 - 1e-6) n++; return n; }"
+  },
+  "view": {
+   "x": [
+    -9.6,
+    24.8
+   ],
+   "y": [
+    -1.2,
+    23.2
+   ]
+  },
+  "clip": 6,
+  "points": {},
+  "objects": [
+   {
+    "id": "base",
+    "type": "polygon",
+    "pts": [
+     [
+      -8.6,
+      -0.75
+     ],
+     [
+      4.8,
+      -0.75
+     ],
+     [
+      4.8,
+      0
+     ],
+     [
+      -8.6,
+      0
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "gray",
+    "fillOpacity": 0.16
+   },
+   {
+    "id": "pole",
+    "type": "segment",
+    "pts": [
+     [
+      -7.2,
+      0
+     ],
+     [
+      -7.2,
+      24.4
+     ]
+    ],
+    "stroke": "ink",
+    "width": 5
+   },
+   {
+    "id": "clamp",
+    "type": "polygon",
+    "pts": [
+     [
+      -7.55,
+      "yb+13.75"
+     ],
+     [
+      -6.85,
+      "yb+13.75"
+     ],
+     [
+      -6.85,
+      "yb+14.45"
+     ],
+     [
+      -7.55,
+      "yb+14.45"
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2,
+    "fill": "gray",
+    "fillOpacity": 0.35
+   },
+   {
+    "id": "arm",
+    "type": "segment",
+    "pts": [
+     [
+      -6.85,
+      "yb+14.1"
+     ],
+     [
+      -0.8,
+      "yb+14.1"
+     ]
+    ],
+    "stroke": "ink",
+    "width": 4
+   },
+   {
+    "id": "sensor",
+    "type": "polygon",
+    "pts": [
+     [
+      -0.8,
+      "yb+13.1"
+     ],
+     [
+      0.8,
+      "yb+13.1"
+     ],
+     [
+      0.8,
+      "yb+15.2"
+     ],
+     [
+      -0.8,
+      "yb+15.2"
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.4,
+    "fill": "gray",
+    "fillOpacity": 0.25
+   },
+   {
+    "id": "hook",
+    "type": "pcurve",
+    "fx": "0.28*cos(t)",
+    "fy": "yb+12.8+0.28*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 60,
+    "close": true,
+    "stroke": "ink",
+    "width": 2
+   },
+   {
+    "id": "thread",
+    "type": "segment",
+    "pts": [
+     [
+      0,
+      "yb+0.5"
+     ],
+     [
+      0,
+      "yb+12.52"
+     ]
+    ],
+    "stroke": "ink",
+    "width": 1.6
+   },
+   {
+    "id": "b1",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+0.5+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b2",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+2+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b3",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+3.5+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b4",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+5+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b5",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+6.5+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b6",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+8+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b7",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+9.5+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "b8",
+    "type": "pcurve",
+    "fx": "0.62*cos(t)",
+    "fy": "yb+11+0.5*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 72,
+    "close": true,
+    "stroke": "ink",
+    "width": 2.2,
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "water",
+    "type": "region",
+    "pts": [
+     [
+      -2.5,
+      0
+     ],
+     [
+      2.5,
+      0
+     ],
+     [
+      2.5,
+      "Hw(yb)"
+     ],
+     [
+      -2.5,
+      "Hw(yb)"
+     ]
+    ],
+    "fill": "blue",
+    "fillOpacity": 0.26
+   },
+   {
+    "id": "layer",
+    "type": "region",
+    "pts": [
+     [
+      -2.5,
+      5.5
+     ],
+     [
+      2.5,
+      5.5
+     ],
+     [
+      2.5,
+      "Hw(yb)"
+     ],
+     [
+      -2.5,
+      "Hw(yb)"
+     ]
+    ],
+    "fill": "purple",
+    "fillOpacity": 0.5
+   },
+   {
+    "id": "surf",
+    "type": "segment",
+    "pts": [
+     [
+      -2.5,
+      "Hw(yb)"
+     ],
+     [
+      2.5,
+      "Hw(yb)"
+     ]
+    ],
+    "stroke": "blue",
+    "width": 2.4
+   },
+   {
+    "id": "cup",
+    "type": "polyline",
+    "pts": [
+     [
+      -2.5,
+      12
+     ],
+     [
+      -2.5,
+      0
+     ],
+     [
+      2.5,
+      0
+     ],
+     [
+      2.5,
+      12
+     ]
+    ],
+    "stroke": "ink",
+    "width": 3.2
+   },
+   {
+    "id": "rim",
+    "type": "segment",
+    "pts": [
+     [
+      -2.9,
+      12
+     ],
+     [
+      2.9,
+      12
+     ]
+    ],
+    "stroke": "hl",
+    "width": 5,
+    "glow": true
+   },
+   {
+    "id": "rulerL",
+    "type": "segment",
+    "pts": [
+     [
+      3.5,
+      0
+     ],
+     [
+      3.5,
+      12
+     ]
+    ],
+    "stroke": "gray",
+    "width": 2
+   },
+   {
+    "id": "rulerT",
+    "type": "ticks",
+    "axis": "y",
+    "on": 3.5,
+    "at": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "labels": [],
+    "len": 7
+   },
+   {
+    "id": "rulerN",
+    "type": "ticks",
+    "axis": "y",
+    "on": 3.5,
+    "at": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12
+    ],
+    "labels": [
+     "2",
+     "4",
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "dir": "E",
+    "dist": 26,
+    "len": 13
+   },
+   {
+    "id": "surfLead",
+    "type": "segment",
+    "pts": [
+     [
+      2.55,
+      "Hw(yb)"
+     ],
+     [
+      3.5,
+      "Hw(yb)"
+     ]
+    ],
+    "stroke": "blue",
+    "width": 1.8,
+    "dash": [
+     5,
+     5
+    ]
+   },
+   {
+    "id": "rdF",
+    "type": "text",
+    "at": [
+     1.0,
+     "yb+14.15"
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "lcd",
+    "color": "#8ff3e6",
+    "text": "{#} N",
+    "num": "1.6-0.1*Sub(yb)",
+    "digits": 2
+   },
+   {
+    "id": "rdH",
+    "type": "text",
+    "at": [
+     5.2,
+     "Hw(yb)"
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "rd",
+    "color": "blue",
+    "text": "水深 {#} cm",
+    "num": "Hw(yb)",
+    "digits": 2
+   },
+   {
+    "id": "dimB",
+    "type": "dim",
+    "pts": [
+     [
+      -1.45,
+      0
+     ],
+     [
+      -1.45,
+      "yb"
+     ]
+    ],
+    "off": 0,
+    "stroke": "orange",
+    "width": 2
+   },
+   {
+    "id": "rdB",
+    "type": "text",
+    "at": [
+     -2.8,
+     "yb/2"
+    ],
+    "dir": "C",
+    "align": "right",
+    "cls": "rd",
+    "color": "orange",
+    "text": "底端离杯底 {#} cm",
+    "num": "yb",
+    "digits": 2
+   },
+   {
+    "id": "rdD",
+    "type": "text",
+    "at": [
+     5.2,
+     11.3
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "rd",
+    "color": "ink",
+    "text": "传感器下移 {#} cm",
+    "num": "5-yb",
+    "digits": 2
+   },
+   {
+    "id": "rdN",
+    "type": "text",
+    "at": [
+     5.2,
+     11.3
+    ],
+    "dir": "C",
+    "align": "left",
+    "cls": "rd",
+    "color": "gold",
+    "text": "浸没 {#} 颗",
+    "num": "Nf(yb)",
+    "digits": 0
+   },
+   {
+    "id": "fbTitle",
+    "type": "text",
+    "at": [
+     13.5,
+     21.2
+    ],
+    "dir": "C",
+    "cls": "rd",
+    "color": "ink",
+    "text": "整串珠子受力"
+   },
+   {
+    "id": "fbBox",
+    "type": "polygon",
+    "pts": [
+     [
+      12.0,
+      12.2
+     ],
+     [
+      15.0,
+      12.2
+     ],
+     [
+      15.0,
+      15.2
+     ],
+     [
+      12.0,
+      15.2
+     ]
+    ],
+    "stroke": "ink",
+    "width": 2.6,
+    "fill": "gray",
+    "fillOpacity": 0.12
+   },
+   {
+    "id": "fbLab",
+    "type": "text",
+    "at": [
+     13.5,
+     13.7
+    ],
+    "dir": "C",
+    "cls": "wt",
+    "color": "ink",
+    "text": "珠串"
+   },
+   {
+    "id": "fbG",
+    "type": "arrow",
+    "from": [
+     13.5,
+     12.2
+    ],
+    "to": [
+     13.5,
+     7.4
+    ],
+    "stroke": "red",
+    "width": 4.5
+   },
+   {
+    "id": "fbGl",
+    "type": "text",
+    "at": [
+     13.5,
+     7.9
+    ],
+    "dir": "E",
+    "dist": 46,
+    "cls": "fmb",
+    "color": "red",
+    "text": "$G_{\\text{总}}$"
+   },
+   {
+    "id": "fbT",
+    "type": "arrow",
+    "from": [
+     12.8,
+     15.2
+    ],
+    "to": [
+     12.8,
+     18.4
+    ],
+    "stroke": "teal",
+    "width": 4.5
+   },
+   {
+    "id": "fbTl",
+    "type": "text",
+    "at": [
+     12.8,
+     18.0
+    ],
+    "dir": "W",
+    "dist": 44,
+    "cls": "fmb",
+    "color": "teal",
+    "text": "$F_{\\text{拉}}$"
+   },
+   {
+    "id": "fbF",
+    "type": "arrow",
+    "from": [
+     14.2,
+     15.2
+    ],
+    "to": [
+     14.2,
+     16.8
+    ],
+    "stroke": "blue",
+    "width": 4.5
+   },
+   {
+    "id": "fbFl",
+    "type": "text",
+    "at": [
+     14.2,
+     16.4
+    ],
+    "dir": "E",
+    "dist": 44,
+    "cls": "fmb",
+    "color": "blue",
+    "text": "$F_{\\text{浮}}$"
+   },
+   {
+    "id": "lead75",
+    "type": "segment",
+    "pts": [
+     [
+      0.7,
+      7.5
+     ],
+     [
+      6.0,
+      7.5
+     ]
+    ],
+    "stroke": "gray",
+    "width": 1.8,
+    "dash": [
+     6,
+     6
+    ]
+   },
+   {
+    "id": "lead60",
+    "type": "segment",
+    "pts": [
+     [
+      2.55,
+      6.0
+     ],
+     [
+      6.0,
+      6.0
+     ]
+    ],
+    "stroke": "gray",
+    "width": 1.8,
+    "dash": [
+     6,
+     6
+    ]
+   },
+   {
+    "id": "leadW",
+    "type": "segment",
+    "pts": [
+     [
+      2.55,
+      "Hw(yb)"
+     ],
+     [
+      6.0,
+      "Hw(yb)"
+     ]
+    ],
+    "stroke": "blue",
+    "width": 1.8,
+    "dash": [
+     6,
+     6
+    ]
+   },
+   {
+    "id": "dim15",
+    "type": "dim",
+    "pts": [
+     [
+      6.0,
+      6.0
+     ],
+     [
+      6.0,
+      7.5
+     ]
+    ],
+    "off": -1,
+    "loff": 42,
+    "text": "1.5 cm",
+    "stroke": "gold",
+    "lcolor": "gold"
+   },
+   {
+    "id": "dim05",
+    "type": "dim",
+    "pts": [
+     [
+      6.0,
+      6.0
+     ],
+     [
+      6.0,
+      6.5
+     ]
+    ],
+    "off": -1,
+    "loff": 42,
+    "text": "0.5 cm",
+    "stroke": "blue",
+    "lcolor": "blue"
+   },
+   {
+    "id": "dim10",
+    "type": "dim",
+    "pts": [
+     [
+      6.0,
+      6.5
+     ],
+     [
+      6.0,
+      7.5
+     ]
+    ],
+    "off": -1,
+    "loff": 42,
+    "text": "1 cm",
+    "stroke": "orange",
+    "lcolor": "orange"
+   },
+   {
+    "id": "dimL",
+    "type": "dim",
+    "pts": [
+     [
+      -1.45,
+      0
+     ],
+     [
+      -1.45,
+      "Hw(yb)"
+     ]
+    ],
+    "off": 0,
+    "stroke": "gold",
+    "width": 2
+   },
+   {
+    "id": "lbL",
+    "type": "text",
+    "at": [
+     -2.8,
+     4.25
+    ],
+    "dir": "C",
+    "align": "right",
+    "cls": "rd",
+    "color": "gold",
+    "text": "浸没部分 = 水深"
+   },
+   {
+    "id": "leadR",
+    "type": "segment",
+    "pts": [
+     [
+      2.55,
+      12
+     ],
+     [
+      6.0,
+      12
+     ]
+    ],
+    "stroke": "red",
+    "width": 1.8,
+    "dash": [
+     6,
+     6
+    ]
+   },
+   {
+    "id": "dimR",
+    "type": "dim",
+    "pts": [
+     [
+      6.0,
+      8.5
+     ],
+     [
+      6.0,
+      12
+     ]
+    ],
+    "off": -1,
+    "loff": 46,
+    "text": "3.5 cm",
+    "stroke": "red",
+    "lcolor": "red"
+   }
+  ],
+  "init": [
+   "base",
+   "pole",
+   "clamp",
+   "arm",
+   "sensor",
+   "hook",
+   "thread",
+   "b1",
+   "b2",
+   "b3",
+   "b4",
+   "b5",
+   "b6",
+   "b7",
+   "b8",
+   "water",
+   "surf",
+   "cup",
+   "rulerL",
+   "rulerT",
+   "rulerN",
+   "surfLead",
+   "rdF"
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s0",
+   "layout": "title",
+   "beats": [
+    {
+     "say": "一串珠子慢慢放进水里，示数、水深、位置怎么变？｜"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "layout": "problem",
+   "num": "题",
+   "title": "读题",
+   "box": {
+    "x": 1250,
+    "y": 150,
+    "w": 630,
+    "h": 790
+   },
+   "view": {
+    "x": [
+     -9.0,
+     6.0
+    ],
+    "y": [
+     -1.2,
+     23.2
+    ]
+   },
+   "beats": [
+    {
+     "say": "8颗相同的珠子，每颗20 g，串起来挂在拉力传感器下面。",
+     "do": [
+      {
+       "at": "8颗",
+       "mark": "k1"
+      },
+      {
+       "at": "8颗",
+       "focus": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+       ],
+       "color": "gold",
+       "dur": 1.4
+      },
+      {
+       "at": "挂在",
+       "mark": "k3"
+      },
+      {
+       "at": "传感器",
+       "focus": "sensor",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "每颗珠子高1 cm，相邻两颗的间隔是0.5 cm。",
+     "do": [
+      {
+       "at": "每颗",
+       "mark": "k4"
+      },
+      {
+       "at": "间隔",
+       "mark": "k2"
+      }
+     ]
+    },
+    {
+     "say": "杯子底面积20 cm²，高12 cm，原来水深5.5 cm。",
+     "do": [
+      {
+       "at": "杯子",
+       "mark": "k6",
+       "dur": 1.2
+      },
+      {
+       "at": "杯子",
+       "focus": "cup",
+       "dur": 1.4
+      },
+      {
+       "at": "水深",
+       "focus": "water",
+       "color": "blue",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "say": "下移传感器，珠子一颗一颗浸入水中。",
+     "do": [
+      {
+       "at": "下移",
+       "mark": "k5"
+      }
+     ]
+    },
+    {
+     "say": "第1颗珠子刚好浸没时，示数是1.5 N，就是图上这样。",
+     "do": [
+      {
+       "at": "第1颗",
+       "mark": "k7",
+       "dur": 1.0
+      },
+      {
+       "at": "浸没",
+       "focus": "b1",
+       "dur": 1.4
+      },
+      {
+       "at": "示数",
+       "focus": "rdF",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "四个说法里，哪个是正确的？｜",
+     "do": [
+      {
+       "at": "^",
+       "mark": "q0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "layout": "board",
+   "num": "01",
+   "title": "A：示数会越来越大吗？",
+   "tag": "选项 A",
+   "view": {
+    "x": [
+     -9.6,
+     24.8
+    ],
+    "y": [
+     -1.2,
+     23.2
+    ]
+   },
+   "beats": [
+    {
+     "say": "先看 A：浸入的珠子越多，示数越大吗？"
+    },
+    {
+     "say": "把整串珠子看成一个整体，它受三个力。",
+     "do": [
+      {
+       "at": "整体",
+       "show": [
+        "fbTitle",
+        "fbBox",
+        "fbLab"
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "向下的总重力，向上的拉力和浮力。",
+     "do": [
+      {
+       "at": "总重力",
+       "show": [
+        "fbG",
+        "fbGl"
+       ]
+      },
+      {
+       "at": "拉力",
+       "show": [
+        "fbT",
+        "fbTl"
+       ]
+      },
+      {
+       "at": "浮力",
+       "show": [
+        "fbF",
+        "fbFl"
+       ]
+      },
+      {
+       "at": "^",
+       "note": "受力：$F_{\\text{拉}}+F_{\\text{浮}}=G_{\\text{总}}$"
+      }
+     ]
+    },
+    {
+     "say": "传感器的示数就是拉力，等于总重力减去浮力。",
+     "do": [
+      {
+       "at": "示数",
+       "focus": "rdF",
+       "dur": 1.3
+      },
+      {
+       "at": "等于",
+       "note": "示数 $F_{\\text{拉}}=G_{\\text{总}}-F_{\\text{浮}}$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "浸入的珠子越多，排开水的体积越大，浮力越大。",
+     "do": [
+      {
+       "at": "浮力越大",
+       "focus": [
+        "fbF",
+        "fbFl"
+       ],
+       "color": "blue",
+       "dur": 1.4
+      },
+      {
+       "at": "排开",
+       "note": "浸入越多，$V_{\\text{排}}$ 越大，$F_{\\text{浮}}=\\rho_{\\text{液}}gV_{\\text{排}}$ 越大",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "总重力不变，浮力越大，示数反而越小，A 错。",
+     "do": [
+      {
+       "at": "示数",
+       "note": "$G_{\\text{总}}$ 不变 ⇒ 示数越来越小，A 错",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：继续往下放，示数一路变小。",
+     "do": [
+      {
+       "at": "继续",
+       "tween": {
+        "yb": 2.5
+       },
+       "dur": 4.2,
+       "ease": "linear"
+      },
+      {
+       "at": "示数",
+       "focus": "rdF",
+       "dur": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "layout": "board",
+   "num": "02",
+   "title": "B：第 1 颗刚浸没时的压强",
+   "tag": "选项 B",
+   "beats": [
+    {
+     "say": "再看 B：要算压强，先算第1颗刚浸没时的水深。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "fbTitle",
+        "fbBox",
+        "fbLab",
+        "fbG",
+        "fbGl",
+        "fbT",
+        "fbTl",
+        "fbF",
+        "fbFl"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "yb": 5
+       },
+       "dur": 1.6
+      },
+      {
+       "at": "水深",
+       "show": "rdH"
+      }
+     ]
+    },
+    {
+     "say": "每颗珠子0.02 kg，8颗的总重力是1.6 N。",
+     "do": [
+      {
+       "at": "总重力",
+       "note": "$G_{\\text{总}}=8mg=8\\times0.02\\text{ kg}\\times10\\text{ N/kg}$",
+       "cls": "sm"
+      },
+      {
+       "at": "1.6",
+       "note": "$\\phantom{G_{\\text{总}}}=1.6\\text{ N}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "第1颗刚浸没时，示数是1.5 N。",
+     "do": [
+      {
+       "at": "示数",
+       "focus": "rdF",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "所以浮力是1.6 N减1.5 N，等于0.1 N。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "$F_{\\text{浮}1}=G_{\\text{总}}-F_{\\text{拉}1}=1.6\\text{ N}-1.5\\text{ N}=0.1\\text{ N}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "由阿基米德原理，倒推出一颗珠子的体积是10 cm³。",
+     "do": [
+      {
+       "at": "阿基米德",
+       "note": "$V_{\\text{珠}}=\\dfrac{F_{\\text{浮}1}}{\\rho_{\\text{水}}g}=\\dfrac{0.1\\text{ N}}{1.0\\times10^3\\text{ kg/m}^3\\times10\\text{ N/kg}}$",
+       "cls": "sm"
+      },
+      {
+       "at": "10",
+       "note": "$\\phantom{V_{\\text{珠}}}=10^{-5}\\text{ m}^3=10\\text{ cm}^3$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "原来水的体积，是20 cm²×5.5 cm，等于110 cm³。",
+     "do": [
+      {
+       "at": "原来",
+       "tween": {
+        "yb": 6.5
+       },
+       "dur": 1.6
+      },
+      {
+       "at": "原来",
+       "camera": {
+        "x": [
+         -7.4,
+         11.8
+        ],
+        "y": [
+         -0.8,
+         12.8
+        ]
+       },
+       "dur": 1.4
+      },
+      {
+       "at": "等于",
+       "note": "$V_{\\text{水}0}=20\\text{ cm}^2\\times5.5\\text{ cm}=110\\text{ cm}^3$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "放进一颗珠子，水面升起的这一层，就是珠子的体积。",
+     "do": [
+      {
+       "at": "放进",
+       "show": "layer",
+       "dur": 0.3
+      },
+      {
+       "at": "放进",
+       "tween": {
+        "yb": 5
+       },
+       "dur": 2.6
+      },
+      {
+       "at": "这一层",
+       "focus": "layer",
+       "color": "purple",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "所以水深是 (110+10)÷20，等于6 cm。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "$h_{\\text{水}1}=\\dfrac{V_{\\text{水}0}+V_{\\text{珠}}}{S_{\\text{杯}}}=\\dfrac{110+10}{20}\\text{ cm}=6\\text{ cm}$",
+       "cls": "sm"
+      },
+      {
+       "at": "6 cm",
+       "focus": "rdH",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "水对杯底的压强，用液体压强公式算，是600 Pa。",
+     "do": [
+      {
+       "at": "压强公式",
+       "note": "$p_1=\\rho_{\\text{水}}gh_{\\text{水}1}$",
+       "cls": "sm"
+      },
+      {
+       "at": "压强公式",
+       "note": "$\\phantom{p_1}=1.0\\times10^3\\text{ kg/m}^3\\times10\\text{ N/kg}\\times0.06\\text{ m}$",
+       "cls": "sm",
+       "delay": 0.5
+      },
+      {
+       "at": "600",
+       "note": "$\\phantom{p_1}=600\\text{ Pa}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "不是650 Pa，所以 B 错。",
+     "do": [
+      {
+       "at": "^",
+       "note": "$600\\text{ Pa}\\ne650\\text{ Pa}$，B 错",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "layout": "board",
+   "num": "03",
+   "title": "C：第 2 颗刚浸没时下移多少",
+   "tag": "选项 C",
+   "view": {
+    "x": [
+     -7.4,
+     11.8
+    ],
+    "y": [
+     -0.8,
+     12.8
+    ]
+   },
+   "beats": [
+    {
+     "say": "再看 C：第2颗刚浸没时，传感器下移了多少？",
+     "do": [
+      {
+       "at": "^",
+       "hide": "layer",
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": [
+        "dimB",
+        "rdB"
+       ],
+       "delay": 0.9
+      }
+     ]
+    },
+    {
+     "say": "第1颗的顶在水面，底端离杯底 6−1=5 cm。",
+     "do": [
+      {
+       "at": "底端",
+       "focus": [
+        "dimB",
+        "rdB"
+       ],
+       "color": "orange",
+       "dur": 1.6
+      },
+      {
+       "at": "离杯底",
+       "note": "第1颗刚浸没：底端高 $6\\text{ cm}-1\\text{ cm}=5\\text{ cm}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "第2颗刚浸没时，排开水的是2颗珠子，20 cm³。",
+     "do": [
+      {
+       "at": "^",
+       "show": "rdD"
+      },
+      {
+       "at": "第2颗",
+       "tween": {
+        "yb": 4
+       },
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "say": "水深变成 (110+20)÷20，等于6.5 cm。",
+     "do": [
+      {
+       "at": "水深",
+       "note": "$h_{\\text{水}2}=\\dfrac{110+20}{20}\\text{ cm}=6.5\\text{ cm}$",
+       "cls": "sm"
+      },
+      {
+       "at": "6.5",
+       "focus": "rdH",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "650 Pa 是这个时刻的压强，不是第1颗刚浸没时。",
+     "do": [
+      {
+       "at": "^",
+       "note": "（$650\\text{ Pa}$ 是第2颗刚浸没时的压强）",
+       "cls": "sub"
+      }
+     ]
+    },
+    {
+     "say": "水面下是2颗珠子和1段细线，共2.5 cm。",
+     "do": [
+      {
+       "at": "2颗珠子",
+       "focus": [
+        "b1",
+        "b2"
+       ],
+       "color": "gold",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "所以底端离杯底 6.5−2.5=4 cm。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "底端高 $6.5\\text{ cm}-2\\text{ cm}-0.5\\text{ cm}=4\\text{ cm}$",
+       "cls": "sm"
+      },
+      {
+       "at": "4 cm",
+       "focus": [
+        "dimB",
+        "rdB"
+       ],
+       "color": "orange",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "传感器只下移了 5−4=1 cm，不是1.5 cm，C 错。",
+     "do": [
+      {
+       "at": "下移",
+       "focus": "rdD",
+       "dur": 1.6
+      },
+      {
+       "at": "^",
+       "note": "传感器下移 $5\\text{ cm}-4\\text{ cm}=1\\text{ cm}$",
+       "cls": "sm"
+      },
+      {
+       "at": "不是",
+       "note": "$1\\text{ cm}\\ne1.5\\text{ cm}$，C 错",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "layout": "board",
+   "num": "04",
+   "title": "C 的方法二：盯住水面",
+   "tag": "选项 C · 方法二",
+   "beats": [
+    {
+     "say": "C 还可以换个角度：盯住水面看。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "dimB",
+        "rdB",
+        "rdD",
+        "rdH"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "tween": {
+        "yb": 5
+       },
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "第1颗刚浸没时，第2颗的顶比水面高1.5 cm。",
+     "do": [
+      {
+       "at": "第2颗",
+       "show": [
+        "lead75",
+        "lead60",
+        "leadW"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "1.5",
+       "show": "dim15"
+      },
+      {
+       "at": "1.5",
+       "note": "第2颗顶比水面高 $0.5\\text{ cm}+1\\text{ cm}=1.5\\text{ cm}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "要是水面不动，传感器就得下移1.5 cm。",
+     "do": [
+      {
+       "at": "1.5",
+       "focus": "dim15",
+       "color": "gold",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "say": "可第2颗浸入时，水面也往上迎了0.5 cm。",
+     "do": [
+      {
+       "at": "浸入",
+       "hide": "dim15",
+       "dur": 0.3
+      },
+      {
+       "at": "浸入",
+       "tween": {
+        "yb": 4
+       },
+       "dur": 2.6
+      },
+      {
+       "at": "浸入",
+       "show": [
+        "dim05",
+        "dim10"
+       ],
+       "delay": 2.4
+      },
+      {
+       "at": "迎了",
+       "note": "水面上升：$\\dfrac{10\\text{ cm}^3}{20\\text{ cm}^2}=0.5\\text{ cm}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "所以传感器只下移 1.5−0.5=1 cm。",
+     "do": [
+      {
+       "at": "下移",
+       "focus": "dim10",
+       "color": "orange",
+       "dur": 1.6
+      },
+      {
+       "at": "所以",
+       "note": "下移 $1.5\\text{ cm}-0.5\\text{ cm}=1\\text{ cm}$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "C 里的1.5 cm，就是忘了水面会上升。",
+     "do": [
+      {
+       "at": "忘了",
+       "note": "错在：忘了水面会上升"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "layout": "board",
+   "num": "05",
+   "title": "D：第 1 颗触底时浸没几颗",
+   "tag": "选项 D",
+   "beats": [
+    {
+     "say": "最后看 D：第1颗刚好触底时，浸没了几颗？",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "lead75",
+        "lead60",
+        "leadW",
+        "dim05",
+        "dim10"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "^",
+       "show": "rdH",
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "say": "设这时有 n 颗珠子浸没。"
+    },
+    {
+     "say": "排开水的是 n 颗珠子，水深就是 110+10n 的和，除以20。",
+     "do": [
+      {
+       "at": "水深",
+       "note": "$h_{\\text{水}n}=\\dfrac{110+10n}{20}\\text{ cm}=(5.5+0.5n)\\text{ cm}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "浸没部分的长度，是 n 颗珠子加上 n−1 段细线。",
+     "do": [
+      {
+       "at": "长度",
+       "note": "$L_{\\text{浸没}}=n\\times1\\text{ cm}+(n-1)\\times0.5\\text{ cm}$",
+       "cls": "sm"
+      },
+      {
+       "at": "细线",
+       "note": "$\\phantom{L_{\\text{浸没}}}=(1.5n-0.5)\\text{ cm}$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "底端贴着杯底，第 n 颗的顶正好在水面。"
+    },
+    {
+     "say": "所以水深就等于浸没部分的长度。",
+     "do": [
+      {
+       "at": "所以",
+       "note": "触底：$h_{\\text{水}n}=L_{\\text{浸没}}$",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "列出方程，解得 n=6，这时水深8.5 cm。",
+     "do": [
+      {
+       "at": "解得",
+       "note": "$5.5+0.5n=1.5n-0.5$，解得 $n=6$",
+       "cls": "sm"
+      }
+     ]
+    },
+    {
+     "say": "8.5 cm 比杯高12 cm 小，水没有溢出，D 正确。",
+     "do": [
+      {
+       "at": "^",
+       "note": "水深 $8.5\\text{ cm}<12\\text{ cm}$，不溢出，D 对",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "用动画看一看：一直往下放，直到第1颗触底。",
+     "do": [
+      {
+       "at": "^",
+       "show": "rdN"
+      },
+      {
+       "at": "一直",
+       "tween": {
+        "yb": 0
+       },
+       "dur": 5.0,
+       "ease": "linear"
+      }
+     ]
+    },
+    {
+     "say": "正好6颗浸没，第7颗还没碰到水。",
+     "do": [
+      {
+       "at": "正好",
+       "focus": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+       ],
+       "color": "gold",
+       "dur": 1.8
+      },
+      {
+       "at": "正好",
+       "show": [
+        "dimL",
+        "lbL"
+       ]
+      },
+      {
+       "at": "第7颗",
+       "focus": "b7",
+       "color": "red",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "say": "所以这道题选 D。",
+     "do": [
+      {
+       "at": "选",
+       "note": "故选 D",
+       "np": "答",
+       "cls": "ans"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "layout": "board",
+   "num": "06",
+   "title": "想一想",
+   "tag": "反思",
+   "beats": [
+    {
+     "say": "想一想：最后为什么要检查水深小于杯高？",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "rdN",
+        "dimL",
+        "lbL",
+        "rdH"
+       ],
+       "dur": 0.4
+      },
+      {
+       "at": "杯高",
+       "show": [
+        "rim",
+        "leadR",
+        "leadW",
+        "dimR"
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "say": "算水深时，默认水全在杯子里。"
+    },
+    {
+     "say": "杯子不够高，水就会溢出，水深就不能这样算了。｜",
+     "do": [
+      {
+       "at": "溢出",
+       "note": "前提：水不溢出（$8.5\\text{ cm}<12\\text{ cm}$）",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "layout": "summary",
+   "num": "07",
+   "title": "总结",
+   "chain": [
+    {
+     "id": "c1",
+     "title": "称重法",
+     "sub": "$F_{\\text{浮}}=G_{\\text{总}}-F_{\\text{拉}}$"
+    },
+    {
+     "id": "c2",
+     "title": "阿基米德原理",
+     "sub": "$V_{\\text{珠}}=\\dfrac{F_{\\text{浮}}}{\\rho_{\\text{水}}g}$"
+    },
+    {
+     "id": "c3",
+     "title": "求水深",
+     "sub": "$h=\\dfrac{V_{\\text{水}}+V_{\\text{排}}}{S_{\\text{杯}}}$"
+    },
+    {
+     "id": "c4",
+     "title": "定位置",
+     "sub": "底端高度\n＝水深－水下长度"
+    },
+    {
+     "id": "c5",
+     "title": "列方程",
+     "sub": "触底时\n水深＝浸没长度"
+    }
+   ],
+   "answers": [
+    {
+     "id": "ans1",
+     "text": "答案：[[D]]"
+    },
+    {
+     "id": "ans2",
+     "text": "A 示数越来越小；B 是 600 Pa；C 只下移 1 cm；D 浸没 6 颗"
+    }
+   ],
+   "tagline": "水面会上升：先算水深，再定位置",
+   "beats": [
+    {
+     "say": "回顾一下：用称重法，求出浮力。",
+     "do": [
+      {
+       "at": "称重法",
+       "show": "c1"
+      }
+     ]
+    },
+    {
+     "say": "由阿基米德原理，求出珠子的体积。",
+     "do": [
+      {
+       "at": "阿基米德",
+       "show": "c2"
+      }
+     ]
+    },
+    {
+     "say": "水的体积加上排开的体积，除以底面积，就是水深。",
+     "do": [
+      {
+       "at": "水的体积",
+       "show": "c3"
+      }
+     ]
+    },
+    {
+     "say": "定位置看水面：底端高度等于水深减去水下的长度。",
+     "do": [
+      {
+       "at": "定位置",
+       "show": "c4"
+      }
+     ]
+    },
+    {
+     "say": "触底时，水深正好等于浸没部分的长度，列方程求 n。",
+     "do": [
+      {
+       "at": "触底",
+       "show": "c5"
+      },
+      {
+       "at": "列方程",
+       "show": [
+        "ans1",
+        "ans2"
+       ],
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "say": "水面会上升：先算水深，再定位置。｜",
+     "do": [
+      {
+       "at": "^",
+       "show": "tagline"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "layout": "outro",
+   "main": "这道题就讲到这里",
+   "sub": "我们下次再见",
+   "beats": [
+    {
+     "say": "好，这道题就讲到这里。同学们，我们下次再见！"
+    }
+   ]
+  }
+ ]
+}
