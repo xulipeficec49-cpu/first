@@ -42,6 +42,13 @@ description: 讲题视频 Pro——把一道数学题（小学/初中/高中）�
   - 某处多念了（凭空多出的字母、词）：别整片重配，用 `scripts/cut_raw.py 分镜 起 止` 在静音处剪掉原始合成里那一段，再跑 `tts`
     （只重做后期、不花钱）；剪完再用第二个识别听一遍那一句（做法见 voice-lessons.md）。
   - 回退：`"engine": "bailian"` 用百炼 `qwen-audio-3.0-tts-plus` + 用户复刻音色（整段合成 + SSML 停顿，自带字级时间戳）。
+  - **MAI-Voice-2.1（`"engine": "mai"`，2026-10-12 加）**：微软 MAI-Voice-2.1 经 OpenRouter（`microsoft/mai-voice-2.1`，音色
+    `zh-CN-Mei:MAI-Voice-2.1`，中文另有 Bo / Lan / Wei / Grant / Harper），`scripts/tts_mai.py`。分镜 `meta.tts` 写 `{"engine": "mai"}` 启用
+    （默认引擎仍是 Gemini）。**逐句合成**（voice 固定说话人，不像 Gemini 要整片一次合成）、自己补句间停顿、按波形估字时刻——
+    **只要 OpenRouter Key，不要百炼 Key**。大写字母连写（ABCD）自动拆开读；每句合成结果缓存在 `~/.cache/explain-video-pro/mai/`，
+    口播没改的句子不再花钱；配音缓存 `build_*/audio_mai/`。不返回时间戳，字时刻是估的（逗号停顿从波形找，段内按字权重均分），
+    锚点动作误差一般 ≤0.15 秒；出片后听一遍锚点动作是否落在对的词上。第一次用要核对采样率（语速异常会在日志里提示，
+    `mai_pcm_rate` / `mai_format: "mp3"` 可调）。`letter_check.py` / `term_check.py` 的第二识别用百炼，没有百炼 Key 时改用 OpenRouter 的识别模型人工抽查。
   - 两个引擎的配音缓存分开放（`build_*/audio_gemini/`、`build_*/audio/`），切换不互相覆盖。
   - Key 由用户自己写入，模型不经手：`~/.openrouter_api_key`（或 `OPENROUTER_API_KEY`）、`~/.dashscope_api_key`（或 `DASHSCOPE_API_KEY`，合成与识别对时都用）。
 

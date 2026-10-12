@@ -392,8 +392,18 @@ def _has_num(s):
     return any(c in NUMS or c.isdigit() for c in s)
 
 
+def _has_dashscope_key(cfg):
+    if os.environ.get("DASHSCOPE_API_KEY", "").strip():
+        return True
+    return os.path.exists(os.path.expanduser(cfg.get("key_file", "~/.dashscope_api_key")))
+
+
 def _asr2(pcm, cfg):
-    """第二个识别模型（百炼 qwen3-asr-flash，不做数字归一化）听一小段，返回文字"""
+    """第二个识别模型（百炼 qwen3-asr-flash，不做数字归一化）听一小段，返回文字。
+    没有百炼 Key（只有 OpenRouter Key，例如 engine=mai）或 cfg.asr2 == "openrouter" 时，改用 OpenRouter 的识别模型（asr_openrouter.py）"""
+    if cfg.get("asr2") == "openrouter" or not _has_dashscope_key(cfg):
+        import asr_openrouter
+        return asr_openrouter.transcribe(pcm, SR, cfg)
     import dashscope
     import wave
     from dashscope import MultiModalConversation

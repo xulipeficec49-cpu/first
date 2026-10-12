@@ -1,0 +1,1594 @@
+{
+ "meta": {
+  "title": "旋转一周的体积",
+  "tag": "旋转体",
+  "subtitle": "涂色的两个三角形，转一圈会扫出什么？",
+  "out": "旋转体_长方形绕边旋转的体积.mp4",
+  "theme": "light",
+  "fps": 30,
+  "tts": {
+   "engine": "mai"
+  }
+ },
+ "problem": {
+  "tag": "旋转体积",
+  "text": "如图①，有这样一个{k1|长方形 $ABCD$}，{k2|$BC=6$ 厘米}，{k3|$AB=10$ 厘米}。已知{k4|对角线 $AC$、$BD$ 相交于点 $O$}。如果图①中的{k5|涂色部分}以{k6|$CD$ 所在的直线为轴}旋转一周，那么涂色部分扫出的立体图形（图②）的{q1|体积是多少立方厘米}？",
+  "width": 1090,
+  "size": 35
+ },
+ "world": {
+  "vars": {
+   "ph": 0
+  },
+  "view": {
+   "x": [
+    -8.0,
+    8.0
+   ],
+   "y": [
+    -2.7,
+    12.9
+   ]
+  },
+  "points": {
+   "A": [
+    "-6*cos(ph)",
+    "10+1.8*sin(ph)"
+   ],
+   "B": [
+    "-6*cos(ph)",
+    "1.8*sin(ph)"
+   ],
+   "O": [
+    "-3*cos(ph)",
+    "5+0.9*sin(ph)"
+   ],
+   "C": [
+    0,
+    0
+   ],
+   "D": [
+    0,
+    10
+   ],
+   "F": [
+    0,
+    5
+   ],
+   "A0": [
+    -6,
+    10
+   ],
+   "B0": [
+    -6,
+    0
+   ],
+   "O0": [
+    -3,
+    5
+   ],
+   "A2": [
+    6,
+    10
+   ],
+   "B2": [
+    6,
+    0
+   ],
+   "O2": [
+    3,
+    5
+   ],
+   "X0": [
+    0,
+    -1.5
+   ],
+   "X1": [
+    0,
+    11.4
+   ]
+  },
+  "objects": [
+   {
+    "id": "solid",
+    "type": "polygon",
+    "pts": [
+     "A0",
+     "O0",
+     "B0",
+     "B2",
+     "O2",
+     "A2"
+    ],
+    "stroke": "blue",
+    "width": 3.2,
+    "fill": "blue",
+    "fillOpacity": 0.26
+   },
+   {
+    "id": "eTop",
+    "type": "pcurve",
+    "fx": "-6*cos(t)",
+    "fy": "10+1.8*sin(t)",
+    "t": [
+     0,
+     "2*PI"
+    ],
+    "n": 200,
+    "close": true,
+    "stroke": "blue",
+    "width": 3,
+    "fill": "blue",
+    "fillOpacity": 0.16
+   },
+   {
+    "id": "cavity",
+    "type": "polygon",
+    "pts": [
+     "D",
+     "O0",
+     "C",
+     "O2"
+    ],
+    "stroke": "orange",
+    "width": 2.6,
+    "dash": [
+     9,
+     7
+    ],
+    "fill": "paper",
+    "fillOpacity": 1
+   },
+   {
+    "id": "eMidB",
+    "type": "pcurve",
+    "fx": "-3*cos(t)",
+    "fy": "5+0.9*sin(t)",
+    "t": [
+     0,
+     "PI"
+    ],
+    "n": 200,
+    "stroke": "blue",
+    "width": 2.6,
+    "dash": [
+     8,
+     7
+    ]
+   },
+   {
+    "id": "eMidF",
+    "type": "pcurve",
+    "fx": "-3*cos(t)",
+    "fy": "5+0.9*sin(t)",
+    "t": [
+     "PI",
+     "2*PI"
+    ],
+    "n": 200,
+    "stroke": "blue",
+    "width": 3
+   },
+   {
+    "id": "eBotB",
+    "type": "pcurve",
+    "fx": "-6*cos(t)",
+    "fy": "0+1.8*sin(t)",
+    "t": [
+     0,
+     "PI"
+    ],
+    "n": 200,
+    "stroke": "blue",
+    "width": 2.6,
+    "dash": [
+     8,
+     7
+    ]
+   },
+   {
+    "id": "eBotF",
+    "type": "pcurve",
+    "fx": "-6*cos(t)",
+    "fy": "0+1.8*sin(t)",
+    "t": [
+     "PI",
+     "2*PI"
+    ],
+    "n": 200,
+    "stroke": "blue",
+    "width": 3
+   },
+   {
+    "id": "bigCone",
+    "type": "polygon",
+    "pts": [
+     "C",
+     "A0",
+     "A2"
+    ],
+    "stroke": "orange",
+    "width": 3.2,
+    "fill": "orange",
+    "fillOpacity": 0.12
+   },
+   {
+    "id": "dbl",
+    "type": "polygon",
+    "pts": [
+     "D",
+     "O0",
+     "C",
+     "O2"
+    ],
+    "stroke": "green",
+    "width": 3,
+    "fill": "green",
+    "fillOpacity": 0.34
+   },
+   {
+    "id": "rect",
+    "type": "polygon",
+    "pts": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "stroke": "ink",
+    "width": 3,
+    "fill": null
+   },
+   {
+    "id": "triT",
+    "type": "polygon",
+    "pts": [
+     "A",
+     "O",
+     "D"
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "blue",
+    "fillOpacity": 0.36
+   },
+   {
+    "id": "triB",
+    "type": "polygon",
+    "pts": [
+     "B",
+     "O",
+     "C"
+    ],
+    "stroke": "blue",
+    "width": 2.6,
+    "fill": "blue",
+    "fillOpacity": 0.36
+   },
+   {
+    "id": "triADC",
+    "type": "polygon",
+    "pts": [
+     "A",
+     "D",
+     "C"
+    ],
+    "stroke": "orange",
+    "width": 3.2,
+    "fill": "orange",
+    "fillOpacity": 0.08
+   },
+   {
+    "id": "triDOC",
+    "type": "polygon",
+    "pts": [
+     "D",
+     "O",
+     "C"
+    ],
+    "stroke": "green",
+    "width": 3.2,
+    "fill": "green",
+    "fillOpacity": 0.4
+   },
+   {
+    "id": "dgAC",
+    "type": "segment",
+    "pts": [
+     "A",
+     "C"
+    ],
+    "stroke": "ink",
+    "width": 2.2
+   },
+   {
+    "id": "dgBD",
+    "type": "segment",
+    "pts": [
+     "B",
+     "D"
+    ],
+    "stroke": "ink",
+    "width": 2.2
+   },
+   {
+    "id": "trA",
+    "type": "pcurve",
+    "fx": "-6*cos(t)",
+    "fy": "10+1.8*sin(t)",
+    "t": [
+     0,
+     "ph"
+    ],
+    "n": 200,
+    "stroke": "orange",
+    "width": 3.6
+   },
+   {
+    "id": "trB",
+    "type": "pcurve",
+    "fx": "-6*cos(t)",
+    "fy": "0+1.8*sin(t)",
+    "t": [
+     0,
+     "ph"
+    ],
+    "n": 200,
+    "stroke": "orange",
+    "width": 3.6
+   },
+   {
+    "id": "trO",
+    "type": "pcurve",
+    "fx": "-3*cos(t)",
+    "fy": "5+0.9*sin(t)",
+    "t": [
+     0,
+     "ph"
+    ],
+    "n": 200,
+    "stroke": "orange",
+    "width": 3.6
+   },
+   {
+    "id": "axis",
+    "type": "segment",
+    "pts": [
+     "X0",
+     "X1"
+    ],
+    "stroke": "orange",
+    "width": 3,
+    "dash": [
+     12,
+     8
+    ]
+   },
+   {
+    "id": "axT",
+    "type": "text",
+    "at": [
+     0.25,
+     8.6
+    ],
+    "text": "旋转轴",
+    "cls": "wt",
+    "color": "orange",
+    "dir": "E"
+   },
+   {
+    "id": "oF",
+    "type": "segment",
+    "pts": [
+     "O0",
+     "F"
+    ],
+    "stroke": "ink",
+    "width": 2.4,
+    "dash": [
+     8,
+     6
+    ]
+   },
+   {
+    "id": "rtF",
+    "type": "right",
+    "pts": [
+     "O0",
+     "F",
+     "D"
+    ],
+    "stroke": "ink",
+    "size": 14
+   },
+   {
+    "id": "rtD",
+    "type": "right",
+    "pts": [
+     "A",
+     "D",
+     "C"
+    ],
+    "stroke": "orange",
+    "size": 16
+   },
+   {
+    "id": "mir",
+    "type": "segment",
+    "pts": [
+     [
+      -6.6,
+      5
+     ],
+     [
+      0.7,
+      5
+     ]
+    ],
+    "stroke": "gray",
+    "width": 2.2,
+    "dash": [
+     9,
+     7
+    ]
+   },
+   {
+    "id": "dBC",
+    "type": "dim",
+    "pts": [
+     "B0",
+     "C"
+    ],
+    "text": "6 cm",
+    "off": -52,
+    "stroke": "gray",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dAB",
+    "type": "dim",
+    "pts": [
+     "B0",
+     "A0"
+    ],
+    "text": "10 cm",
+    "off": 58,
+    "loff": 50,
+    "stroke": "gray",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dAD",
+    "type": "dim",
+    "pts": [
+     "A0",
+     "D"
+    ],
+    "text": "6 cm",
+    "off": -40,
+    "stroke": "orange",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dDC",
+    "type": "dim",
+    "pts": [
+     "D",
+     "C"
+    ],
+    "text": "10 cm",
+    "off": 0,
+    "loff": 52,
+    "stroke": "orange",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dDF",
+    "type": "dim",
+    "pts": [
+     "D",
+     "F"
+    ],
+    "text": "5 cm",
+    "off": 62,
+    "stroke": "green",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dFC",
+    "type": "dim",
+    "pts": [
+     "F",
+     "C"
+    ],
+    "text": "5 cm",
+    "off": 62,
+    "stroke": "ink",
+    "lcolor": "ink"
+   },
+   {
+    "id": "dOF",
+    "type": "dim",
+    "pts": [
+     "O0",
+     "F"
+    ],
+    "text": "3 cm",
+    "off": -38,
+    "stroke": "green",
+    "lcolor": "ink"
+   },
+   {
+    "id": "pO",
+    "type": "point",
+    "at": "O",
+    "r": 6,
+    "fill": "ink"
+   },
+   {
+    "id": "lA",
+    "type": "label",
+    "at": "A",
+    "text": "A",
+    "dir": "NW"
+   },
+   {
+    "id": "lB",
+    "type": "label",
+    "at": "B",
+    "text": "B",
+    "dir": "SW"
+   },
+   {
+    "id": "lC",
+    "type": "label",
+    "at": "C",
+    "text": "C",
+    "dir": "SE"
+   },
+   {
+    "id": "lD",
+    "type": "label",
+    "at": "D",
+    "text": "D",
+    "dir": "NE"
+   },
+   {
+    "id": "lO",
+    "type": "label",
+    "at": "O",
+    "text": "O",
+    "dir": "E",
+    "dist": 26
+   },
+   {
+    "id": "lF",
+    "type": "label",
+    "at": "F",
+    "text": "F",
+    "dir": "E",
+    "dist": 20
+   }
+  ],
+  "init": [
+   "rect",
+   "lA",
+   "lB",
+   "lC",
+   "lD"
+  ]
+ },
+ "layouts": {
+  "board": {
+   "box": {
+    "x": 70,
+    "y": 140,
+    "w": 1130,
+    "h": 800
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": "s0",
+   "layout": "title",
+   "beats": [
+    {
+     "say": "两个三角形转一圈，扫出的立体图形有多大？｜"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "layout": "problem",
+   "num": "题",
+   "title": "读题",
+   "box": {
+    "x": 1240,
+    "y": 150,
+    "w": 640,
+    "h": 790
+   },
+   "view": {
+    "x": [
+     -8.4,
+     2.7
+    ],
+    "y": [
+     -2.2,
+     12.6
+    ]
+   },
+   "beats": [
+    {
+     "say": "长方形 ABCD，BC 长 6 厘米，AB 长 10 厘米。",
+     "do": [
+      {
+       "at": "长方形",
+       "mark": "k1"
+      },
+      {
+       "at": "长方形",
+       "focus": "rect",
+       "color": "blue",
+       "dur": 1.2
+      },
+      {
+       "at": "6厘米",
+       "mark": "k2"
+      },
+      {
+       "at": "6厘米",
+       "show": "dBC"
+      },
+      {
+       "at": "10厘米",
+       "mark": "k3"
+      },
+      {
+       "at": "10厘米",
+       "show": "dAB"
+      }
+     ]
+    },
+    {
+     "say": "对角线 AC、BD 相交于点 O。",
+     "do": [
+      {
+       "at": "对角线",
+       "mark": "k4"
+      },
+      {
+       "at": "对角线",
+       "show": [
+        "dgAC",
+        "dgBD"
+       ]
+      },
+      {
+       "at": "点O",
+       "show": [
+        "pO",
+        "lO"
+       ]
+      }
+     ]
+    },
+    {
+     "say": "图中涂色的，是上下两个三角形。",
+     "do": [
+      {
+       "at": "涂色",
+       "mark": "k5"
+      },
+      {
+       "at": "涂色",
+       "show": [
+        "triT",
+        "triB"
+       ],
+       "fx": "fade",
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "say": "它们以 CD 所在的直线为轴，转一周。",
+     "do": [
+      {
+       "at": "CD",
+       "mark": "k6"
+      },
+      {
+       "at": "CD所在",
+       "show": [
+        "axis",
+        "axT"
+       ],
+       "fx": "draw",
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "say": "转出来的立体图形，体积是多少立方厘米？｜",
+     "do": [
+      {
+       "at": "体积",
+       "mark": "q1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "layout": "board",
+   "num": "01",
+   "title": "转一周，扫出什么",
+   "tag": "旋转体",
+   "view": {
+    "x": [
+     -8.0,
+     8.0
+    ],
+    "y": [
+     -2.7,
+     12.9
+    ]
+   },
+   "beats": [
+    {
+     "say": "先让它转起来，看看会扫出什么。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "dBC",
+        "dAB",
+        "axT"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "转起来",
+       "show": [
+        "trA",
+        "trB",
+        "trO"
+       ],
+       "fx": "fade",
+       "dur": 0.3
+      },
+      {
+       "at": "转起来",
+       "tween": {
+        "ph": 6.283185307
+       },
+       "dur": 6.5,
+       "ease": "linear"
+      },
+      {
+       "at": "^",
+       "note": "涂色部分绕 $CD$ 转一周"
+      }
+     ]
+    },
+    {
+     "say": "点 A 转一圈，画出一个大圆。",
+     "do": [
+      {
+       "at": "大圆",
+       "focus": "trA",
+       "dur": 1.6,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "say": "点 B 转一圈，也画出一个大圆。",
+     "do": [
+      {
+       "at": "大圆",
+       "focus": "trB",
+       "dur": 1.6,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "say": "点 O 转一圈，画出一个小圆。",
+     "do": [
+      {
+       "at": "小圆",
+       "focus": "trO",
+       "dur": 1.6,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "say": "两个三角形扫过的地方，像一个沙漏。",
+     "do": [
+      {
+       "at": "沙漏",
+       "hide": [
+        "trA",
+        "trB",
+        "trO"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "沙漏",
+       "hide": [
+        "rect",
+        "triT",
+        "triB",
+        "dgAC",
+        "dgBD",
+        "pO",
+        "lA",
+        "lB",
+        "lO"
+       ],
+       "dur": 0.6
+      },
+      {
+       "at": "沙漏",
+       "show": [
+        "solid",
+        "eTop",
+        "eMidB",
+        "eMidF",
+        "eBotB",
+        "eBotF"
+       ],
+       "fx": "fade",
+       "dur": 0.9
+      },
+      {
+       "at": "沙漏",
+       "note": "扫出的立体图形：像沙漏"
+      }
+     ]
+    },
+    {
+     "say": "不过，它的中间是空的。",
+     "do": [
+      {
+       "at": "空的",
+       "show": "cavity",
+       "fx": "fade",
+       "dur": 0.8
+      },
+      {
+       "at": "空的",
+       "focus": "cavity",
+       "dur": 1.8,
+       "color": "orange"
+      },
+      {
+       "at": "空的",
+       "note": "中间有一个空腔",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "求体积的时候，这个空腔要减掉。"
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "layout": "board",
+   "num": "02",
+   "title": "补成大三角形",
+   "tag": "化繁为简",
+   "view": {
+    "x": [
+     -8.0,
+     8.0
+    ],
+    "y": [
+     -2.7,
+     12.9
+    ]
+   },
+   "beats": [
+    {
+     "say": "先看上面的三角形 AOD，它不好直接算。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "solid",
+        "eTop",
+        "eMidB",
+        "eMidF",
+        "eBotB",
+        "eBotF",
+        "cavity"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "show": [
+        "rect",
+        "triT",
+        "triB",
+        "dgAC",
+        "dgBD",
+        "pO",
+        "lA",
+        "lB",
+        "lO"
+       ],
+       "fx": "fade",
+       "dur": 0.6
+      },
+      {
+       "at": "^",
+       "set": {
+        "ph": 0
+       },
+       "delay": 0.7
+      },
+      {
+       "at": "AOD",
+       "dim": [
+        "triB",
+        "dgBD"
+       ],
+       "to": 0.25
+      },
+      {
+       "at": "AOD",
+       "focus": "triT",
+       "dur": 1.6,
+       "color": "blue"
+      }
+     ]
+    },
+    {
+     "say": "我们把它补成大三角形 ADC。",
+     "do": [
+      {
+       "at": "补成",
+       "show": "triADC",
+       "fx": "fade",
+       "dur": 0.9
+      },
+      {
+       "at": "补成",
+       "note": "补成大三角形 $ADC$"
+      }
+     ]
+    },
+    {
+     "say": "补上去的，是三角形 DOC。",
+     "do": [
+      {
+       "at": "DOC",
+       "show": "triDOC",
+       "fx": "fade",
+       "dur": 0.8
+      },
+      {
+       "at": "DOC",
+       "focus": "triDOC",
+       "dur": 1.6,
+       "color": "green"
+      },
+      {
+       "at": "DOC",
+       "note": "补上的是 $\\triangle DOC$"
+      }
+     ]
+    },
+    {
+     "say": "AD 垂直于 CD，让大三角形 ADC 绕 CD 转一周。",
+     "do": [
+      {
+       "at": "垂直",
+       "show": "rtD",
+       "fx": "fade",
+       "dur": 0.5
+      },
+      {
+       "at": "转一周",
+       "show": "trA",
+       "fx": "fade",
+       "dur": 0.3
+      },
+      {
+       "at": "转一周",
+       "tween": {
+        "ph": 6.283185307
+       },
+       "dur": 5.5,
+       "ease": "linear"
+      }
+     ]
+    },
+    {
+     "say": "转出来的，是一个大圆锥。",
+     "do": [
+      {
+       "at": "大圆锥",
+       "hide": "trA",
+       "dur": 0.5
+      },
+      {
+       "at": "大圆锥",
+       "show": [
+        "bigCone",
+        "eTop"
+       ],
+       "fx": "fade",
+       "dur": 0.9
+      },
+      {
+       "at": "大圆锥",
+       "note": "$\\triangle ADC$ 转一周 → 大圆锥"
+      }
+     ]
+    },
+    {
+     "say": "它的底面半径 AD 是 6 厘米，高 CD 是 10 厘米。",
+     "do": [
+      {
+       "at": "半径",
+       "show": "dAD",
+       "fx": "draw",
+       "dur": 0.8
+      },
+      {
+       "at": "高",
+       "show": "dDC",
+       "fx": "draw",
+       "dur": 0.8
+      },
+      {
+       "at": "6厘米",
+       "note": "大圆锥：半径 $6$，高 $10$（厘米）"
+      }
+     ]
+    },
+    {
+     "say": "补上去的三角形 DOC，转出来是上下两个小圆锥。",
+     "do": [
+      {
+       "at": "小圆锥",
+       "show": [
+        "dbl",
+        "eMidB",
+        "eMidF"
+       ],
+       "fx": "fade",
+       "dur": 0.9
+      },
+      {
+       "at": "小圆锥",
+       "focus": "dbl",
+       "dur": 1.6,
+       "color": "green"
+      },
+      {
+       "at": "小圆锥",
+       "note": "$\\triangle DOC$ 转一周 → 两个小圆锥"
+      }
+     ]
+    },
+    {
+     "say": "上面三角形转出的体积，是大圆锥减两个小圆锥。",
+     "do": [
+      {
+       "at": "大圆锥",
+       "focus": "triT",
+       "dur": 1.4,
+       "color": "blue"
+      },
+      {
+       "at": "是大圆锥",
+       "note": "上半部分 ＝ 大圆锥 － 两个小圆锥",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "layout": "board",
+   "num": "03",
+   "title": "小圆锥的半径和高",
+   "tag": "找数据",
+   "view": {
+    "x": [
+     -8.0,
+     8.0
+    ],
+    "y": [
+     -2.7,
+     12.9
+    ]
+   },
+   "beats": [
+    {
+     "say": "小圆锥的半径和高，要回到长方形里找。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "bigCone",
+        "eTop",
+        "dbl",
+        "eMidB",
+        "eMidF",
+        "dAD",
+        "dDC",
+        "triADC",
+        "rtD"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "dim": [
+        "triB",
+        "dgBD"
+       ],
+       "to": 1
+      },
+      {
+       "at": "^",
+       "note": "小圆锥：半径、高？",
+       "cls": "sub"
+      }
+     ]
+    },
+    {
+     "say": "对角线的交点 O，是长方形的中心。",
+     "do": [
+      {
+       "at": "中心",
+       "focus": [
+        "pO",
+        "lO"
+       ],
+       "dur": 1.6,
+       "color": "orange"
+      },
+      {
+       "at": "中心",
+       "note": "$O$ 是长方形的中心"
+      }
+     ]
+    },
+    {
+     "say": "过 O 作 CD 的垂线，垂足是 F。",
+     "do": [
+      {
+       "at": "垂线",
+       "show": [
+        "oF",
+        "rtF",
+        "lF"
+       ],
+       "fx": "draw",
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "say": "F 是 CD 的中点，DF 是 CD 的一半。",
+     "do": [
+      {
+       "at": "中点",
+       "show": [
+        "dDF",
+        "dFC"
+       ],
+       "fx": "draw",
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "say": "10÷2=5，所以高是 5 厘米。",
+     "do": [
+      {
+       "at": "5",
+       "focus": "dDF",
+       "dur": 1.4,
+       "color": "green"
+      },
+      {
+       "at": "10",
+       "note": "$10\\div2=5$（厘米）"
+      }
+     ]
+    },
+    {
+     "say": "OF 是 BC 的一半，6÷2=3，所以半径是 3 厘米。",
+     "do": [
+      {
+       "at": "OF",
+       "show": "dOF",
+       "fx": "draw",
+       "dur": 0.8
+      },
+      {
+       "at": "半径",
+       "focus": "dOF",
+       "dur": 1.4,
+       "color": "green"
+      },
+      {
+       "at": "6",
+       "note": "$6\\div2=3$（厘米）"
+      }
+     ]
+    },
+    {
+     "say": "每个小圆锥，底面半径 3 厘米，高 5 厘米。",
+     "do": [
+      {
+       "at": "半径",
+       "note": "小圆锥：半径 $3$，高 $5$（厘米）",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "layout": "board",
+   "num": "04",
+   "title": "算出体积",
+   "tag": "列式计算",
+   "view": {
+    "x": [
+     -8.0,
+     8.0
+    ],
+    "y": [
+     -2.7,
+     12.9
+    ]
+   },
+   "beats": [
+    {
+     "say": "大圆锥：三分之一乘 3.14 乘 6 的平方乘 10。",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "oF",
+        "rtF",
+        "lF",
+        "dOF",
+        "dDF",
+        "dFC",
+        "triDOC"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "大圆锥",
+       "show": [
+        "bigCone",
+        "eTop"
+       ],
+       "fx": "fade",
+       "dur": 0.8
+      },
+      {
+       "at": "大圆锥",
+       "focus": "bigCone",
+       "dur": 1.5,
+       "color": "orange"
+      },
+      {
+       "at": "大圆锥",
+       "note": "$\\dfrac{1}{3}\\times3.14\\times6^2\\times10$"
+      }
+     ]
+    },
+    {
+     "say": "小圆锥：三分之一乘 3.14 乘 3 的平方乘 5。一共有两个，所以再乘 2。",
+     "do": [
+      {
+       "at": "小圆锥",
+       "show": [
+        "dbl",
+        "eMidB",
+        "eMidF"
+       ],
+       "fx": "fade",
+       "dur": 0.8
+      },
+      {
+       "at": "小圆锥",
+       "focus": "dbl",
+       "dur": 1.5,
+       "color": "green"
+      },
+      {
+       "at": "一共",
+       "note": "$-\\dfrac{1}{3}\\times3.14\\times3^2\\times5\\times2$"
+      }
+     ]
+    },
+    {
+     "say": "大圆锥减去两个小圆锥，等于 282.6 立方厘米。",
+     "do": [
+      {
+       "at": "等于",
+       "note": "$=282.6$（立方厘米）",
+       "cls": "key"
+      },
+      {
+       "at": "等于",
+       "note": "大圆锥 $376.8$，两个小圆锥 $94.2$",
+       "cls": "sub"
+      }
+     ]
+    },
+    {
+     "say": "这是上面的三角形转出来的体积。",
+     "do": [
+      {
+       "at": "上面",
+       "focus": "triT",
+       "dur": 1.6,
+       "color": "blue"
+      }
+     ]
+    },
+    {
+     "say": "下面的三角形 BOC，和它上下对称。",
+     "do": [
+      {
+       "at": "对称",
+       "show": "mir",
+       "fx": "draw",
+       "dur": 0.8
+      },
+      {
+       "at": "BOC",
+       "focus": "triB",
+       "dur": 1.6,
+       "color": "blue"
+      }
+     ]
+    },
+    {
+     "say": "它转出来的体积，也是 282.6 立方厘米。"
+    },
+    {
+     "say": "所以再乘 2，282.6×2=565.2 立方厘米。",
+     "do": [
+      {
+       "at": "再乘",
+       "note": "$282.6\\times2=565.2$（立方厘米）",
+       "cls": "key"
+      }
+     ]
+    },
+    {
+     "say": "答：扫出的立体图形，体积是 565.2 立方厘米。",
+     "do": [
+      {
+       "at": "答",
+       "note": "体积是 $565.2$ 立方厘米",
+       "cls": "ans",
+       "gap": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "layout": "board",
+   "num": "05",
+   "title": "想一想",
+   "tag": "反思",
+   "view": {
+    "x": [
+     -8.0,
+     8.0
+    ],
+    "y": [
+     -2.7,
+     12.9
+    ]
+   },
+   "beats": [
+    {
+     "say": "想一想：如果忘了减掉空腔，会算成多少？",
+     "do": [
+      {
+       "at": "^",
+       "hide": [
+        "bigCone",
+        "dbl",
+        "mir",
+        "rect",
+        "triT",
+        "triB",
+        "dgAC",
+        "dgBD",
+        "pO",
+        "lA",
+        "lB",
+        "lO"
+       ],
+       "dur": 0.5
+      },
+      {
+       "at": "^",
+       "show": [
+        "solid",
+        "eBotB",
+        "eBotF"
+       ],
+       "fx": "fade",
+       "dur": 0.6
+      },
+      {
+       "at": "^",
+       "show": "cavity",
+       "fx": "fade",
+       "dur": 0.8,
+       "delay": 0.2
+      },
+      {
+       "at": "空腔",
+       "focus": "cavity",
+       "dur": 1.8,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "say": "只算两个大圆锥：376.8×2=753.6。",
+     "do": [
+      {
+       "at": "只算",
+       "note": "不减空腔：$376.8\\times2=753.6$"
+      }
+     ]
+    },
+    {
+     "say": "两个大圆锥里，都把空腔算成了实心。",
+     "do": [
+      {
+       "at": "空腔",
+       "focus": "cavity",
+       "dur": 1.8,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "say": "所以多出两份空腔，94.2×2=188.4。",
+     "do": [
+      {
+       "at": "多出",
+       "note": "多算：$94.2\\times2=188.4$"
+      },
+      {
+       "at": "多出",
+       "note": "空腔一定要减掉",
+       "cls": "key"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "layout": "summary",
+   "num": "06",
+   "title": "总结",
+   "chain": [
+    {
+     "id": "c1",
+     "title": "补成大三角形",
+     "sub": "$AOD$ 补上 $DOC$"
+    },
+    {
+     "id": "c2",
+     "title": "转出大圆锥",
+     "sub": "半径 $6$，高 $10$"
+    },
+    {
+     "id": "c3",
+     "title": "减去空腔",
+     "sub": "两个小圆锥\n半径 $3$，高 $5$"
+    },
+    {
+     "id": "c4",
+     "title": "上下相同",
+     "sub": "再乘 $2$"
+    }
+   ],
+   "answers": [
+    {
+     "id": "ans1",
+     "text": "体积是（[[565.2]]）立方厘米。"
+    }
+   ],
+   "tagline": "旋转体：补成大的，减掉空的",
+   "beats": [
+    {
+     "say": "回顾一下。先把涂色三角形补成大三角形。",
+     "do": [
+      {
+       "at": "补成",
+       "show": "c1"
+      }
+     ]
+    },
+    {
+     "say": "转成大圆锥，再减去中间的两个小圆锥。",
+     "do": [
+      {
+       "at": "大圆锥",
+       "show": "c2"
+      },
+      {
+       "at": "减去",
+       "show": "c3"
+      }
+     ]
+    },
+    {
+     "say": "上下两个一样，所以再乘 2。",
+     "do": [
+      {
+       "at": "再乘",
+       "show": "c4"
+      }
+     ]
+    },
+    {
+     "say": "最后的答案，是 565.2 立方厘米。",
+     "do": [
+      {
+       "at": "565.2",
+       "show": "ans1",
+       "delay": 0.2
+      }
+     ]
+    },
+    {
+     "say": "遇到旋转体，就想：补成大的，减掉空的。｜",
+     "do": [
+      {
+       "at": "补成",
+       "show": "tagline"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "layout": "outro",
+   "main": "这道题就讲到这里",
+   "sub": "我们下次再见",
+   "beats": [
+    {
+     "say": "好，这道题就讲到这里。同学们，我们下次再见！"
+    }
+   ]
+  }
+ ]
+}

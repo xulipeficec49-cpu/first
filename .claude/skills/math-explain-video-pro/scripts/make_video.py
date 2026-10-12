@@ -497,6 +497,10 @@ class Board:
         if cfg.get("engine") == "gemini":
             import tts_gemini as TB
             sig = [cfg.get("engine"), cfg.get("gemini_model"), cfg.get("gemini_voice"), cfg.get("gemini_style")]
+        elif cfg.get("engine") == "mai":
+            # 微软 MAI-Voice-2.1（经 OpenRouter）：逐句合成、自己补句间停顿，按场景缓存（见 tts_mai.py 顶部说明）
+            import tts_mai as TB
+            sig = [cfg.get("engine"), cfg.get("mai_model"), cfg.get("mai_voice"), cfg.get("mai_format"), cfg.get("mai_space_letters", True)]
         else:
             import tts_bailian as TB
             sig = [cfg.get("model"), cfg.get("voice"), cfg.get("rate"), cfg.get("break"), cfg.get("mode")]
@@ -892,11 +896,25 @@ def si_first(bd, scn):
 
 
 # ============================================================ 浏览器
-def open_page(pw, html_path):
+def _launch_browser(pw):
+    """本机 Chrome → Playwright 自带浏览器 → 环境里现成的 Chromium（CHROME_EXECUTABLE 或 /opt/pw-browsers 下，云端容器常见）"""
     try:
-        br = pw.chromium.launch(channel="chrome", headless=True)
+        return pw.chromium.launch(channel="chrome", headless=True)
     except Exception:
-        br = pw.chromium.launch(headless=True)
+        pass
+    try:
+        return pw.chromium.launch(headless=True)
+    except Exception as e:
+        import glob
+        cands = [os.environ.get("CHROME_EXECUTABLE", "")] + sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"), reverse=True)
+        for exe in cands:
+            if exe and os.path.exists(exe):
+                return pw.chromium.launch(executable_path=exe, headless=True)
+        raise e
+
+
+def open_page(pw, html_path):
+    br = _launch_browser(pw)
     pg = br.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=1)
     errs = []
     pg.on("pageerror", lambda e: errs.append(str(e)))
@@ -1123,7 +1141,14 @@ def preview(bd, fake=False, times=None, sheet=True):
     log("预览帧 %d 张 -> %s（时长 %.1f 秒）" % (len(files), pdir, tl["duration"]))
     if sheet and len(files) > 1:
         from PIL import Image, ImageDraw, ImageFont
-        font = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 22)
+        font = None
+        for fp in ("C:/Windows/Fonts/arial.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", str(ASSETS / "fonts" / "NotoSansSC-VF.ttf")):
+            try:
+                font = ImageFont.truetype(fp, 22)
+                break
+            except OSError:
+                continue
+        font = font or ImageFont.load_default()
         for k in range(0, len(files), 4):
             grp = files[k:k + 4]
             im = Image.new("RGB", (1920, 1080), "black")
