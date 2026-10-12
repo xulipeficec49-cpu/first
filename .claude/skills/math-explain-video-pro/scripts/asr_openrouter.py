@@ -5,7 +5,7 @@ tts_gemini._asr2 在没有百炼 Key（或 cfg.asr2 == "openrouter"）时转到�
 接口（OpenRouter 模型页 llms.txt）：JSON {model, input_audio: {data: base64, format: "wav"}}，返回 {text, usage}；
 response_format "verbose_json" 可额外给词时间戳（取决于上游是否支持）。
 识别模型默认 openai/whisper-large-v3（中文字母序列、数字都比较稳；cfg.asr_model 可换，如 openai/gpt-4o-transcribe）。
-Key 同配音：环境变量 OPENROUTER_API_KEY 或 ~/.openrouter_api_key。
+Key 同配音（tts_mai.load_key / headers）：环境变量、~/.openrouter_api_key，或 Network secret 由代理注入。
 """
 import base64
 import io
@@ -43,8 +43,7 @@ def transcribe(pcm, sr, cfg, words=False):
     for body in (full, {"model": model, "input_audio": audio}):       # 带可选参数被上游拒绝（400）就退回最小请求
         for i in range(3):
             try:
-                r = requests.post(URL, headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
-                                  data=json.dumps(body).encode("utf-8"), timeout=120)
+                r = requests.post(URL, headers=tts_mai.headers(key), data=json.dumps(body).encode("utf-8"), timeout=120)
             except requests.RequestException as e:
                 last = e
                 time.sleep(2 * (i + 1))

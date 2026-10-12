@@ -14,7 +14,8 @@
   句内的逗号停顿从波形里找（静音段对应到逗号），每段内按字权重均分；锚点动作的误差一般 ≤0.15 秒。
   想更准：以后可接 OpenRouter 的识别模型（verbose_json 词时间戳）替换 _char_times，接口不变。
 - 缓存：每句合成结果存 ~/.cache/explain-video-pro/mai/，口播没改的句子不再花钱。
-Key 由用户自己放：环境变量 OPENROUTER_API_KEY 或 ~/.openrouter_api_key（模型不经手，不进任何配置文件）。
+Key 由用户自己放（模型不经手，不进任何配置文件）：环境变量 OPENROUTER_API_KEY、~/.openrouter_api_key，
+或云环境里的 Network secret（Bearer，允许站点 openrouter.ai，由出口代理注入 Authorization，容器里可以没有 Key）。
 """
 import hashlib
 import io
@@ -44,14 +45,23 @@ CPS_RANGE = (2.0, 8.0)                  # 合理语速（字/秒）；超出说�
 
 
 def load_key(cfg):
+    """本地 Key：环境变量 OPENROUTER_API_KEY 或 ~/.openrouter_api_key。找不到就返回 ""（不退出）：
+    云环境里若把 Key 配成"Network secret"（Bearer，允许站点 openrouter.ai），由出口代理给发往 openrouter.ai 的请求加 Authorization，
+    容器里不一定有 Key（或只有占位符）——这时请求不带本地 Key 照样发，真没有 Key 会得到 401，报错里有提示"""
     k = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if not k:
         p = os.path.expanduser(cfg.get("openrouter_key_file", "~/.openrouter_api_key"))
         if os.path.exists(p):
             k = open(p, "rb").read().decode("utf-8-sig", "ignore").strip().strip('"').strip("'")
-    if not k:
-        sys.exit("MAI-Voice 配音需要 OpenRouter Key：设置环境变量 OPENROUTER_API_KEY，或写入 ~/.openrouter_api_key（由用户自己放，不要贴进聊天）")
     return k
+
+
+def headers(key):
+    """请求头：有本地 Key 才带 Authorization（没有就交给 Network secret 代理注入）"""
+    h = {"Content-Type": "application/json"}
+    if key:
+        h["Authorization"] = "Bearer " + key
+    return h
 
 
 def _ffmpeg():
@@ -93,8 +103,7 @@ def _request(text, cfg, key, log):
     last = None
     for i in range(4):
         try:
-            r = requests.post(URL, headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
-                              data=json.dumps(body, ensure_ascii=False).encode("utf-8"), timeout=300)
+            r = requests.post(URL, headers=headers(key), data=json.dumps(body, ensure_ascii=False).encode("utf-8"), timeout=300)
         except requests.RequestException as e:
             last = e
             log("   [MAI 重试 %d/4] %s" % (i + 1, str(e)[:80]))
@@ -104,6 +113,9 @@ def _request(text, cfg, key, log):
         if r.status_code == 200 and "json" not in ct:
             return _decode(r.content, ct, cfg)
         last = RuntimeError("HTTP %s %s" % (r.status_code, r.text[:200]))
+        if r.status_code == 401:
+            last = RuntimeError("HTTP 401：没有可用的 OpenRouter Key（环境变量 OPENROUTER_API_KEY / ~/.openrouter_api_key 都没有，"
+                                "Network secret 也没生效？）或 Key 无效。%s" % r.text[:120])
         if r.status_code in (400, 401, 402, 403, 404):          # 请求本身的问题（Key、余额、音色名），重试没用
             break
         log("   [MAI 重试 %d/4] %s" % (i + 1, str(last)[:80]))

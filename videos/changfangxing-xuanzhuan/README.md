@@ -19,7 +19,12 @@
 
 - 分镜 `check`：0 ERROR / 0 WARN；`preview --fake` 的 46 个定格帧逐张看过；渲染链路（Chromium + ffmpeg）在云端容器跑通。
 - 配音：走 OpenRouter 的微软 **MAI-Voice-2.1**，音色 **zh-CN-Mei**（`.claude/skills/math-explain-video-pro/scripts/tts_mai.py`）。
-  **需要 OpenRouter Key**（环境变量 `OPENROUTER_API_KEY`，或 `~/.openrouter_api_key`；不要贴进聊天）。
+  **需要 OpenRouter Key，不要贴进聊天**，三种放法任选：
+  1. 云环境的 **Network secret**（Add secret）：Name `OPENROUTER_API_KEY`，Secret type `Bearer`，Allowed websites `openrouter.ai`，
+     Path prefixes `/api/v1/`（可选），Custom headers 一行：Name `Authorization`、Prefix `Bearer`、**Value 填 Key**。
+     这种由出口代理给请求加 `Authorization`，容器里可以没有 Key；`tts_mai.py` 没找到本地 Key 时就不带 Authorization 照发。
+  2. 环境变量 `OPENROUTER_API_KEY`；3. 本机 `~/.openrouter_api_key`。
+  新加的 secret / 变量要**新开会话**才生效。
 
 ## 出片（有 Key 之后）
 
